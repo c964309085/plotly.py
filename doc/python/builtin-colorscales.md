@@ -5,8 +5,8 @@ jupyter:
     text_representation:
       extension: .md
       format_name: markdown
-      format_version: "1.2"
-      jupytext_version: 1.3.1
+      format_version: '1.2'
+      jupytext_version: 1.4.2
   kernelspec:
     display_name: Python 3
     language: python
@@ -20,10 +20,9 @@ jupyter:
     name: python
     nbconvert_exporter: python
     pygments_lexer: ipython3
-    version: 3.6.8
+    version: 3.7.7
   plotly:
-    description:
-      A reference for the built-in named continuous (sequential, diverging
+    description: A reference for the built-in named continuous (sequential, diverging
       and cylclical) color scales in Plotly.
     display_as: file_settings
     has_thumbnail: true
@@ -31,7 +30,7 @@ jupyter:
     language: python
     layout: base
     name: Built-in Continuous Color Scales
-    order: 27
+    order: 28
     permalink: python/builtin-colorscales/
     thumbnail: thumbnail/heatmap_colorscale.jpg
     v4upgrade: true
@@ -84,11 +83,11 @@ Here are all the built-in scales in the `plotly.colors.sequential` module:
 ```python
 import plotly.express as px
 
-fig = px.colors.sequential.swatches()
+fig = px.colors.sequential.swatches_continuous()
 fig.show()
 ```
 
-Note: `RdBu` was included in this module by mistake, even though it is a diverging color scale.
+Note: `RdBu` was included in the `sequential` module by mistake, even though it is a diverging color scale.
 It is intentionally left in for backwards-compatibility reasons.
 
 ### Built-In Diverging Color scales
@@ -103,7 +102,7 @@ Here are all the built-in scales in the `plotly.colors.diverging` module:
 ```python
 import plotly.express as px
 
-fig = px.colors.diverging.swatches().update_layout(margin_b=10)
+fig = px.colors.diverging.swatches_continuous()
 fig.show()
 ```
 
@@ -122,6 +121,6 @@ import plotly.express as px
 fig = px.colors.cyclical.swatches_cyclical()
 fig.show()
 
-fig = px.colors.cyclical.swatches()
+fig = px.colors.cyclical.swatches_continuous()
 fig.show()
 ```

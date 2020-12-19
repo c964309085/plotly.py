@@ -10,16 +10,16 @@
    .. automethod:: __init__
    {% endblock %}
 
-
 :mod:`{{module}}`.{{objname.lower()}}
 {{ underline }}================================
 
 .. autosummary::
    
-   plotly.graph_objects.{{ objname.lower() }}
+   plotly.graph_objs.{{ objname.lower() }}
 
-.. automodule:: plotly.graph_objects.{{ objname.lower() }}
+.. automodule:: plotly.graph_objs.{{ objname.lower() }}
    :members:
+   :undoc-members:
 
 
 .. raw:: html

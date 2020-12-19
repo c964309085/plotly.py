@@ -5,7 +5,7 @@ jupyter:
     text_representation:
       extension: .md
       format_name: markdown
-      format_version: "1.1"
+      format_version: '1.1'
       jupytext_version: 1.1.1
   kernelspec:
     display_name: Python 3
@@ -35,11 +35,11 @@ jupyter:
 
 #### Base Map Configuration
 
-Plotly figures made with `px.scatter_geo`, `px.line_geo` or `px.choropleth` functions or containing `go.Choropleth` or `go.Scattergeo` graph objects have a `go.layout.Geo` object which can be used to [control the appearance of the base map](/python/map-configuration/) onto which data is plotted.
+Plotly figures made with [Plotly Express](/python/plotly-express/) `px.scatter_geo`, `px.line_geo` or `px.choropleth` functions or containing `go.Choropleth` or `go.Scattergeo` [graph objects](/python/graph-objects/) have a `go.layout.Geo` object which can be used to [control the appearance of the base map](/python/map-configuration/) onto which data is plotted.
 
 ### Bubble map with Plotly Express
 
-[Plotly Express](/python/plotly-express/) is the easy-to-use, high-level interface to Plotly, which [operates on "tidy" data](/python/px-arguments/) and produces [easy-to-style figures](/python/styling-plotly-express/). With `px.scatter_geo`, each line of the dataframe is represented as a marker point. The column set as the `size` argument gives the size of markers.
+[Plotly Express](/python/plotly-express/) is the easy-to-use, high-level interface to Plotly, which [operates on a variety of types of data](/python/px-arguments/) and produces [easy-to-style figures](/python/styling-plotly-express/). With `px.scatter_geo`, each line of the dataframe is represented as a marker point. The column set as the `size` argument gives the size of markers.
 
 ```python
 import plotly.express as px
@@ -50,7 +50,7 @@ fig = px.scatter_geo(df, locations="iso_alpha", color="continent",
 fig.show()
 ```
 
-### Bubble Map with animation
+### Bubble Map with animation
 
 ```python
 import plotly.express as px
@@ -74,7 +74,7 @@ To scale the bubble size, use the attribute sizeref. We recommend using the foll
 
 Note that setting `sizeref` to a value greater than $1$, decreases the rendered marker sizes, while setting `sizeref` to less than $1$, increases the rendered marker sizes.
 
-See https://plot.ly/python/reference/#scatter-marker-sizeref for more information. Additionally, we recommend setting the sizemode attribute: https://plot.ly/python/reference/#scatter-marker-sizemode to area.
+See https://plotly.com/python/reference/scatter/#scatter-marker-sizeref for more information. Additionally, we recommend setting the sizemode attribute: https://plotly.com/python/reference/scatter/#scatter-marker-sizemode to area.
 
 ```python
 import plotly.graph_objects as go
@@ -208,4 +208,4 @@ fig.show()
 
 #### Reference
 
-See https://plot.ly/python/reference/#choropleth and https://plot.ly/python/reference/#scattergeo for more information and chart attribute options!
+See [function reference for `px.(scatter_geo)`](https://plotly.com/python-api-reference/generated/plotly.express.scatter_geo) or https://plotly.com/python/reference/choropleth/ and https://plotly.com/python/reference/scattergeo/ for more information and chart attribute options!

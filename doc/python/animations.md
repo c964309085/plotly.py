@@ -5,12 +5,22 @@ jupyter:
     text_representation:
       extension: .md
       format_name: markdown
-      format_version: "1.1"
-      jupytext_version: 1.1.6
+      format_version: '1.2'
+      jupytext_version: 1.6.0
   kernelspec:
     display_name: Python 3
     language: python
     name: python3
+  language_info:
+    codemirror_mode:
+      name: ipython
+      version: 3
+    file_extension: .py
+    mimetype: text/x-python
+    name: python
+    nbconvert_exporter: python
+    pygments_lexer: ipython3
+    version: 3.7.6
   plotly:
     description: An introduction to creating animations with Plotly in Python.
     display_as: animations
@@ -25,7 +35,7 @@ jupyter:
 
 #### Animated figures with Plotly Express
 
-Several Plotly Express functions support the creation of animated figures through the `animation_frame` and `animation_group` arguments.
+Several [Plotly Express](/python/plotly-express/)  functions support the creation of animated figures through the `animation_frame` and `animation_group` arguments.
 
 Here is an example of an animated scatter plot creating using Plotly Express. Note that you should always fix the `x_range` and `y_range` to ensure that your data remains visible throughout the animation.
 
@@ -35,6 +45,19 @@ df = px.data.gapminder()
 px.scatter(df, x="gdpPercap", y="lifeExp", animation_frame="year", animation_group="country",
            size="pop", color="continent", hover_name="country",
            log_x=True, size_max=55, range_x=[100,100000], range_y=[25,90])
+```
+
+#### Animated figures in Dash
+
+[Dash](https://plotly.com/dash/) is the best way to build analytical apps in Python using Plotly figures. To run the app below, run `pip install dash`, click "Download" to get the code and run `python app.py`.
+
+Get started  with [the official Dash docs](https://dash.plotly.com/installation) and **learn how to effortlessly [style](https://plotly.com/dash/design-kit/) & [deploy](https://plotly.com/dash/app-manager/) apps like this with <a class="plotly-red" href="https://plotly.com/dash/">Dash Enterprise</a>.**
+
+
+```python hide_code=true
+from IPython.display import IFrame
+snippet_url = 'https://dash-gallery.plotly.host/python-docs-dash-snippets/'
+IFrame(snippet_url + 'animations', width='100%', height=630)
 ```
 
 #### Animated Bar Charts with Plotly Express
@@ -51,9 +74,15 @@ fig = px.bar(df, x="continent", y="pop", color="continent",
 fig.show()
 ```
 
+### Current Animation Limitations and Caveats
+
+* Animations are designed to work well when each row of input is present across all animation frames, and when categorical values mapped to symbol, color and facet are constant across frames. Animations *may be misleading or inconsistent* if these constraints are not met.
+* Although Plotly Express supports animation for many chart and map types, smooth inter-frame transitions are today *only* possible for `scatter` and `bar`
+* Plotly Express will *not* automatically compute the union of all x/y/color ranges, so these must be specified manually to avoid scale jumps across frames
+
 #### Animated figures with Graph Objects
 
-The remainder of this section describes the low-level API for constructing animated figures manually.
+The remainder of this section describes the low-level [graph objects](/python/graph-objects/) API for constructing animated figures manually.
 
 #### Frames
 
@@ -63,7 +92,7 @@ Along with `data` and `layout`, `frames` can be added as a key in a figure objec
 
 #### Adding Control Buttons to Animations
 
-You can add play and pause buttons to control your animated charts by adding an `updatemenus` array to the `layout` of your `figure`. More information on style and placement of the buttons is available in Plotly's [`updatemenus` reference](https://plot.ly/python/reference/#layout-updatemenus).
+You can add play and pause buttons to control your animated charts by adding an `updatemenus` array to the `layout` of your `figure`. More information on style and placement of the buttons is available in Plotly's [`updatemenus` reference](https://plotly.com/python/reference/layout/updatemenus/).
 <br>
 The buttons are defined as follows:
 
@@ -261,18 +290,6 @@ fig_dict = {
 fig_dict["layout"]["xaxis"] = {"range": [30, 85], "title": "Life Expectancy"}
 fig_dict["layout"]["yaxis"] = {"title": "GDP per Capita", "type": "log"}
 fig_dict["layout"]["hovermode"] = "closest"
-fig_dict["layout"]["sliders"] = {
-    "args": [
-        "transition", {
-            "duration": 400,
-            "easing": "cubic-in-out"
-        }
-    ],
-    "initialValue": "1952",
-    "plotlycommand": "animate",
-    "values": years,
-    "visible": True
-}
 fig_dict["layout"]["updatemenus"] = [
     {
         "buttons": [
@@ -389,5 +406,5 @@ fig.show()
 
 #### Reference
 
-For additional information and attributes for creating bubble charts in Plotly see: https://plot.ly/python/bubble-charts/.
-For more documentation on creating animations with Plotly, see https://plot.ly/python/#animations.
+For additional information and attributes for creating bubble charts in Plotly see: https://plotly.com/python/bubble-charts/.
+For more documentation on creating animations with Plotly, see https://plotly.com/python/#animations.

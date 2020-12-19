@@ -5,8 +5,8 @@ jupyter:
     text_representation:
       extension: .md
       format_name: markdown
-      format_version: "1.1"
-      jupytext_version: 1.1.1
+      format_version: '1.2'
+      jupytext_version: 1.6.0
   kernelspec:
     display_name: Python 3
     language: python
@@ -20,7 +20,7 @@ jupyter:
     name: python
     nbconvert_exporter: python
     pygments_lexer: ipython3
-    version: 3.6.8
+    version: 3.7.7
   plotly:
     description: How to make scatter plots in Python with Plotly.
     display_as: basic
@@ -36,9 +36,9 @@ jupyter:
 
 ## Scatter plot with Plotly Express
 
-[Plotly Express](/python/plotly-express/) is the easy-to-use, high-level interface to Plotly, which [operates on "tidy" data](/python/px-arguments/) and produces [easy-to-style figures](/python/styling-plotly-express/).
+[Plotly Express](/python/plotly-express/) is the easy-to-use, high-level interface to Plotly, which [operates on a variety of types of data](/python/px-arguments/) and produces [easy-to-style figures](/python/styling-plotly-express/).
 
-With `px.scatter`, each data point is represented as a marker point, which location is given by the `x` and `y` columns.
+With `px.scatter`, each data point is represented as a marker point, whose location is given by the `x` and `y` columns.
 
 ```python
 # x and y given as array_like objects
@@ -67,6 +67,19 @@ fig = px.scatter(df, x="sepal_width", y="sepal_length", color="species",
 fig.show()
 ```
 
+## Scatter plot in Dash
+
+[Dash](https://plotly.com/dash/) is the best way to build analytical apps in Python using Plotly figures. To run the app below, run `pip install dash`, click "Download" to get the code and run `python app.py`.
+
+Get started  with [the official Dash docs](https://dash.plotly.com/installation) and **learn how to effortlessly [style](https://plotly.com/dash/design-kit/) & [deploy](https://plotly.com/dash/app-manager/) apps like this with <a class="plotly-red" href="https://plotly.com/dash/">Dash Enterprise</a>.**
+
+
+```python hide_code=true
+from IPython.display import IFrame
+snippet_url = 'https://dash-gallery.plotly.host/python-docs-dash-snippets/'
+IFrame(snippet_url + 'line-and-scatter', width='100%', height=630)
+```
+
 ## Line plot with Plotly Express
 
 ```python
@@ -88,7 +101,7 @@ fig.show()
 
 ## Scatter and line plot with go.Scatter
 
-If Plotly Express does not provide a good starting point, it is possible to use the more generic `go.Scatter` function from `plotly.graph_objects`. Whereas `plotly.express` has two functions `scatter` and `line`, `go.Scatter` can be used both for plotting points (makers) or lines, depending on the value of `mode`. The different options of `go.Scatter` are documented in its [reference page](https://plot.ly/python/reference/#scatter).
+If Plotly Express does not provide a good starting point, it is possible to use [the more generic `go.Scatter` class from `plotly.graph_objects`](/python/graph-objects/). Whereas `plotly.express` has two functions `scatter` and `line`, `go.Scatter` can be used both for plotting points (makers) or lines, depending on the value of `mode`. The different options of `go.Scatter` are documented in its [reference page](https://plotly.com/python/reference/scatter/).
 
 #### Simple Scatter Plot
 
@@ -107,7 +120,7 @@ fig.show()
 
 #### Line and Scatter Plots
 
-Use `mode` argument to choose between markers, lines, or a combination of both. For more options about line plots, see also the [line charts notebook](https://plot.ly/python/line-charts/) and the [filled area plots notebook](https://plot.ly/python/filled-area-plots/).
+Use `mode` argument to choose between markers, lines, or a combination of both. For more options about line plots, see also the [line charts notebook](https://plotly.com/python/line-charts/) and the [filled area plots notebook](https://plotly.com/python/filled-area-plots/).
 
 ```python
 import plotly.graph_objects as go
@@ -140,7 +153,7 @@ fig.show()
 
 #### Bubble Scatter Plots
 
-In [bubble charts](https://en.wikipedia.org/wiki/Bubble_chart), a third dimension of the data is shown through the size of markers. For more examples, see the [bubble chart notebook](https://plot.ly/python/bubble-charts/)
+In [bubble charts](https://en.wikipedia.org/wiki/Bubble_chart), a third dimension of the data is shown through the size of markers. For more examples, see the [bubble chart notebook](https://plotly.com/python/bubble-charts/)
 
 ```python
 import plotly.graph_objects as go
@@ -276,4 +289,4 @@ fig.show()
 
 ### Reference
 
-See https://plot.ly/python/reference/#scatter or https://plot.ly/python/reference/#scattergl for more information and chart attribute options!
+See [function reference for `px.scatter()`](https://plotly.com/python-api-reference/generated/plotly.express.scatter) or https://plotly.com/python/reference/scatter/ or https://plotly.com/python/reference/scattergl/ for more information and chart attribute options!

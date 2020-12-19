@@ -5,8 +5,8 @@ jupyter:
     text_representation:
       extension: .md
       format_name: markdown
-      format_version: "1.1"
-      jupytext_version: 1.1.1
+      format_version: '1.2'
+      jupytext_version: 1.6.0
   kernelspec:
     display_name: Python 3
     language: python
@@ -20,10 +20,9 @@ jupyter:
     name: python
     nbconvert_exporter: python
     pygments_lexer: ipython3
-    version: 3.6.7
+    version: 3.7.7
   plotly:
-    description:
-      How to make line charts in Python with Plotly. Examples on creating
+    description: How to make line charts in Python with Plotly. Examples on creating
       and styling line charts in Python with Plotly.
     display_as: basic
     language: python
@@ -37,9 +36,9 @@ jupyter:
 
 ### Line Plot with plotly.express
 
-[Plotly Express](/python/plotly-express/) is the easy-to-use, high-level interface to Plotly, which [operates on "tidy" data](/python/px-arguments/) and produces [easy-to-style figures](/python/styling-plotly-express/). With `px.line`, each data point is represented as a vertex (which location is given by the `x` and `y` columns) of a **polyline mark** in 2D space.
+[Plotly Express](/python/plotly-express/) is the easy-to-use, high-level interface to Plotly, which [operates on a variety of types of data](/python/px-arguments/) and produces [easy-to-style figures](/python/styling-plotly-express/). With `px.line`, each data point is represented as a vertex (which location is given by the `x` and `y` columns) of a **polyline mark** in 2D space.
 
-For more examples of line plots, see the [line and scatter notebook](https://plot.ly/python/line-and-scatter/).
+For more examples of line plots, see the [line and scatter notebook](https://plotly.com/python/line-and-scatter/).
 
 #### Simple Line Plot with plotly.express
 
@@ -70,9 +69,49 @@ fig = px.line(df, x="year", y="lifeExp", color="continent",
 fig.show()
 ```
 
-### Line Plot with go.Scatter
+### Line chart in Dash
 
-If Plotly Express does not provide a good starting point, it is possible to use the more generic `go.Scatter` function from `plotly.graph_objects`. Whereas `plotly.express` has two functions `scatter` and `line`, `go.Scatter` can be used both for plotting points (makers) or lines, depending on the value of `mode`. The different options of `go.Scatter` are documented in its [reference page](https://plot.ly/python/reference/#scatter).
+[Dash](https://plotly.com/dash/) is the best way to build analytical apps in Python using Plotly figures. To run the app below, run `pip install dash`, click "Download" to get the code and run `python app.py`.
+
+Get started  with [the official Dash docs](https://dash.plotly.com/installation) and **learn how to effortlessly [style](https://plotly.com/dash/design-kit/) & [deploy](https://plotly.com/dash/app-manager/) apps like this with <a class="plotly-red" href="https://plotly.com/dash/">Dash Enterprise</a>.**
+
+
+```python hide_code=true
+from IPython.display import IFrame
+snippet_url = 'https://dash-gallery.plotly.host/python-docs-dash-snippets/'
+IFrame(snippet_url + 'line-charts', width='100%', height=630)
+```
+
+### Sparklines with Plotly Express
+
+Sparklines are scatter plots inside subplots, with gridlines, axis lines, and ticks removed.
+
+```python
+import plotly.express as px
+df = px.data.stocks(indexed=True)
+fig = px.line(df, facet_row="company", facet_row_spacing=0.01, height=200, width=200)
+
+# hide and lock down axes
+fig.update_xaxes(visible=False, fixedrange=True)
+fig.update_yaxes(visible=False, fixedrange=True)
+
+# remove facet/subplot labels
+fig.update_layout(annotations=[], overwrite=True)
+
+# strip down the rest of the plot
+fig.update_layout(
+    showlegend=False,
+    plot_bgcolor="white",
+    margin=dict(t=10,l=10,b=10,r=10)
+)
+
+# disable the modebar for such a small plot
+fig.show(config=dict(displayModeBar=False))
+```
+
+### Line Plot with go.Scatter
+
+If Plotly Express does not provide a good starting point, it is possible to use [the more generic `go.Scatter` class from `plotly.graph_objects`](/python/graph-objects/). Whereas `plotly.express` has two functions `scatter` and `line`, `go.Scatter` can be used both for plotting points (makers) or lines, depending on the value of `mode`. The different options of `go.Scatter` are documented in its [reference page](https://plotly.com/python/reference/scatter/).
 
 #### Simple Line Plot
 
@@ -161,7 +200,7 @@ fig.show()
 
 #### Connect Data Gaps
 
-[connectgaps](https://plot.ly/python/reference/#scatter-connectgaps) determines if missing values in the provided data are shown as a gap in the graph or not. In [this tutorial](https://plot.ly/python/filled-area-on-mapbox/#multiple-filled-areas-with-a-scattermapbox-trace), we showed how to take benefit of this feature and illustrate multiple areas in mapbox.
+[connectgaps](https://plotly.com/python/reference/scatter/#scatter-connectgaps) determines if missing values in the provided data are shown as a gap in the graph or not. In [this tutorial](https://plotly.com/python/filled-area-on-mapbox/#multiple-filled-areas-with-a-scattermapbox-trace), we showed how to take benefit of this feature and illustrate multiple areas in mapbox.
 
 ```python
 import plotly.graph_objects as go
@@ -384,7 +423,7 @@ fig.add_trace(go.Scatter(
     fillcolor='rgba(231,107,243,0.2)',
     line_color='rgba(255,255,255,0)',
     showlegend=False,
-    name='Fair',
+    name='Ideal',
 ))
 fig.add_trace(go.Scatter(
     x=x, y=y1,
@@ -408,4 +447,4 @@ fig.show()
 
 #### Reference
 
-See https://plot.ly/python/reference/#scatter for more information and chart attribute options!
+See [function reference for `px.line()`](https://plotly.com/python-api-reference/generated/plotly.express.line) or https://plotly.com/python/reference/scatter/ for more information and chart attribute options!

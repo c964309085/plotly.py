@@ -5,7 +5,7 @@ jupyter:
     text_representation:
       extension: .md
       format_name: markdown
-      format_version: "1.1"
+      format_version: '1.1'
       jupytext_version: 1.1.1
   kernelspec:
     display_name: Python 3
@@ -27,22 +27,24 @@ jupyter:
     language: python
     layout: base
     name: Violin Plots
-    order: 11
+    order: 10
     page_type: u-guide
     permalink: python/violin/
-    redirect_from: /python/violin-plot/
+    redirect_from:
+    - /python/violin-plot/
+    - /python/violin-plots/
     thumbnail: thumbnail/violin.jpg
 ---
 
-## Violin Plot with Plotly Express
+## Violin Plot with Plotly Express
 
-A [violin plot](https://en.wikipedia.org/wiki/Violin_plot) is a statistical representation of numerical data. It is similar to a [box plot](https://plot.ly/python/box-plots/), with the addition of a rotated [kernel density](https://en.wikipedia.org/wiki/Kernel_density_estimation) plot on each side.
+A [violin plot](https://en.wikipedia.org/wiki/Violin_plot) is a statistical representation of numerical data. It is similar to a [box plot](https://plotly.com/python/box-plots/), with the addition of a rotated [kernel density](https://en.wikipedia.org/wiki/Kernel_density_estimation) plot on each side.
 
-See also the [list of other statistical charts](https://plot.ly/python/statistical-charts/).
+See also the [list of other statistical charts](https://plotly.com/python/statistical-charts/).
 
 ### Basic Violin Plot with Plotly Express
 
-[Plotly Express](/python/plotly-express/) is the easy-to-use, high-level interface to Plotly, which [operates on "tidy" data](/python/px-arguments/) and produces [easy-to-style figures](/python/styling-plotly-express/).
+[Plotly Express](/python/plotly-express/) is the easy-to-use, high-level interface to Plotly, which [operates on a variety of types of data](/python/px-arguments/) and produces [easy-to-style figures](/python/styling-plotly-express/).
 
 ```python
 import plotly.express as px
@@ -88,7 +90,7 @@ fig.show()
 
 ## Violin Plot with go.Violin
 
-If Plotly Express does not provide a good starting point, you can use the more generic function `go.Violin` from `plotly.graph_objects`. All the options of `go.Violin` are documented in the reference https://plot.ly/python/reference/#violin
+If Plotly Express does not provide a good starting point, you can use [the more generic `go.Violin` class from `plotly.graph_objects`](/python/graph-objects/). All the options of `go.Violin` are documented in the reference https://plotly.com/python/reference/violin/
 
 #### Basic Violin Plot
 
@@ -233,7 +235,7 @@ fig.update_layout(
 fig.show()
 ```
 
-#### Ridgeline plot
+#### Ridgeline plot
 
 A ridgeline plot ([previously known as Joy Plot](https://serialmentor.com/blog/2017/9/15/goodbye-joyplots)) shows the distribution of a numerical value for several groups. They can be used for visualizing changes in distributions over time or space.
 
@@ -258,6 +260,17 @@ fig.update_layout(xaxis_showgrid=False, xaxis_zeroline=False)
 fig.show()
 ```
 
+### Violin Plot With Only Points
+
+A [strip chart](/python/strip-charts/) is like a violin plot with points showing, and no violin:
+
+```python
+import plotly.express as px
+df = px.data.tips()
+fig = px.strip(df, x='day', y='tip')
+fig.show()
+```
+
 #### Reference
 
-See https://plot.ly/python/reference/#violin for more information and chart attribute options!
+See [function reference for `px.violin()`](https://plotly.com/python-api-reference/generated/plotly.express.violin) or https://plotly.com/python/reference/violin/ for more information and chart attribute options!

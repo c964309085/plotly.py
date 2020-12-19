@@ -5,8 +5,8 @@ jupyter:
     text_representation:
       extension: .md
       format_name: markdown
-      format_version: "1.2"
-      jupytext_version: 1.3.1
+      format_version: '1.2'
+      jupytext_version: 1.3.0
   kernelspec:
     display_name: Python 3
     language: python
@@ -20,16 +20,15 @@ jupyter:
     name: python
     nbconvert_exporter: python
     pygments_lexer: ipython3
-    version: 3.6.8
+    version: 3.7.3
   plotly:
-    description:
-      How to use datashader to rasterize large datasets, and visualize
+    description: How to use datashader to rasterize large datasets, and visualize
       the generated raster data with plotly.
     display_as: scientific
     language: python
     layout: base
     name: Plotly and Datashader
-    order: 21
+    order: 20
     page_type: u-guide
     permalink: python/datashader/
     thumbnail: thumbnail/datashader.jpg
@@ -37,7 +36,7 @@ jupyter:
 
 [datashader](https://datashader.org/) creates rasterized representations of large datasets for easier visualization, with a pipeline approach consisting of several steps: projecting the data on a regular grid, creating a color representation of the grid, etc.
 
-### Passing datashader rasters as a mabox image layer
+### Passing datashader rasters as a mapbox image layer
 
 We visualize here the spatial distribution of taxi rides in New York City. A higher density
 is observed on major avenues. For more details about mapbox charts, see [the mapbox layers tutorial](/python/mapbox-layers). No mapbox token is needed here.
@@ -98,7 +97,7 @@ fig.show()
 ```
 
 ```python
-import plotly.graph_objects as go
+import plotly.express as px
 import pandas as pd
 import numpy as np
 import datashader as ds
@@ -106,22 +105,13 @@ df = pd.read_parquet('https://raw.githubusercontent.com/plotly/datasets/master/2
 
 cvs = ds.Canvas(plot_width=100, plot_height=100)
 agg = cvs.points(df, 'SCHEDULED_DEPARTURE', 'DEPARTURE_DELAY')
-x = np.array(agg.coords['SCHEDULED_DEPARTURE'])
-y = np.array(agg.coords['DEPARTURE_DELAY'])
-
-# Assign nan to zero values so that the corresponding pixels are transparent
-agg = np.array(agg.values, dtype=np.float)
-agg[agg<1] = np.nan
-
-fig = go.Figure(go.Heatmap(
-    z=np.log10(agg), x=x, y=y,
-    hoverongaps=False,
-    hovertemplate='Scheduled departure: %{x:.1f}h <br>Depature delay: %{y} <br>Log10(Count): %{z}',
-    colorbar=dict(title='Count (Log)', tickprefix='1.e')))
-fig.update_xaxes(title_text='Scheduled departure')
-fig.update_yaxes(title_text='Departure delay')
+zero_mask = agg.values == 0
+agg.values = np.log10(agg.values, where=np.logical_not(zero_mask))
+agg.values[zero_mask] = np.nan
+fig = px.imshow(agg, origin='lower', labels={'color':'Log10(count)'})
+fig.update_traces(hoverongaps=False)
+fig.update_layout(coloraxis_colorbar=dict(title='Count', tickprefix='1.e'))
 fig.show()
-
 ```
 
 ```python

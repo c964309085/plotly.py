@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.2'
-      jupytext_version: 1.3.1
+      jupytext_version: 1.6.0
   kernelspec:
     display_name: Python 3
     language: python
@@ -20,7 +20,7 @@ jupyter:
     name: python
     nbconvert_exporter: python
     pygments_lexer: ipython3
-    version: 3.6.8
+    version: 3.7.6
   plotly:
     description: How to use and configure discrete color sequences, also known as
       categorical or qualitative color scales.
@@ -30,7 +30,7 @@ jupyter:
     language: python
     layout: base
     name: Discrete Colors
-    order: 28
+    order: 29
     permalink: python/discrete-color/
     thumbnail: thumbnail/heatmap_colorscale.jpg
     v4upgrade: true
@@ -97,6 +97,18 @@ fig = px.scatter(df, x="total_bill", y="tip", color="size",
                  title="Numeric 'size' values mean continous color")
 
 fig.show()
+```
+
+### Discrete Colors in Dash
+
+[Dash](https://plotly.com/dash/) is the best way to build analytical apps in Python using Plotly figures. To run the app below, run `pip install dash`, click "Download" to get the code and run `python app.py`.
+
+Get started  with [the official Dash docs](https://dash.plotly.com/installation) and **learn how to effortlessly [style](https://plotly.com/dash/design-kit/) & [deploy](https://plotly.com/dash/app-manager/) apps like this with <a class="plotly-red" href="https://plotly.com/dash/">Dash Enterprise</a>.**
+
+```python hide_code=true
+from IPython.display import IFrame
+snippet_url = 'https://dash-gallery.plotly.host/python-docs-dash-snippets/'
+IFrame(snippet_url + 'discrete-color', width='100%', height=630)
 ```
 
 ### Color Sequences in Plotly Express
@@ -175,6 +187,15 @@ fig = px.bar(df, y="continent", x="pop", color="continent", orientation="h", hov
                 "Africa": "magenta"},
              title="Explicit color mapping")
 
+fig.show()
+```
+
+If your data set already contains valid CSS colors which you wish to use directly, you can pass the special value `"identity"` to `color_discrete_map`, in which case the legend is hidden by default, and the color does not appear in the hover label:
+
+```python
+import plotly.express as px
+
+fig = px.bar(x=["a","b","c"], y=[1,3,2], color=["red", "goldenrod", "#00D"], color_discrete_map="identity")
 fig.show()
 ```
 

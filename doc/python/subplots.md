@@ -5,8 +5,8 @@ jupyter:
     text_representation:
       extension: .md
       format_name: markdown
-      format_version: '1.1'
-      jupytext_version: 1.1.6
+      format_version: '1.2'
+      jupytext_version: 1.6.0
   kernelspec:
     display_name: Python 3
     language: python
@@ -20,26 +20,35 @@ jupyter:
     name: python
     nbconvert_exporter: python
     pygments_lexer: ipython3
-    version: 3.7.3
+    version: 3.7.6
   plotly:
-    description: How to make subplots in python. Examples of stacked, custom-sized,
-      gridded, and annotated subplts.
+    description: How to make subplots in with Plotly's Python graphing library. Examples
+      of stacked, custom-sized, gridded, and annotated subplots.
     display_as: file_settings
     language: python
     layout: base
     name: Subplots
-    order: 16
+    order: 17
     page_type: u-guide
     permalink: python/subplots/
     redirect_from: ipython-notebooks/subplots/
     thumbnail: thumbnail/subplots.jpg
 ---
 
+### Subplots and Plotly Express
+
+[Plotly Express](/python/plotly-express/) is the easy-to-use, high-level interface to Plotly, which [operates on a variety of types of data](/python/px-arguments/) and produces [easy-to-style figures](/python/styling-plotly-express/).
+
+Plotly Express does not support arbitrary subplot capabilities, instead it supports [faceting by a given data dimension](/python/facet-plots/), and it also supports [marginal charts to display distribution information](/python/marginal-plots/).
+
+This page documents the usage of the lower-level `plotly.subplots` module and the `make_subplots` function it exposes to construct figures with arbitrary subplots. **Plotly Express faceting uses `make_subplots` internally** so adding traces to Plotly Express facets works just as documented here, with `fig.add_trace(..., row=<R>, col=<C>)`.
+
+
 #### Simple Subplot
 
 Figures with subplots are created using the `make_subplots` function from the `plotly.subplots` module.
 
-Here is an example of creating a figure with two scatter traces in side-by-side subplots.
+Here is an example of creating a figure that includes two `scatter` traces which are side-by-side since there are 2 columns and 1 row in the subplot layout.
 
 ```python
 from plotly.subplots import make_subplots
@@ -57,13 +66,13 @@ fig.add_trace(
     row=1, col=2
 )
 
-fig.update_layout(height=600, width=800, title_text="Subplots")
+fig.update_layout(height=600, width=800, title_text="Side By Side Subplots")
 fig.show()
 ```
 
 #### Stacked Subplots
 
-Here is an example of creating a figure with two vertically stacked subplots.
+Here is an example of creating a figure with subplots that are stacked on top of each other since there are 3 rows and 1 column in the subplot layout.
 
 ```python
 from plotly.subplots import make_subplots
@@ -87,13 +96,13 @@ fig.append_trace(go.Scatter(
 ), row=3, col=1)
 
 
-fig.update_layout(height=600, width=600, title_text="Stacked subplots")
+fig.update_layout(height=600, width=600, title_text="Stacked Subplots")
 fig.show()
 ```
 
 #### Multiple Subplots
 
-Here is an example of creating a 2 x 2 subplot grid and populating each subplot with a single scatter trace.
+Here is an example of creating a 2 x 2 subplot grid and populating each subplot with a single `scatter` trace.
 
 ```python
 import plotly.graph_objects as go
@@ -147,7 +156,7 @@ fig.update_layout(height=500, width=700,
 fig.show()
 ```
 
-#### Simple Subplot with Annotations
+#### Subplots with Annotations
 
 ```python
 from plotly.subplots import make_subplots
@@ -177,15 +186,15 @@ fig.add_trace(
     row=1, col=2
 )
 
-fig.update_layout(height=600, width=800, title_text="Annotations and subplots")
+fig.update_layout(height=600, width=800, title_text="Subplots with Annotations")
 
 fig.show()
 ```
 
-#### Side by Side Subplot
+#### Customize Subplot Column Widths and Row Heights
 The `column_widths` argument to `make_subplots` can be used to customize the relative widths of the columns in a subplot grid. It should be set to a list of numbers with a length that matches the `cols` argument.  These number will be normalized, so that they sum to 1, and used to compute the relative widths of the subplot grid columns. The `row_heights` argument serves the same purpose for controlling the relative heights of rows in the subplot grid.
 
-Here is an example of creating a figure with two scatter traces in side-by-side subplots, where the left subplot is wider that the right.
+Here is an example of creating a figure with two scatter traces in side-by-side subplots. The left subplot is set to be wider than the right one.
 
 ```python
 import plotly.graph_objects as go
@@ -200,6 +209,19 @@ fig.add_trace(go.Scatter(x=[20, 30, 40], y=[50, 60, 70]),
               row=1, col=2)
 
 fig.show()
+```
+
+#### Subplots in Dash
+
+[Dash](https://plotly.com/dash/) is the best way to build analytical apps in Python using Plotly figures. To run the app below, run `pip install dash`, click "Download" to get the code and run `python app.py`.
+
+Get started  with [the official Dash docs](https://dash.plotly.com/installation) and **learn how to effortlessly [style](https://plotly.com/dash/design-kit/) & [deploy](https://plotly.com/dash/app-manager/) apps like this with <a class="plotly-red" href="https://plotly.com/dash/">Dash Enterprise</a>.**
+
+
+```python hide_code=true
+from IPython.display import IFrame
+snippet_url = 'https://dash-gallery.plotly.host/python-docs-dash-snippets/'
+IFrame(snippet_url + 'subplots', width='100%', height=630)
 ```
 
 #### Customizing Subplot Axes
@@ -249,9 +271,9 @@ Here is an example that creates a figure with 3 vertically stacked subplots with
 from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 
-fig = make_subplots(
-    rows=3, cols=1, shared_xaxes=True, vertical_spacing=0.02
-)
+fig = make_subplots(rows=3, cols=1,
+                    shared_xaxes=True,
+                    vertical_spacing=0.02)
 
 fig.add_trace(go.Scatter(x=[0, 1, 2], y=[10, 11, 12]),
               row=3, col=1)
@@ -270,7 +292,7 @@ fig.show()
 #### Subplots with Shared Y-Axes
 The `shared_yaxes` argument to `make_subplots` can be used to link the y axes of subplots in the resulting figure.
 
-Here is an example that creates a figure with a 2 x 2 subplot grid, where the yaxes of each row are linked.
+Here is an example that creates a figure with a 2 x 2 subplot grid, where the y axes of each row are linked.
 
 
 ```python
@@ -293,6 +315,28 @@ fig.add_trace(go.Scatter(x=[4000, 5000, 6000], y=[7000, 8000, 9000]),
 
 fig.update_layout(height=600, width=600,
                   title_text="Multiple Subplots with Shared Y-Axes")
+fig.show()
+```
+
+### Subplots with Shared Colorscale
+
+To share colorscale information in multiple subplots, you can use [coloraxis](https://plotly.com/javascript/reference/scatter/#scatter-marker-line-coloraxis).
+
+```python
+from plotly.subplots import make_subplots
+import plotly.graph_objects as go
+
+fig = make_subplots(rows=1, cols=2, shared_yaxes=True)
+
+fig.add_trace(go.Bar(x=[1, 2, 3], y=[4, 5, 6],
+                    marker=dict(color=[4, 5, 6], coloraxis="coloraxis")),
+              1, 1)
+
+fig.add_trace(go.Bar(x=[1, 2, 3], y=[2, 3, 5],
+                    marker=dict(color=[2, 3, 5], coloraxis="coloraxis")),
+              1, 2)
+
+fig.update_layout(coloraxis=dict(colorscale='Bluered_r'), showlegend=False)
 fig.show()
 ```
 
@@ -324,7 +368,7 @@ fig.show()
 ```
 
 #### Multiple Custom Sized Subplots
-If the `print_grid` argument to `make_subplots` is set to `True`, then an text representation of the subplot grid will be printed.
+If the `print_grid` argument to `make_subplots` is set to `True`, then a text representation of the subplot grid will be printed.
 
 Here is an example that uses the `rowspan` and `colspan` subplot options to create a custom subplot layout with subplots of mixed sizes. The `print_grid` argument is set to `True` so that the subplot grid is printed to the screen.
 
@@ -341,8 +385,7 @@ fig = make_subplots(
            [{}, {}]],
     print_grid=True)
 
-fig.add_trace(go.Scatter(x=[1, 2], y=[1, 2], name="(1,1)"),
-              row=1, col=1)
+fig.add_trace(go.Scatter(x=[1, 2], y=[1, 2], name="(1,1)"), row=1, col=1)
 fig.add_trace(go.Scatter(x=[1, 2], y=[1, 2], name="(1,2)"), row=1, col=2)
 fig.add_trace(go.Scatter(x=[1, 2], y=[1, 2], name="(2,1)"), row=2, col=1)
 fig.add_trace(go.Scatter(x=[1, 2], y=[1, 2], name="(3,1)"), row=3, col=1)
@@ -387,7 +430,8 @@ fig.add_trace(go.Barpolar(theta=[0, 45, 90], r=[2, 3, 1]),
 fig.add_trace(go.Pie(values=[2, 3, 1]),
               row=2, col=1)
 
-fig.add_trace(go.Scatter3d(x=[2, 3, 1], y=[0, 0, 0], z=[0.5, 1, 2], mode="lines"),
+fig.add_trace(go.Scatter3d(x=[2, 3, 1], y=[0, 0, 0],
+                           z=[0.5, 1, 2], mode="lines"),
               row=2, col=2)
 
 fig.update_layout(height=700, showlegend=False)
@@ -418,7 +462,8 @@ fig.add_trace(go.Barpolar(theta=[0, 45, 90], r=[2, 3, 1]),
 fig.add_trace(go.Pie(values=[2, 3, 1]),
               row=2, col=1)
 
-fig.add_trace(go.Scatter3d(x=[2, 3, 1], y=[0, 0, 0], z=[0.5, 1, 2], mode="lines"),
+fig.add_trace(go.Scatter3d(x=[2, 3, 1], y=[0, 0, 0],
+                           z=[0.5, 1, 2], mode="lines"),
               row=2, col=2)
 
 fig.update_layout(height=700, showlegend=False)
@@ -549,9 +594,29 @@ fig = go.Figure(data=data, layout=layout)
 fig.show()
 ```
 
+#### Setting Subplots on a Figure Directly
+
+_new in 4.13_
+
+Subplots can be added to an already existing figure, provided it doesn't already
+have subplots. `go.Figure.set_subplots` accepts all the same arguments as
+`plotly.subplots.make_subplots`.
+
+```python
+import plotly.graph_objects as go
+fig = go.Figure().set_subplots(2, 3, horizontal_spacing=0.1)
+```
+
+is equivalent to:
+
+```python
+from plotly.subplots import make_subplots
+fig = make_subplots(2, 3, horizontal_spacing=0.1)
+```
+
 #### Reference
-All of the x-axis properties are found here: https://plot.ly/python/reference/#XAxis
-All of the y-axis properties are found here: https://plot.ly/python/reference/#YAxis
+All of the x-axis properties are found here: https://plotly.com/python/reference/XAxis/
+All of the y-axis properties are found here: https://plotly.com/python/reference/YAxis/
 
 ```python
 from plotly.subplots import make_subplots

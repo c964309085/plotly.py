@@ -57,7 +57,7 @@ fig.show()
 ```
 
 ### Multi Category Waterfall Chart
-This example uses the [waterfallgroupgap attribute](https://plot.ly/python/reference/#layout-waterfallgroupgap), which sets a gap between bars.
+This example uses the [waterfallgroupgap attribute](https://plotly.com/python/reference/layout/#layout-waterfallgroupgap), which sets a gap between bars.
 
 ```python
 import plotly.graph_objects as go
@@ -88,7 +88,7 @@ fig.show()
 ```
 
 ### Setting Marker Size and Color
-This example uses [decreasing, increasing, and total](https://plot.ly/python/reference/#waterfall-increasing) attributes to customize the bars.
+This example uses [decreasing](https://plotly.com/python/reference/waterfall/#waterfall-decreasing), [increasing](https://plotly.com/python/reference/waterfall/#waterfall-increasing), and [totals](https://plotly.com/python/reference/waterfall/#waterfall-totals) attributes to customize the bars.
 
 ```python
 import plotly.graph_objects as go
@@ -100,7 +100,7 @@ fig = go.Figure(go.Waterfall(
     y = [10, 20, 30, -10, None, 10, 20, -40, None], base = 300,
     decreasing = {"marker":{"color":"Maroon", "line":{"color":"red", "width":2}}},
     increasing = {"marker":{"color":"Teal"}},
-    totals = {"marker":{"color":"deep sky blue", "line":{"color":'blue', "width":3}}}
+    totals = {"marker":{"color":"deep sky blue", "line":{"color":"blue", "width":3}}}
 ))
 
 fig.update_layout(title = "Profit and loss statement", waterfallgap = 0.3)
@@ -129,4 +129,4 @@ fig.show()
 ```
 
 #### Reference
-See https://plot.ly/python/reference/#waterfall for more information and chart attribute options!
+See https://plotly.com/python/reference/waterfall/ for more information and chart attribute options!

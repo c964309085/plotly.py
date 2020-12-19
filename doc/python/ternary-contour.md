@@ -27,7 +27,7 @@ jupyter:
     language: python
     layout: base
     name: Ternary contours
-    order: 19
+    order: 18
     page_type: u-guide
     permalink: python/ternary-contour/
     thumbnail: thumbnail/ternary-contour.jpg
@@ -38,7 +38,7 @@ jupyter:
 
 A ternary contour plots represents isovalue lines of a quantity defined inside a [ternary diagram](https://en.wikipedia.org/wiki/Ternary_plot), i.e. as a function of three variables which sum is constant. Coordinates of the ternary plot often correspond to concentrations of three species, and the quantity represented as contours is some property (e.g., physical, chemical, thermodynamical) varying with the composition.
 
-For ternary contour plots, use the figure factory ``create_ternary_contour``. The figure factory interpolates between given data points in order to compute the contours.
+For ternary contour plots, use the [figure factory](/python/figure-factories/) called ``create_ternary_contour``. The figure factory interpolates between given data points in order to compute the contours.
 
 Below we represent an example from metallurgy, where the mixing enthalpy is represented as a contour plot for aluminum-copper-yttrium (Al-Cu-Y) alloys.
 
@@ -121,7 +121,7 @@ fig = ff.create_ternary_contour(np.array([Al, Y, Cu]), enthalpy,
 fig.show()
 ```
 
-#### Interpolation mode
+#### Interpolation mode
 
 Two modes are available in order to interpolate between data points: interpolation in Cartesian space (`interp_mode='cartesian'`) or interpolation using the [isometric log-ratio transformation](https://link.springer.com/article/10.1023/A:1023818214614) (see also [preprint](https://www.researchgate.net/profile/Leon_Parent2/post/What_is_the_best_approach_for_diagnosing_nutrient_disorders_and_formulating_fertilizer_recommendations/attachment/59d62a69c49f478072e9cf3f/AS%3A272541220835360%401441990298625/download/Egozcue+et+al+2003.pdf)),  `interp_mode='ilr'`. The `ilr` transformation preserves metrics in the [simplex](https://en.wikipedia.org/wiki/Simplex) but is not defined on its edges.
 
@@ -145,3 +145,7 @@ fig = ff.create_ternary_contour(coords, value, interp_mode='cartesian',
                                 ncontours=9)
 fig.show()
 ```
+
+#### Reference
+
+For more info on `ff.create_ternary_contour()`, see the [full function reference](https://plotly.com/python-api-reference/generated/plotly.figure_factory.create_ternary_contour.html)

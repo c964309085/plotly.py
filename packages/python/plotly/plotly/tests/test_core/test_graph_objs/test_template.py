@@ -2,7 +2,7 @@ from __future__ import absolute_import
 
 import copy
 from unittest import TestCase
-from nose.tools import raises
+import pytest
 
 import plotly.io as pio
 import plotly.graph_objs as go
@@ -105,27 +105,31 @@ class TemplateTest(TestCase):
             },
         )
 
-    @raises(ValueError)
     def test_invalid_defaults_property_name_constructor(self):
-        go.Figure(layout={"template": {"layout": {"imagedefaults": {"bogus": 500}}}})
+        with pytest.raises(ValueError):
+            go.Figure(
+                layout={"template": {"layout": {"imagedefaults": {"bogus": 500}}}}
+            )
 
-    @raises(ValueError)
     def test_invalid_defaults_property_value_constructor(self):
-        go.Figure(
-            layout={
-                "template": {"layout": {"imagedefaults": {"sizex": "str not number"}}}
-            }
-        )
+        with pytest.raises(ValueError):
+            go.Figure(
+                layout={
+                    "template": {
+                        "layout": {"imagedefaults": {"sizex": "str not number"}}
+                    }
+                }
+            )
 
-    @raises(ValueError)
     def test_invalid_defaults_property_name_constructor(self):
-        go.Figure(layout={"template": {"layout": {"xaxis": {"bogus": 500}}}})
+        with pytest.raises(ValueError):
+            go.Figure(layout={"template": {"layout": {"xaxis": {"bogus": 500}}}})
 
-    @raises(ValueError)
     def test_invalid_defaults_property_value_constructor(self):
-        go.Figure(
-            layout={"template": {"layout": {"xaxis": {"range": "str not tuple"}}}}
-        )
+        with pytest.raises(ValueError):
+            go.Figure(
+                layout={"template": {"layout": {"xaxis": {"range": "str not tuple"}}}}
+            )
 
     # plotly.io.template tests
     # ------------------------
@@ -171,6 +175,12 @@ class TemplateTest(TestCase):
     def test_template_iter(self):
         self.assertIn("test_template", set(pio.templates))
 
+    def test_template_default_as_object(self):
+        template = go.layout.Template({"layout": {"font": {"family": "Rockwell"}}})
+        pio.templates.default = template
+        fig = go.Figure()
+        self.assertEqual(fig.layout.template, template)
+
 
 class TestToTemplated(TestCaseNoTemplate):
     def test_move_layout_nested_properties(self):
@@ -191,7 +201,7 @@ class TestToTemplated(TestCaseNoTemplate):
                     "layout": {
                         "font": {"family": "Courier New"},
                         "paper_bgcolor": "yellow",
-                    }
+                    },
                 },
                 "title": "Hello",
             }

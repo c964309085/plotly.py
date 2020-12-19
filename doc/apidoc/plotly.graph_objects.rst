@@ -3,7 +3,7 @@
 `plotly.graph_objects`: low-level interface to figures, traces and layout
 =========================================
 
-.. currentmodule:: plotly.graph_objects
+.. currentmodule:: plotly.graph_objs
 
 :mod:`plotly.graph_objects` contains the building blocks of plotly :class:`Figure`: traces
 (:class:`Scatter`, :class:`Bar`, ...) and :class:`Layout`
@@ -18,7 +18,7 @@ Figure
    :toctree: generated/
    :template: class_figure.rst
 
-   Figure  
+   Figure
 
 
 Layout
@@ -31,8 +31,7 @@ Layout
    Layout
 
 
-
-Simple charts
+Simple Traces
 --------------
 
 .. autosummary::
@@ -44,11 +43,12 @@ Simple charts
    Bar
    Pie
    Heatmap
+   Heatmapgl
    Image
    Contour
    Table
 
-Distributions
+Distribution Traces
 -------------
 
 .. autosummary::
@@ -61,7 +61,7 @@ Distributions
    Histogram2d
    Histogram2dContour
 
-Finance
+Finance Traces
 -------
 
 .. autosummary::
@@ -75,7 +75,7 @@ Finance
    Funnelarea
    Indicator
 
-3D
+3D Traces
 --
 
 .. autosummary::
@@ -90,7 +90,7 @@ Finance
    Volume
    Isosurface
 
-Maps
+Map Traces
 ----
 
 .. autosummary::
@@ -103,7 +103,7 @@ Maps
    Choroplethmapbox
    Densitymapbox
 
-Specialized
+Specialized Traces
 -----------
 
 .. autosummary::

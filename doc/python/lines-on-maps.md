@@ -5,8 +5,8 @@ jupyter:
     text_representation:
       extension: .md
       format_name: markdown
-      format_version: "1.1"
-      jupytext_version: 1.1.1
+      format_version: '1.2'
+      jupytext_version: 1.4.2
   kernelspec:
     display_name: Python 3
     language: python
@@ -20,14 +20,14 @@ jupyter:
     name: python
     nbconvert_exporter: python
     pygments_lexer: ipython3
-    version: 3.6.7
+    version: 3.7.7
   plotly:
     description: How to draw lines, great circles, and contours on maps in Python.
     display_as: maps
     language: python
     layout: base
     name: Lines on Maps
-    order: 7
+    order: 6
     page_type: u-guide
     permalink: python/lines-on-maps/
     thumbnail: thumbnail/flight-paths.jpg
@@ -37,11 +37,11 @@ Below we show how to create geographical line plots using either Plotly Express 
 
 #### Base Map Configuration
 
-Plotly figures made with `px.scatter_geo`, `px.line_geo` or `px.choropleth` functions or containing `go.Choropleth` or `go.Scattergeo` graph objects have a `go.layout.Geo` object which can be used to [control the appearance of the base map](/python/map-configuration/) onto which data is plotted.
+Plotly figures made with [Plotly Express](/python/plotly-express/) `px.scatter_geo`, `px.line_geo` or `px.choropleth` functions or containing `go.Choropleth` or `go.Scattergeo` [graph objects](/python/graph-objects/) have a `go.layout.Geo` object which can be used to [control the appearance of the base map](/python/map-configuration/) onto which data is plotted.
 
 ## Lines on Maps with Plotly Express
 
-[Plotly Express](/python/plotly-express/) is the easy-to-use, high-level interface to Plotly, which [operates on "tidy" data](/python/px-arguments/) and produces [easy-to-style figures](/python/styling-plotly-express/).
+[Plotly Express](/python/plotly-express/) is the easy-to-use, high-level interface to Plotly, which [operates on a variety of types of data](/python/px-arguments/) and produces [easy-to-style figures](/python/styling-plotly-express/).
 
 ```python
 import plotly.express as px
@@ -52,7 +52,48 @@ fig = px.line_geo(df, locations="iso_alpha",
 fig.show()
 ```
 
-## Lines on Maps with plotly.graph_objects
+### Lines on Maps from GeoPandas
+
+Given a GeoPandas geo-data frame with `linestring` or `multilinestring` features, one can extra point data and use `px.line_geo()`.
+
+```python
+import plotly.express as px
+import geopandas as gpd
+import shapely.geometry
+import numpy as np
+import wget
+
+# download a zipped shapefile
+wget.download("https://plotly.github.io/datasets/ne_50m_rivers_lake_centerlines.zip")
+
+# open a zipped shapefile with the zip:// pseudo-protocol
+geo_df = gpd.read_file("zip://ne_50m_rivers_lake_centerlines.zip")
+
+lats = []
+lons = []
+names = []
+
+for feature, name in zip(geo_df.geometry, geo_df.name):
+    if isinstance(feature, shapely.geometry.linestring.LineString):
+        linestrings = [feature]
+    elif isinstance(feature, shapely.geometry.multilinestring.MultiLineString):
+        linestrings = feature.geoms
+    else:
+        continue
+    for linestring in linestrings:
+        x, y = linestring.xy
+        lats = np.append(lats, y)
+        lons = np.append(lons, x)
+        names = np.append(names, [name]*len(y))
+        lats = np.append(lats, None)
+        lons = np.append(lons, None)
+        names = np.append(names, None)
+
+fig = px.line_geo(lat=lats, lon=lons, hover_name=names)
+fig.show()
+```
+
+## Lines on Maps with plotly.graph_objects
 
 ### US Flight Paths Map
 
@@ -100,7 +141,7 @@ for i in range(len(df_flight_paths)):
 fig.update_layout(
     title_text = 'Feb. 2011 American Airline flight paths<br>(Hover for airport names)',
     showlegend = False,
-    geo = go.layout.Geo(
+    geo = dict(
         scope = 'north america',
         projection_type = 'azimuthal equal area',
         showland = True,
@@ -111,6 +152,79 @@ fig.update_layout(
 
 fig.show()
 ```
+### Performance improvement: put many lines in the same trace
+For very large amounts (>1000) of lines, performance may become critcal. If you can relinquish setting individual line styles (e.g. opacity), you can put multiple paths into one trace. This makes the map render faster and reduces the script execution time and memory consumption.
+
+Use ```None``` between path coordinates to create a break in the otherwise connected paths.
+
+```python
+import plotly.graph_objects as go
+import pandas as pd
+
+df_airports = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/2011_february_us_airport_traffic.csv')
+df_airports.head()
+
+df_flight_paths = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/2011_february_aa_flight_paths.csv')
+df_flight_paths.head()
+
+fig = go.Figure()
+
+fig.add_trace(go.Scattergeo(
+    locationmode = 'USA-states',
+    lon = df_airports['long'],
+    lat = df_airports['lat'],
+    hoverinfo = 'text',
+    text = df_airports['airport'],
+    mode = 'markers',
+    marker = dict(
+        size = 2,
+        color = 'rgb(255, 0, 0)',
+        line = dict(
+            width = 3,
+            color = 'rgba(68, 68, 68, 0)'
+        )
+    )))
+
+lons = []
+lats = []
+import numpy as np
+lons = np.empty(3 * len(df_flight_paths))
+lons[::3] = df_flight_paths['start_lon']
+lons[1::3] = df_flight_paths['end_lon']
+lons[2::3] = None
+lats = np.empty(3 * len(df_flight_paths))
+lats[::3] = df_flight_paths['start_lat']
+lats[1::3] = df_flight_paths['end_lat']
+lats[2::3] = None
+
+fig.add_trace(
+    go.Scattergeo(
+        locationmode = 'USA-states',
+        lon = lons,
+        lat = lats,
+        mode = 'lines',
+        line = dict(width = 1,color = 'red'),
+        opacity = 0.5
+    )
+)
+
+fig.update_layout(
+    title_text = 'Feb. 2011 American Airline flight paths<br>(Hover for airport names)',
+    showlegend = False,
+    geo = go.layout.Geo(
+        scope = 'north america',
+        projection_type = 'azimuthal equal area',
+        showland = True,
+        landcolor = 'rgb(243, 243, 243)',
+        countrycolor = 'rgb(204, 204, 204)',
+    ),
+    height=700,
+)
+
+fig.show()
+
+```
+
 
 ### London to NYC Great Circle
 
@@ -215,4 +329,4 @@ fig.show()
 
 #### Reference
 
-See https://plot.ly/python/reference/#scattergeo for more information and chart attribute options!
+See [function reference for `px.(line_geo)`](https://plotly.com/python-api-reference/generated/plotly.express.line_geo) or https://plotly.com/python/reference/scattergeo/ for more information and chart attribute options!

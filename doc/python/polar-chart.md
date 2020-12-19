@@ -5,7 +5,7 @@ jupyter:
     text_representation:
       extension: .md
       format_name: markdown
-      format_version: "1.1"
+      format_version: '1.1'
       jupytext_version: 1.1.1
   kernelspec:
     display_name: Python 3
@@ -27,7 +27,7 @@ jupyter:
     language: python
     layout: base
     name: Polar Charts
-    order: 17
+    order: 16
     page_type: u-guide
     permalink: python/polar-chart/
     thumbnail: thumbnail/polar.gif
@@ -37,7 +37,7 @@ jupyter:
 
 A polar chart represents data along radial and angular axes. With Plotly Express, it is possible to represent polar data as scatter markers with `px.scatter_polar`, and as lines with `px.line_polar`.
 
-[Plotly Express](/python/plotly-express/) is the easy-to-use, high-level interface to Plotly, which [operates on "tidy" data](/python/px-arguments/) and produces [easy-to-style figures](/python/styling-plotly-express/).
+[Plotly Express](/python/plotly-express/) is the easy-to-use, high-level interface to Plotly, which [operates on a variety of types of data](/python/px-arguments/) and produces [easy-to-style figures](/python/styling-plotly-express/).
 
 For other types of arguments, see the section below using `go.Scatterpolar`.
 
@@ -72,7 +72,7 @@ fig = px.line_polar(df, r="frequency", theta="direction", color="strength", line
 fig.show()
 ```
 
-See also the [wind rose page](https://plot.ly/python/wind-rose-charts/) for more wind rose visualizations in polar coordinates.
+See also the [wind rose page](https://plotly.com/python/wind-rose-charts/) for more wind rose visualizations in polar coordinates.
 
 You can plot less than a whole circle with the `range_theta` argument, and also control the `start_angle` and `direction`:
 
@@ -85,7 +85,7 @@ fig.show()
 
 ## Polar Scatter Plot with go.Scatterpolar
 
-If Plotly Express does not provide a good starting point, you can use the more generic `go.Scatterpolar`. All the options are documented in the [reference page](https://plot.ly/python/reference/#scatterpolar).
+If Plotly Express does not provide a good starting point, you can use [the more generic `go.Scatterpolar` class from `plotly.graph_objects`](/python/graph-objects/). All the options are documented in the [reference page](https://plotly.com/python/reference/scatterpolar/).
 
 #### Basic Polar Chart
 
@@ -257,7 +257,7 @@ fig.update_traces(mode = "lines+markers",
 # The sector is [0, 360] by default, we update it for the first plot only
 fig.update_layout(
     showlegend = False,
-    polar = dict(# setting parameters for the second plot would be polar2=dict(...)
+    polar = dict(# setting parameters for the second plot would be polar2=dict(...)
       sector = [150,210],
     ))
 
@@ -438,4 +438,4 @@ fig.show()
 
 #### Reference
 
-See https://plot.ly/python/reference/#scatterpolar for more information and chart attribute options!
+See [function reference for `px.(scatter_polar)`](https://plotly.com/python-api-reference/generated/plotly.express.scatter_polar) or [function reference for `px.(line_polar)`](https://plotly.com/python-api-reference/generated/plotly.express.line_polar) or https://plotly.com/python/reference/scatterpolar/ for more information and chart attribute options!

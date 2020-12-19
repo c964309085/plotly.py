@@ -24,7 +24,8 @@ from plotly.io._base_renderers import (
     PdfRenderer,
     BrowserRenderer,
     IFrameRenderer,
-    SphinxGalleryRenderer,
+    SphinxGalleryHtmlRenderer,
+    SphinxGalleryOrcaRenderer,
     CoCalcRenderer,
     DatabricksRenderer,
 )
@@ -366,6 +367,18 @@ def show(fig, renderer=None, validate=True, **kwargs):
         True if the figure should be validated before being shown,
         False otherwise.
 
+    width: int or float
+        An integer or float that determines the number of pixels wide the
+        plot is. The default is set in plotly.js.
+
+    height: int or float
+        An integer or float that determines the number of pixels wide the
+        plot is. The default is set in plotly.js.
+
+    config: dict
+        A dict of parameters to configure the figure. The defaults are set
+        in plotly.js.
+
     Returns
     -------
     None
@@ -430,7 +443,8 @@ renderers["chrome"] = BrowserRenderer(config=config, using="chrome")
 renderers["chromium"] = BrowserRenderer(config=config, using="chromium")
 renderers["iframe"] = IFrameRenderer(config=config, include_plotlyjs=True)
 renderers["iframe_connected"] = IFrameRenderer(config=config, include_plotlyjs="cdn")
-renderers["sphinx_gallery"] = SphinxGalleryRenderer()
+renderers["sphinx_gallery"] = SphinxGalleryHtmlRenderer()
+renderers["sphinx_gallery_png"] = SphinxGalleryOrcaRenderer()
 
 # Set default renderer
 # --------------------
@@ -496,6 +510,12 @@ elif ipython and ipython.get_ipython():
         except ValueError:
             # orca not found
             pass
+
+    # Check if we're running in ipython terminal
+    if not default_renderer and (
+        ipython.get_ipython().__class__.__name__ == "TerminalInteractiveShell"
+    ):
+        default_renderer = "browser"
 
     # Fallback to renderer combination that will work automatically
     # in the classic notebook (offline), jupyterlab, nteract, vscode, and

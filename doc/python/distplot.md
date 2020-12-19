@@ -5,8 +5,8 @@ jupyter:
     text_representation:
       extension: .md
       format_name: markdown
-      format_version: "1.1"
-      jupytext_version: 1.1.1
+      format_version: '1.2'
+      jupytext_version: 1.6.0
   kernelspec:
     display_name: Python 3
     language: python
@@ -20,7 +20,7 @@ jupyter:
     name: python
     nbconvert_exporter: python
     pygments_lexer: ipython3
-    version: 3.6.7
+    version: 3.7.6
   plotly:
     description: How to make interactive Distplots in Python with Plotly.
     display_as: statistical
@@ -35,9 +35,9 @@ jupyter:
 
 ## Combined statistical representations with px.histogram
 
-Several representations of statistical distributions are available in plotly, such as [histograms](https://plot.ly/python/histograms/), [violin plots](https://plot.ly/python/violin/), [box plots](https://plot.ly/python/box-plots/) (see [the complete list here](https://plot.ly/python/statistical-charts/)). It is also possible to combine several representations in the same plot.
+Several representations of statistical distributions are available in plotly, such as [histograms](https://plotly.com/python/histograms/), [violin plots](https://plotly.com/python/violin/), [box plots](https://plotly.com/python/box-plots/) (see [the complete list here](https://plotly.com/python/statistical-charts/)). It is also possible to combine several representations in the same plot.
 
-For example, the `plotly.express` function `px.histogram` can add a subplot with a different statistical representation than the histogram, given by the parameter `marginal`. [Plotly Express](/python/plotly-express/) is the easy-to-use, high-level interface to Plotly, which [operates on "tidy" data](/python/px-arguments/) and produces [easy-to-style figures](/python/styling-plotly-express/).
+For example, the `plotly.express` function `px.histogram` can add a subplot with a different statistical representation than the histogram, given by the parameter `marginal`. [Plotly Express](/python/plotly-express/) is the easy-to-use, high-level interface to Plotly, which [operates on a variety of types of data](/python/px-arguments/) and produces [easy-to-style figures](/python/styling-plotly-express/).
 
 ```python
 import plotly.express as px
@@ -56,9 +56,22 @@ fig = px.histogram(df, x="total_bill", y="tip", color="sex",
 fig.show()
 ```
 
+### Combined statistical representations in Dash
+
+[Dash](https://plotly.com/dash/) is the best way to build analytical apps in Python using Plotly figures. To run the app below, run `pip install dash`, click "Download" to get the code and run `python app.py`.
+
+Get started  with [the official Dash docs](https://dash.plotly.com/installation) and **learn how to effortlessly [style](https://plotly.com/dash/design-kit/) & [deploy](https://plotly.com/dash/app-manager/) apps like this with <a class="plotly-red" href="https://plotly.com/dash/">Dash Enterprise</a>.**
+
+
+```python hide_code=true
+from IPython.display import IFrame
+snippet_url = 'https://dash-gallery.plotly.host/python-docs-dash-snippets/'
+IFrame(snippet_url + 'distplot', width='100%', height=630)
+```
+
 ## Combined statistical representations with distplot figure factory
 
-The distplot figure factory displays a combination of statistical representations of numerical data, such as histogram, kernel density estimation or normal curve, and rug plot.
+The distplot [figure factory](/python/figure-factories/) displays a combination of statistical representations of numerical data, such as histogram, kernel density estimation or normal curve, and rug plot.
 
 #### Basic Distplot
 
@@ -286,6 +299,5 @@ fig.show()
 
 #### Reference
 
-```python
-help(ff.create_distplot)
-```
+
+For more info on `ff.create_distplot()`, see the [full function reference](https://plotly.com/python-api-reference/generated/plotly.figure_factory.create_distplot.html)

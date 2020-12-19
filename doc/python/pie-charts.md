@@ -5,8 +5,8 @@ jupyter:
     text_representation:
       extension: .md
       format_name: markdown
-      format_version: "1.2"
-      jupytext_version: 1.3.0
+      format_version: '1.2'
+      jupytext_version: 1.6.0
   kernelspec:
     display_name: Python 3
     language: python
@@ -20,7 +20,7 @@ jupyter:
     name: python
     nbconvert_exporter: python
     pygments_lexer: ipython3
-    version: 3.7.3
+    version: 3.7.6
   plotly:
     description: How to make Pie Charts.
     display_as: basic
@@ -40,7 +40,7 @@ If you're looking instead for a multilevel hierarchical pie-like chart, go to th
 
 ### Pie chart with plotly express
 
-[Plotly Express](/python/plotly-express/) is the easy-to-use, high-level interface to Plotly, which [operates on "tidy" data](/python/px-arguments/) and produces [easy-to-style figures](/python/styling-plotly-express/).
+[Plotly Express](/python/plotly-express/) is the easy-to-use, high-level interface to Plotly, which [operates on a variety of types of data](/python/px-arguments/) and produces [easy-to-style figures](/python/styling-plotly-express/).
 
 In `px.pie`, data visualized by the sectors of the pie is set in `values`. The sector labels are set in `names`.
 
@@ -64,12 +64,39 @@ fig = px.pie(df, values='tip', names='day')
 fig.show()
 ```
 
+### Pie chart in Dash
+
+[Dash](https://plotly.com/dash/) is the best way to build analytical apps in Python using Plotly figures. To run the app below, run `pip install dash`, click "Download" to get the code and run `python app.py`.
+
+Get started  with [the official Dash docs](https://dash.plotly.com/installation) and **learn how to effortlessly [style](https://plotly.com/dash/design-kit/) & [deploy](https://plotly.com/dash/app-manager/) apps like this with <a class="plotly-red" href="https://plotly.com/dash/">Dash Enterprise</a>.**
+
+```python hide_code=true
+from IPython.display import IFrame
+snippet_url = 'https://dash-gallery.plotly.host/python-docs-dash-snippets/'
+IFrame(snippet_url + 'pie-charts', width='100%', height=630)
+```
+
 ### Setting the color of pie sectors with px.pie
 
 ```python
 import plotly.express as px
 df = px.data.tips()
 fig = px.pie(df, values='tip', names='day', color_discrete_sequence=px.colors.sequential.RdBu)
+fig.show()
+```
+
+### Using an explicit mapping for discrete colors
+
+For more information about discrete colors, see the [dedicated page](/python/discrete-color).
+
+```python
+import plotly.express as px
+df = px.data.tips()
+fig = px.pie(df, values='tip', names='day', color='day',
+             color_discrete_map={'Thur':'lightcyan',
+                                 'Fri':'cyan',
+                                 'Sat':'royalblue',
+                                 'Sun':'darkblue'})
 fig.show()
 ```
 
@@ -89,7 +116,7 @@ fig.show()
 
 ### Basic Pie Chart with go.Pie
 
-If Plotly Express does not provide a good starting point, it is also possible to use the more generic `go.Pie` function from `plotly.graph_objects`.
+If Plotly Express does not provide a good starting point, it is also possible to use [the more generic `go.Pie` class from `plotly.graph_objects`](/python/graph-objects/).
 
 In `go.Pie`, data visualized by the sectors of the pie is set in `values`. The sector labels are set in `labels`. The sector colors are set in `marker.colors`.
 
@@ -198,7 +225,7 @@ fig.add_trace(go.Pie(labels=labels, values=[16, 15, 12, 6, 5, 4, 42], name="GHG 
 fig.add_trace(go.Pie(labels=labels, values=[27, 11, 25, 8, 1, 3, 25], name="CO2 Emissions"),
               1, 2)
 
-# Use `hole` to create a donut-like pie chart
+# Use `hole` to create a donut-like pie chart
 fig.update_traces(hole=.4, hoverinfo="label+percent+name")
 
 fig.update_layout(
@@ -289,4 +316,4 @@ fig.show()
 
 #### Reference
 
-See https://plot.ly/python/reference/#pie for more information and chart attribute options!
+See [function reference for `px.pie()`](https://plotly.com/python-api-reference/generated/plotly.express.pie) or https://plotly.com/python/reference/pie/ for more information and chart attribute options!

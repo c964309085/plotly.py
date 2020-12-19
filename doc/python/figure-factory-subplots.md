@@ -34,7 +34,8 @@ jupyter:
 ---
 
 #### Plotly's Figure Factory Module
-Plotly's Python API contains a figure factory module which includes many wrapper functions that create unique chart types that are not yet included in [plotly.js](https://github.com/plotly/plotly.js), Plotly's open-source graphing library. The figure factory functions create a full figure, so some Plotly features, such as subplotting, should be implemented slightly differently with these charts.
+
+Plotly's Python API contains a [figure factory module](/python/figure-factories/) which includes many wrapper functions that create unique chart types that are not yet included in [plotly.js](https://github.com/plotly/plotly.js), Plotly's open-source graphing library. The figure factory functions create a full figure, so some Plotly features, such as subplotting, should be implemented slightly differently with these charts.
 
 
 #### Vertical Figure Factory Charts
@@ -210,4 +211,4 @@ fig.show()
 ```
 
 #### Reference
-See https://plot.ly/python/subplots/ for more information on working with subplots. See https://plot.ly/python/reference/ for more information regarding chart attributes!
+See https://plotly.com/python/subplots/ for more information on working with subplots. See https://plotly.com/python/reference/ for more information regarding chart attributes!

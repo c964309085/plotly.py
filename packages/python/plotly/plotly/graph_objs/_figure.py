@@ -1,54 +1,4 @@
 from plotly.basedatatypes import BaseFigure
-from plotly.graph_objs import (
-    Area,
-    Bar,
-    Barpolar,
-    Box,
-    Candlestick,
-    Carpet,
-    Choropleth,
-    Choroplethmapbox,
-    Cone,
-    Contour,
-    Contourcarpet,
-    Densitymapbox,
-    Funnel,
-    Funnelarea,
-    Heatmap,
-    Heatmapgl,
-    Histogram,
-    Histogram2d,
-    Histogram2dContour,
-    Image,
-    Indicator,
-    Isosurface,
-    Mesh3d,
-    Ohlc,
-    Parcats,
-    Parcoords,
-    Pie,
-    Pointcloud,
-    Sankey,
-    Scatter,
-    Scatter3d,
-    Scattercarpet,
-    Scattergeo,
-    Scattergl,
-    Scattermapbox,
-    Scatterpolar,
-    Scatterpolargl,
-    Scatterternary,
-    Splom,
-    Streamtube,
-    Sunburst,
-    Surface,
-    Table,
-    Treemap,
-    Violin,
-    Volume,
-    Waterfall,
-    layout as _layout,
-)
 
 
 class Figure(BaseFigure):
@@ -56,8 +6,8 @@ class Figure(BaseFigure):
         self, data=None, layout=None, frames=None, skip_invalid=False, **kwargs
     ):
         """
-        Create a new Figure instance
-        
+        Create a new :class:Figure instance
+
         Parameters
         ----------
         data
@@ -89,22 +39,25 @@ class Figure(BaseFigure):
                   the specified trace type
         
                 (e.g. [{'type': 'scatter', ...}, {'type': 'bar, ...}])
-            
+
         layout
             The 'layout' property is an instance of Layout
             that may be specified as:
-              - An instance of plotly.graph_objs.Layout
+              - An instance of :class:`plotly.graph_objs.Layout`
               - A dict of string/value properties that will be passed
                 to the Layout constructor
         
                 Supported dict properties:
                     
+                    activeshape
+                        :class:`plotly.graph_objects.layout.Activeshape
+                        ` instance or dict with compatible properties
                     angularaxis
-                        plotly.graph_objects.layout.AngularAxis
-                        instance or dict with compatible properties
+                        :class:`plotly.graph_objects.layout.AngularAxis
+                        ` instance or dict with compatible properties
                     annotations
                         A tuple of
-                        plotly.graph_objects.layout.Annotation
+                        :class:`plotly.graph_objects.layout.Annotation`
                         instances or dicts with compatible properties
                     annotationdefaults
                         When used in a template (as
@@ -118,6 +71,14 @@ class Figure(BaseFigure):
                         regardless of this attribute, an undefined
                         layout width or height is always initialized on
                         the first call to plot.
+                    autotypenumbers
+                        Using "strict" a numeric string in trace data
+                        is not converted to a number. Using *convert
+                        types* a numeric string in trace data may be
+                        treated as a number during automatic axis
+                        `type` detection. This is the default value;
+                        however it could be overridden for individual
+                        axes.
                     bargap
                         Sets the gap (in plot fraction) between bars of
                         adjacent location coordinates.
@@ -183,13 +144,17 @@ class Figure(BaseFigure):
                         missing, `plotly_click` and `plotly_selected`
                         events are not fired.
                     coloraxis
-                        plotly.graph_objects.layout.Coloraxis instance
-                        or dict with compatible properties
+                        :class:`plotly.graph_objects.layout.Coloraxis`
+                        instance or dict with compatible properties
                     colorscale
-                        plotly.graph_objects.layout.Colorscale instance
-                        or dict with compatible properties
+                        :class:`plotly.graph_objects.layout.Colorscale`
+                        instance or dict with compatible properties
                     colorway
                         Sets the default trace colors.
+                    computed
+                        Placeholder for exporting automargin-impacting
+                        values namely `margin.t`, `margin.b`,
+                        `margin.l` and `margin.r` in "full-json" mode.
                     datarevision
                         If provided, a changed value tells
                         `Plotly.react` that one or more data arrays has
@@ -285,11 +250,11 @@ class Figure(BaseFigure):
                         over one another, you might need to an
                         "opacity" to see multiple bars.
                     geo
-                        plotly.graph_objects.layout.Geo instance or
-                        dict with compatible properties
+                        :class:`plotly.graph_objects.layout.Geo`
+                        instance or dict with compatible properties
                     grid
-                        plotly.graph_objects.layout.Grid instance or
-                        dict with compatible properties
+                        :class:`plotly.graph_objects.layout.Grid`
+                        instance or dict with compatible properties
                     height
                         Sets the plot's height (in px).
                     hiddenlabels
@@ -298,15 +263,15 @@ class Figure(BaseFigure):
                         contain many labels, and can simultaneously
                         hide slices from several pies/funnelarea charts
                     hiddenlabelssrc
-                        Sets the source reference on plot.ly for
-                        hiddenlabels .
+                        Sets the source reference on Chart Studio Cloud
+                        for  hiddenlabels .
                     hidesources
                         Determines whether or not a text link citing
                         the data source is placed at the bottom-right
                         cored of the figure. Has only an effect only on
                         graphs that have been generated via forked
-                        graphs from the plotly service (at
-                        https://plot.ly or on-premise).
+                        graphs from the Chart Studio Cloud (at
+                        https://chart-studio.plotly.com or on-premise).
                     hoverdistance
                         Sets the default distance (in pixels) to look
                         for data to add hover labels (-1 means no
@@ -318,19 +283,34 @@ class Figure(BaseFigure):
                         objects will not supersede hover on point-like
                         objects in case of conflict.
                     hoverlabel
-                        plotly.graph_objects.layout.Hoverlabel instance
-                        or dict with compatible properties
+                        :class:`plotly.graph_objects.layout.Hoverlabel`
+                        instance or dict with compatible properties
                     hovermode
                         Determines the mode of hover interactions. If
-                        `clickmode` includes the "select" flag,
-                        `hovermode` defaults to "closest". If
-                        `clickmode` lacks the "select" flag, it
-                        defaults to "x" or "y" (depending on the
-                        trace's `orientation` value) for plots based on
-                        cartesian coordinates. For anything else the
-                        default value is "closest".
+                        "closest", a single hoverlabel will appear for
+                        the "closest" point within the `hoverdistance`.
+                        If "x" (or "y"), multiple hoverlabels will
+                        appear for multiple points at the "closest" x-
+                        (or y-) coordinate within the `hoverdistance`,
+                        with the caveat that no more than one
+                        hoverlabel will appear per trace. If *x
+                        unified* (or *y unified*), a single hoverlabel
+                        will appear multiple points at the closest x-
+                        (or y-) coordinate within the `hoverdistance`
+                        with the caveat that no more than one
+                        hoverlabel will appear per trace. In this mode,
+                        spikelines are enabled by default perpendicular
+                        to the specified axis. If false, hover
+                        interactions are disabled. If `clickmode`
+                        includes the "select" flag, `hovermode`
+                        defaults to "closest". If `clickmode` lacks the
+                        "select" flag, it defaults to "x" or "y"
+                        (depending on the trace's `orientation` value)
+                        for plots based on cartesian coordinates. For
+                        anything else the default value is "closest".
                     images
-                        A tuple of plotly.graph_objects.layout.Image
+                        A tuple of
+                        :class:`plotly.graph_objects.layout.Image`
                         instances or dicts with compatible properties
                     imagedefaults
                         When used in a template (as
@@ -338,14 +318,14 @@ class Figure(BaseFigure):
                         default property values to use for elements of
                         layout.images
                     legend
-                        plotly.graph_objects.layout.Legend instance or
-                        dict with compatible properties
+                        :class:`plotly.graph_objects.layout.Legend`
+                        instance or dict with compatible properties
                     mapbox
-                        plotly.graph_objects.layout.Mapbox instance or
-                        dict with compatible properties
+                        :class:`plotly.graph_objects.layout.Mapbox`
+                        instance or dict with compatible properties
                     margin
-                        plotly.graph_objects.layout.Margin instance or
-                        dict with compatible properties
+                        :class:`plotly.graph_objects.layout.Margin`
+                        instance or dict with compatible properties
                     meta
                         Assigns extra meta information that can be used
                         in various `text` attributes. Attributes such
@@ -359,19 +339,22 @@ class Figure(BaseFigure):
                         object for example `{key: value}` which can be
                         accessed %{meta[key]}.
                     metasrc
-                        Sets the source reference on plot.ly for  meta
-                        .
+                        Sets the source reference on Chart Studio Cloud
+                        for  meta .
                     modebar
-                        plotly.graph_objects.layout.Modebar instance or
-                        dict with compatible properties
+                        :class:`plotly.graph_objects.layout.Modebar`
+                        instance or dict with compatible properties
+                    newshape
+                        :class:`plotly.graph_objects.layout.Newshape`
+                        instance or dict with compatible properties
                     orientation
                         Legacy polar charts are deprecated! Please
                         switch to "polar" subplots. Rotates the entire
                         polar by the given angle in legacy polar
                         charts.
                     paper_bgcolor
-                        Sets the color of paper where the graph is
-                        drawn.
+                        Sets the background color of the paper where
+                        the graph is drawn.
                     piecolorway
                         Sets the default pie slice colors. Defaults to
                         the main `colorway` used for trace colors. If
@@ -379,19 +362,19 @@ class Figure(BaseFigure):
                         extended with lighter and darker colors, see
                         `extendpiecolors`.
                     plot_bgcolor
-                        Sets the color of plotting area in-between x
-                        and y axes.
+                        Sets the background color of the plotting area
+                        in-between x and y axes.
                     polar
-                        plotly.graph_objects.layout.Polar instance or
-                        dict with compatible properties
+                        :class:`plotly.graph_objects.layout.Polar`
+                        instance or dict with compatible properties
                     radialaxis
-                        plotly.graph_objects.layout.RadialAxis instance
-                        or dict with compatible properties
+                        :class:`plotly.graph_objects.layout.RadialAxis`
+                        instance or dict with compatible properties
                     scene
-                        plotly.graph_objects.layout.Scene instance or
-                        dict with compatible properties
+                        :class:`plotly.graph_objects.layout.Scene`
+                        instance or dict with compatible properties
                     selectdirection
-                        When "dragmode" is set to "select", this limits
+                        When `dragmode` is set to "select", this limits
                         the selection of the drag to horizontal,
                         vertical or diagonal. "h" only allows
                         horizontal selection, "v" only vertical, "d"
@@ -406,7 +389,8 @@ class Figure(BaseFigure):
                         dflt is ".," but other locales may alter this
                         default.
                     shapes
-                        A tuple of plotly.graph_objects.layout.Shape
+                        A tuple of
+                        :class:`plotly.graph_objects.layout.Shape`
                         instances or dicts with compatible properties
                     shapedefaults
                         When used in a template (as
@@ -421,7 +405,8 @@ class Figure(BaseFigure):
                         trace is shown in the legend. c) One trace is
                         explicitly given with `showlegend: true`.
                     sliders
-                        A tuple of plotly.graph_objects.layout.Slider
+                        A tuple of
+                        :class:`plotly.graph_objects.layout.Slider`
                         instances or dicts with compatible properties
                     sliderdefaults
                         When used in a template (as
@@ -470,11 +455,11 @@ class Figure(BaseFigure):
                         plot, make an item with matching
                         `templateitemname` and `visible: false`.
                     ternary
-                        plotly.graph_objects.layout.Ternary instance or
-                        dict with compatible properties
+                        :class:`plotly.graph_objects.layout.Ternary`
+                        instance or dict with compatible properties
                     title
-                        plotly.graph_objects.layout.Title instance or
-                        dict with compatible properties
+                        :class:`plotly.graph_objects.layout.Title`
+                        instance or dict with compatible properties
                     titlefont
                         Deprecated: Please use layout.title.font
                         instead. Sets the title font. Note that the
@@ -513,11 +498,11 @@ class Figure(BaseFigure):
                         range will reset but the x axis range will
                         retain any user-driven zoom.
                     uniformtext
-                        plotly.graph_objects.layout.Uniformtext
-                        instance or dict with compatible properties
+                        :class:`plotly.graph_objects.layout.Uniformtext
+                        ` instance or dict with compatible properties
                     updatemenus
                         A tuple of
-                        plotly.graph_objects.layout.Updatemenu
+                        :class:`plotly.graph_objects.layout.Updatemenu`
                         instances or dicts with compatible properties
                     updatemenudefaults
                         When used in a template (as
@@ -558,12 +543,12 @@ class Figure(BaseFigure):
                     width
                         Sets the plot's width (in px).
                     xaxis
-                        plotly.graph_objects.layout.XAxis instance or
-                        dict with compatible properties
+                        :class:`plotly.graph_objects.layout.XAxis`
+                        instance or dict with compatible properties
                     yaxis
-                        plotly.graph_objects.layout.YAxis instance or
-                        dict with compatible properties
-            
+                        :class:`plotly.graph_objects.layout.YAxis`
+                        instance or dict with compatible properties
+
         frames
             The 'frames' property is a tuple of instances of
             Frame that may be specified as:
@@ -596,7 +581,7 @@ class Figure(BaseFigure):
                     traces
                         A list of trace indices that identify the
                         respective traces in the data attribute
-            
+
         skip_invalid: bool
             If True, invalid properties in the figure specification will be
             skipped silently. If False (default) invalid properties in the
@@ -649,30 +634,33 @@ class Figure(BaseFigure):
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         hoverinfo
             Determines which trace information appear on hover. If
             `none` or `skip` are set, no information is displayed
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.area.Hoverlabel instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.area.Hoverlabel` instance
+            or dict with compatible properties
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         legendgroup
             Sets the legend group for this trace. Traces part of
             the same legend group hide/show at the same time when
             toggling legend items.
         marker
-            plotly.graph_objects.area.Marker instance or dict with
-            compatible properties
+            :class:`plotly.graph_objects.area.Marker` instance or
+            dict with compatible properties
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -687,7 +675,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover.
@@ -698,19 +687,21 @@ class Figure(BaseFigure):
             "barpolar" trace type. Sets the radial coordinates for
             legacy polar chart only.
         rsrc
-            Sets the source reference on plot.ly for  r .
+            Sets the source reference on Chart Studio Cloud for  r
+            .
         showlegend
             Determines whether or not an item corresponding to this
             trace is shown in the legend.
         stream
-            plotly.graph_objects.area.Stream instance or dict with
-            compatible properties
+            :class:`plotly.graph_objects.area.Stream` instance or
+            dict with compatible properties
         t
             Area traces are deprecated! Please switch to the
             "barpolar" trace type. Sets the angular coordinates for
             legacy polar chart only.
         tsrc
-            Sets the source reference on plot.ly for  t .
+            Sets the source reference on Chart Studio Cloud for  t
+            .
         uid
             Assign an id to this trace, Use this to provide object
             constancy between traces during animations and
@@ -738,19 +729,23 @@ class Figure(BaseFigure):
             "legendonly", the trace is not drawn, but can appear as
             a legend item (provided that the legend itself is
             visible).
-        row : int or None (default)
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
 
         Returns
         -------
         Figure
         """
+        from plotly.graph_objs import Area
+
         new_trace = Area(
             customdata=customdata,
             customdatasrc=customdatasrc,
@@ -839,11 +834,17 @@ class Figure(BaseFigure):
         x0=None,
         xaxis=None,
         xcalendar=None,
+        xperiod=None,
+        xperiod0=None,
+        xperiodalignment=None,
         xsrc=None,
         y=None,
         y0=None,
         yaxis=None,
         ycalendar=None,
+        yperiod=None,
+        yperiod0=None,
+        yperiodalignment=None,
         ysrc=None,
         row=None,
         col=None,
@@ -871,7 +872,8 @@ class Figure(BaseFigure):
             set "base" will be excluded and drawn in "overlay" mode
             instead.
         basesrc
-            Sets the source reference on plot.ly for  base .
+            Sets the source reference on Chart Studio Cloud for
+            base .
         cliponaxis
             Determines whether the text nodes are clipped about the
             subplot axes. To show the text nodes above axis lines
@@ -886,27 +888,29 @@ class Figure(BaseFigure):
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         dx
             Sets the x coordinate step. See `x0` for more info.
         dy
             Sets the y coordinate step. See `y0` for more info.
         error_x
-            plotly.graph_objects.bar.ErrorX instance or dict with
-            compatible properties
+            :class:`plotly.graph_objects.bar.ErrorX` instance or
+            dict with compatible properties
         error_y
-            plotly.graph_objects.bar.ErrorY instance or dict with
-            compatible properties
+            :class:`plotly.graph_objects.bar.ErrorY` instance or
+            dict with compatible properties
         hoverinfo
             Determines which trace information appear on hover. If
             `none` or `skip` are set, no information is displayed
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.bar.Hoverlabel instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.bar.Hoverlabel` instance
+            or dict with compatible properties
         hovertemplate
             Template string used for rendering the information that
             appear on hover box. Note that this will override
@@ -918,22 +922,21 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. The variables
             available in `hovertemplate` are the ones emitted as
             event data described at this link
-            https://plot.ly/javascript/plotlyjs-events/#event-data.
-            Additionally, every attributes that can be specified
-            per-point (the ones that are `arrayOk: true`) are
-            available. variables `value` and `label`. Anything
+            https://plotly.com/javascript/plotlyjs-events/#event-
+            data. Additionally, every attributes that can be
+            specified per-point (the ones that are `arrayOk: true`)
+            are available. variables `value` and `label`. Anything
             contained in tag `<extra>` is displayed in the
             secondary box, for example
             "<extra>{fullData.name}</extra>". To hide the secondary
             box completely, use an empty tag `<extra></extra>`.
         hovertemplatesrc
-            Sets the source reference on plot.ly for  hovertemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            hovertemplate .
         hovertext
             Sets hover text elements associated with each (x,y)
             pair. If a single string, the same string appears over
@@ -942,13 +945,15 @@ class Figure(BaseFigure):
             coordinates. To be seen, trace `hoverinfo` must contain
             a "text" flag.
         hovertextsrc
-            Sets the source reference on plot.ly for  hovertext .
+            Sets the source reference on Chart Studio Cloud for
+            hovertext .
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         insidetextanchor
             Determines if texts are kept at center or start/end
             points in `textposition` "inside" mode.
@@ -959,8 +964,8 @@ class Figure(BaseFigure):
             the same legend group hide/show at the same time when
             toggling legend items.
         marker
-            plotly.graph_objects.bar.Marker instance or dict with
-            compatible properties
+            :class:`plotly.graph_objects.bar.Marker` instance or
+            dict with compatible properties
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -975,7 +980,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover.
@@ -989,7 +995,8 @@ class Figure(BaseFigure):
             matching axes to the same offsetgroup where bars of the
             same position coordinate will line up.
         offsetsrc
-            Sets the source reference on plot.ly for  offset .
+            Sets the source reference on Chart Studio Cloud for
+            offset .
         opacity
             Sets the opacity of the trace.
         orientation
@@ -1003,10 +1010,11 @@ class Figure(BaseFigure):
             switch to the "scatterpolar" trace type.Sets the radial
             coordinatesfor legacy polar chart only.
         rsrc
-            Sets the source reference on plot.ly for  r .
+            Sets the source reference on Chart Studio Cloud for  r
+            .
         selected
-            plotly.graph_objects.bar.Selected instance or dict with
-            compatible properties
+            :class:`plotly.graph_objects.bar.Selected` instance or
+            dict with compatible properties
         selectedpoints
             Array containing integer indices of selected points.
             Has an effect only for traces that support selections.
@@ -1018,8 +1026,8 @@ class Figure(BaseFigure):
             Determines whether or not an item corresponding to this
             trace is shown in the legend.
         stream
-            plotly.graph_objects.bar.Stream instance or dict with
-            compatible properties
+            :class:`plotly.graph_objects.bar.Stream` instance or
+            dict with compatible properties
         t
             t coordinates in scatter traces are deprecated!Please
             switch to the "scatterpolar" trace type.Sets the
@@ -1050,10 +1058,11 @@ class Figure(BaseFigure):
             inside the bar, but if the bar is too small and no bar
             is stacked on this one the text is moved outside.
         textpositionsrc
-            Sets the source reference on plot.ly for  textposition
-            .
+            Sets the source reference on Chart Studio Cloud for
+            textposition .
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         texttemplate
             Template string used for rendering the information text
             that appear on points. Note that this will override
@@ -1065,17 +1074,17 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. Every attributes
             that can be specified per-point (the ones that are
             `arrayOk: true`) are available. variables `value` and
             `label`.
         texttemplatesrc
-            Sets the source reference on plot.ly for  texttemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            texttemplate .
         tsrc
-            Sets the source reference on plot.ly for  t .
+            Sets the source reference on Chart Studio Cloud for  t
+            .
         uid
             Assign an id to this trace, Use this to provide object
             constancy between traces during animations and
@@ -1099,8 +1108,8 @@ class Figure(BaseFigure):
             preserve user-driven changes if you give each trace a
             `uid` that stays with it as it moves.
         unselected
-            plotly.graph_objects.bar.Unselected instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.bar.Unselected` instance
+            or dict with compatible properties
         visible
             Determines whether or not this trace is visible. If
             "legendonly", the trace is not drawn, but can appear as
@@ -1109,7 +1118,8 @@ class Figure(BaseFigure):
         width
             Sets the bar width (in position axis units).
         widthsrc
-            Sets the source reference on plot.ly for  width .
+            Sets the source reference on Chart Studio Cloud for
+            width .
         x
             Sets the x coordinates.
         x0
@@ -1123,8 +1133,25 @@ class Figure(BaseFigure):
             coordinates refer to `layout.xaxis2`, and so on.
         xcalendar
             Sets the calendar system to use with `x` date data.
+        xperiod
+            Only relevant when the axis `type` is "date". Sets the
+            period positioning in milliseconds or "M<n>" on the x
+            axis. Special values in the form of "M<n>" could be
+            used to declare the number of months. In this case `n`
+            must be a positive integer.
+        xperiod0
+            Only relevant when the axis `type` is "date". Sets the
+            base for period positioning in milliseconds or date
+            string on the x0 axis. When `x0period` is round number
+            of weeks, the `x0period0` by default would be on a
+            Sunday i.e. 2000-01-02, otherwise it would be at
+            2000-01-01.
+        xperiodalignment
+            Only relevant when the axis `type` is "date". Sets the
+            alignment of data points on the x axis.
         xsrc
-            Sets the source reference on plot.ly for  x .
+            Sets the source reference on Chart Studio Cloud for  x
+            .
         y
             Sets the y coordinates.
         y0
@@ -1138,16 +1165,35 @@ class Figure(BaseFigure):
             coordinates refer to `layout.yaxis2`, and so on.
         ycalendar
             Sets the calendar system to use with `y` date data.
+        yperiod
+            Only relevant when the axis `type` is "date". Sets the
+            period positioning in milliseconds or "M<n>" on the y
+            axis. Special values in the form of "M<n>" could be
+            used to declare the number of months. In this case `n`
+            must be a positive integer.
+        yperiod0
+            Only relevant when the axis `type` is "date". Sets the
+            base for period positioning in milliseconds or date
+            string on the y0 axis. When `y0period` is round number
+            of weeks, the `y0period0` by default would be on a
+            Sunday i.e. 2000-01-02, otherwise it would be at
+            2000-01-01.
+        yperiodalignment
+            Only relevant when the axis `type` is "date". Sets the
+            alignment of data points on the y axis.
         ysrc
-            Sets the source reference on plot.ly for  y .
-        row : int or None (default)
+            Sets the source reference on Chart Studio Cloud for  y
+            .
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
         secondary_y: boolean or None (default None)
             If True, associate this trace with the secondary y-axis of the
             subplot at the specified row and col. Only valid if all of the
@@ -1163,6 +1209,8 @@ class Figure(BaseFigure):
         -------
         Figure
         """
+        from plotly.graph_objs import Bar
+
         new_trace = Bar(
             alignmentgroup=alignmentgroup,
             base=base,
@@ -1223,11 +1271,17 @@ class Figure(BaseFigure):
             x0=x0,
             xaxis=xaxis,
             xcalendar=xcalendar,
+            xperiod=xperiod,
+            xperiod0=xperiod0,
+            xperiodalignment=xperiodalignment,
             xsrc=xsrc,
             y=y,
             y0=y0,
             yaxis=yaxis,
             ycalendar=ycalendar,
+            yperiod=yperiod,
+            yperiod0=yperiod0,
+            yperiodalignment=yperiodalignment,
             ysrc=ysrc,
             **kwargs
         )
@@ -1295,14 +1349,16 @@ class Figure(BaseFigure):
             units). In "stack" barmode, traces that set "base" will
             be excluded and drawn in "overlay" mode instead.
         basesrc
-            Sets the source reference on plot.ly for  base .
+            Sets the source reference on Chart Studio Cloud for
+            base .
         customdata
             Assigns extra data each datum. This may be useful when
             listening to hover, click and selection events. Note
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         dr
             Sets the r coordinate step.
         dtheta
@@ -1315,10 +1371,11 @@ class Figure(BaseFigure):
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.barpolar.Hoverlabel instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.barpolar.Hoverlabel`
+            instance or dict with compatible properties
         hovertemplate
             Template string used for rendering the information that
             appear on hover box. Note that this will override
@@ -1330,38 +1387,39 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. The variables
             available in `hovertemplate` are the ones emitted as
             event data described at this link
-            https://plot.ly/javascript/plotlyjs-events/#event-data.
-            Additionally, every attributes that can be specified
-            per-point (the ones that are `arrayOk: true`) are
-            available.  Anything contained in tag `<extra>` is
+            https://plotly.com/javascript/plotlyjs-events/#event-
+            data. Additionally, every attributes that can be
+            specified per-point (the ones that are `arrayOk: true`)
+            are available.  Anything contained in tag `<extra>` is
             displayed in the secondary box, for example
             "<extra>{fullData.name}</extra>". To hide the secondary
             box completely, use an empty tag `<extra></extra>`.
         hovertemplatesrc
-            Sets the source reference on plot.ly for  hovertemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            hovertemplate .
         hovertext
             Same as `text`.
         hovertextsrc
-            Sets the source reference on plot.ly for  hovertext .
+            Sets the source reference on Chart Studio Cloud for
+            hovertext .
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         legendgroup
             Sets the legend group for this trace. Traces part of
             the same legend group hide/show at the same time when
             toggling legend items.
         marker
-            plotly.graph_objects.barpolar.Marker instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.barpolar.Marker` instance
+            or dict with compatible properties
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -1376,7 +1434,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover.
@@ -1384,7 +1443,8 @@ class Figure(BaseFigure):
             Shifts the angular position where the bar is drawn (in
             "thetatunit" units).
         offsetsrc
-            Sets the source reference on plot.ly for  offset .
+            Sets the source reference on Chart Studio Cloud for
+            offset .
         opacity
             Sets the opacity of the trace.
         r
@@ -1394,10 +1454,11 @@ class Figure(BaseFigure):
             coordinates. Use with `dr` where `r0` is the starting
             coordinate and `dr` the step.
         rsrc
-            Sets the source reference on plot.ly for  r .
+            Sets the source reference on Chart Studio Cloud for  r
+            .
         selected
-            plotly.graph_objects.barpolar.Selected instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.barpolar.Selected`
+            instance or dict with compatible properties
         selectedpoints
             Array containing integer indices of selected points.
             Has an effect only for traces that support selections.
@@ -1409,8 +1470,8 @@ class Figure(BaseFigure):
             Determines whether or not an item corresponding to this
             trace is shown in the legend.
         stream
-            plotly.graph_objects.barpolar.Stream instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.barpolar.Stream` instance
+            or dict with compatible properties
         subplot
             Sets a reference between this trace's data coordinates
             and a polar subplot. If "polar" (the default value),
@@ -1422,7 +1483,8 @@ class Figure(BaseFigure):
             If an array of string, the items are mapped in order to
             the this trace's coordinates.
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         theta
             Sets the angular coordinates
         theta0
@@ -1430,7 +1492,8 @@ class Figure(BaseFigure):
             coordinates. Use with `dtheta` where `theta0` is the
             starting coordinate and `dtheta` the step.
         thetasrc
-            Sets the source reference on plot.ly for  theta .
+            Sets the source reference on Chart Studio Cloud for
+            theta .
         thetaunit
             Sets the unit of input "theta" values. Has an effect
             only when on "linear" angular axes.
@@ -1457,8 +1520,8 @@ class Figure(BaseFigure):
             preserve user-driven changes if you give each trace a
             `uid` that stays with it as it moves.
         unselected
-            plotly.graph_objects.barpolar.Unselected instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.barpolar.Unselected`
+            instance or dict with compatible properties
         visible
             Determines whether or not this trace is visible. If
             "legendonly", the trace is not drawn, but can appear as
@@ -1467,20 +1530,25 @@ class Figure(BaseFigure):
         width
             Sets the bar angular width (in "thetaunit" units).
         widthsrc
-            Sets the source reference on plot.ly for  width .
-        row : int or None (default)
+            Sets the source reference on Chart Studio Cloud for
+            width .
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
 
         Returns
         -------
         Figure
         """
+        from plotly.graph_objs import Barpolar
+
         new_trace = Barpolar(
             base=base,
             basesrc=basesrc,
@@ -1595,11 +1663,17 @@ class Figure(BaseFigure):
         x0=None,
         xaxis=None,
         xcalendar=None,
+        xperiod=None,
+        xperiod0=None,
+        xperiodalignment=None,
         xsrc=None,
         y=None,
         y0=None,
         yaxis=None,
         ycalendar=None,
+        yperiod=None,
+        yperiod0=None,
+        yperiodalignment=None,
         ysrc=None,
         row=None,
         col=None,
@@ -1664,7 +1738,8 @@ class Figure(BaseFigure):
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         dx
             Sets the x coordinate step for multi-box traces set
             using q1/median/q3.
@@ -1681,10 +1756,11 @@ class Figure(BaseFigure):
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.box.Hoverlabel instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.box.Hoverlabel` instance
+            or dict with compatible properties
         hoveron
             Do the hover effects highlight individual boxes  or
             sample points or both?
@@ -1699,31 +1775,32 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. The variables
             available in `hovertemplate` are the ones emitted as
             event data described at this link
-            https://plot.ly/javascript/plotlyjs-events/#event-data.
-            Additionally, every attributes that can be specified
-            per-point (the ones that are `arrayOk: true`) are
-            available.  Anything contained in tag `<extra>` is
+            https://plotly.com/javascript/plotlyjs-events/#event-
+            data. Additionally, every attributes that can be
+            specified per-point (the ones that are `arrayOk: true`)
+            are available.  Anything contained in tag `<extra>` is
             displayed in the secondary box, for example
             "<extra>{fullData.name}</extra>". To hide the secondary
             box completely, use an empty tag `<extra></extra>`.
         hovertemplatesrc
-            Sets the source reference on plot.ly for  hovertemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            hovertemplate .
         hovertext
             Same as `text`.
         hovertextsrc
-            Sets the source reference on plot.ly for  hovertext .
+            Sets the source reference on Chart Studio Cloud for
+            hovertext .
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         jitter
             Sets the amount of jitter in the sample points drawn.
             If 0, the sample points align along the distribution
@@ -1734,8 +1811,8 @@ class Figure(BaseFigure):
             the same legend group hide/show at the same time when
             toggling legend items.
         line
-            plotly.graph_objects.box.Line instance or dict with
-            compatible properties
+            :class:`plotly.graph_objects.box.Line` instance or dict
+            with compatible properties
         lowerfence
             Sets the lower fence values. There should be as many
             items as the number of boxes desired. This attribute
@@ -1744,10 +1821,11 @@ class Figure(BaseFigure):
             `x`) is set, we compute the lower as the last sample
             point below 1.5 times the IQR.
         lowerfencesrc
-            Sets the source reference on plot.ly for  lowerfence .
+            Sets the source reference on Chart Studio Cloud for
+            lowerfence .
         marker
-            plotly.graph_objects.box.Marker instance or dict with
-            compatible properties
+            :class:`plotly.graph_objects.box.Marker` instance or
+            dict with compatible properties
         mean
             Sets the mean values. There should be as many items as
             the number of boxes desired. This attribute has effect
@@ -1755,12 +1833,14 @@ class Figure(BaseFigure):
             provided but a sample (in `y` or `x`) is set, we
             compute the mean for each box using the sample values.
         meansrc
-            Sets the source reference on plot.ly for  mean .
+            Sets the source reference on Chart Studio Cloud for
+            mean .
         median
             Sets the median values. There should be as many items
             as the number of boxes desired.
         mediansrc
-            Sets the source reference on plot.ly for  median .
+            Sets the source reference on Chart Studio Cloud for
+            median .
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -1775,7 +1855,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover. For box traces, the name will
@@ -1800,7 +1881,8 @@ class Figure(BaseFigure):
             but a sample (in `y` or `x`) is set, we compute it as
             1.57 * IQR / sqrt(N), where N is the sample size.
         notchspansrc
-            Sets the source reference on plot.ly for  notchspan .
+            Sets the source reference on Chart Studio Cloud for
+            notchspan .
         notchwidth
             Sets the width of the notches relative to the box'
             width. For example, with 0, the notches are as wide as
@@ -1825,12 +1907,14 @@ class Figure(BaseFigure):
             Sets the Quartile 1 values. There should be as many
             items as the number of boxes desired.
         q1src
-            Sets the source reference on plot.ly for  q1 .
+            Sets the source reference on Chart Studio Cloud for  q1
+            .
         q3
             Sets the Quartile 3 values. There should be as many
             items as the number of boxes desired.
         q3src
-            Sets the source reference on plot.ly for  q3 .
+            Sets the source reference on Chart Studio Cloud for  q3
+            .
         quartilemethod
             Sets the method used to compute the sample's Q1 and Q3
             quartiles. The "linear" method uses the 25th percentile
@@ -1854,10 +1938,11 @@ class Figure(BaseFigure):
             or `x`) is set, we compute the standard deviation for
             each box using the sample values.
         sdsrc
-            Sets the source reference on plot.ly for  sd .
+            Sets the source reference on Chart Studio Cloud for  sd
+            .
         selected
-            plotly.graph_objects.box.Selected instance or dict with
-            compatible properties
+            :class:`plotly.graph_objects.box.Selected` instance or
+            dict with compatible properties
         selectedpoints
             Array containing integer indices of selected points.
             Has an effect only for traces that support selections.
@@ -1869,8 +1954,8 @@ class Figure(BaseFigure):
             Determines whether or not an item corresponding to this
             trace is shown in the legend.
         stream
-            plotly.graph_objects.box.Stream instance or dict with
-            compatible properties
+            :class:`plotly.graph_objects.box.Stream` instance or
+            dict with compatible properties
         text
             Sets the text elements associated with each sample
             value. If a single string, the same string appears over
@@ -1879,7 +1964,8 @@ class Figure(BaseFigure):
             coordinates. To be seen, trace `hoverinfo` must contain
             a "text" flag.
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         uid
             Assign an id to this trace, Use this to provide object
             constancy between traces during animations and
@@ -1903,8 +1989,8 @@ class Figure(BaseFigure):
             preserve user-driven changes if you give each trace a
             `uid` that stays with it as it moves.
         unselected
-            plotly.graph_objects.box.Unselected instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.box.Unselected` instance
+            or dict with compatible properties
         upperfence
             Sets the upper fence values. There should be as many
             items as the number of boxes desired. This attribute
@@ -1913,7 +1999,8 @@ class Figure(BaseFigure):
             `x`) is set, we compute the lower as the last sample
             point above 1.5 times the IQR.
         upperfencesrc
-            Sets the source reference on plot.ly for  upperfence .
+            Sets the source reference on Chart Studio Cloud for
+            upperfence .
         visible
             Determines whether or not this trace is visible. If
             "legendonly", the trace is not drawn, but can appear as
@@ -1942,8 +2029,25 @@ class Figure(BaseFigure):
             coordinates refer to `layout.xaxis2`, and so on.
         xcalendar
             Sets the calendar system to use with `x` date data.
+        xperiod
+            Only relevant when the axis `type` is "date". Sets the
+            period positioning in milliseconds or "M<n>" on the x
+            axis. Special values in the form of "M<n>" could be
+            used to declare the number of months. In this case `n`
+            must be a positive integer.
+        xperiod0
+            Only relevant when the axis `type` is "date". Sets the
+            base for period positioning in milliseconds or date
+            string on the x0 axis. When `x0period` is round number
+            of weeks, the `x0period0` by default would be on a
+            Sunday i.e. 2000-01-02, otherwise it would be at
+            2000-01-01.
+        xperiodalignment
+            Only relevant when the axis `type` is "date". Sets the
+            alignment of data points on the x axis.
         xsrc
-            Sets the source reference on plot.ly for  x .
+            Sets the source reference on Chart Studio Cloud for  x
+            .
         y
             Sets the y sample data or coordinates. See overview for
             more info.
@@ -1958,16 +2062,35 @@ class Figure(BaseFigure):
             coordinates refer to `layout.yaxis2`, and so on.
         ycalendar
             Sets the calendar system to use with `y` date data.
+        yperiod
+            Only relevant when the axis `type` is "date". Sets the
+            period positioning in milliseconds or "M<n>" on the y
+            axis. Special values in the form of "M<n>" could be
+            used to declare the number of months. In this case `n`
+            must be a positive integer.
+        yperiod0
+            Only relevant when the axis `type` is "date". Sets the
+            base for period positioning in milliseconds or date
+            string on the y0 axis. When `y0period` is round number
+            of weeks, the `y0period0` by default would be on a
+            Sunday i.e. 2000-01-02, otherwise it would be at
+            2000-01-01.
+        yperiodalignment
+            Only relevant when the axis `type` is "date". Sets the
+            alignment of data points on the y axis.
         ysrc
-            Sets the source reference on plot.ly for  y .
-        row : int or None (default)
+            Sets the source reference on Chart Studio Cloud for  y
+            .
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
         secondary_y: boolean or None (default None)
             If True, associate this trace with the secondary y-axis of the
             subplot at the specified row and col. Only valid if all of the
@@ -1983,6 +2106,8 @@ class Figure(BaseFigure):
         -------
         Figure
         """
+        from plotly.graph_objs import Box
+
         new_trace = Box(
             alignmentgroup=alignmentgroup,
             boxmean=boxmean,
@@ -2048,11 +2173,17 @@ class Figure(BaseFigure):
             x0=x0,
             xaxis=xaxis,
             xcalendar=xcalendar,
+            xperiod=xperiod,
+            xperiod0=xperiod0,
+            xperiodalignment=xperiodalignment,
             xsrc=xsrc,
             y=y,
             y0=y0,
             yaxis=yaxis,
             ycalendar=ycalendar,
+            yperiod=yperiod,
+            yperiod0=yperiod0,
+            yperiodalignment=yperiodalignment,
             ysrc=ysrc,
             **kwargs
         )
@@ -2097,6 +2228,9 @@ class Figure(BaseFigure):
         x=None,
         xaxis=None,
         xcalendar=None,
+        xperiod=None,
+        xperiod0=None,
+        xperiodalignment=None,
         xsrc=None,
         yaxis=None,
         row=None,
@@ -2121,55 +2255,62 @@ class Figure(BaseFigure):
         close
             Sets the close values.
         closesrc
-            Sets the source reference on plot.ly for  close .
+            Sets the source reference on Chart Studio Cloud for
+            close .
         customdata
             Assigns extra data each datum. This may be useful when
             listening to hover, click and selection events. Note
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         decreasing
-            plotly.graph_objects.candlestick.Decreasing instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.candlestick.Decreasing`
+            instance or dict with compatible properties
         high
             Sets the high values.
         highsrc
-            Sets the source reference on plot.ly for  high .
+            Sets the source reference on Chart Studio Cloud for
+            high .
         hoverinfo
             Determines which trace information appear on hover. If
             `none` or `skip` are set, no information is displayed
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.candlestick.Hoverlabel instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.candlestick.Hoverlabel`
+            instance or dict with compatible properties
         hovertext
             Same as `text`.
         hovertextsrc
-            Sets the source reference on plot.ly for  hovertext .
+            Sets the source reference on Chart Studio Cloud for
+            hovertext .
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         increasing
-            plotly.graph_objects.candlestick.Increasing instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.candlestick.Increasing`
+            instance or dict with compatible properties
         legendgroup
             Sets the legend group for this trace. Traces part of
             the same legend group hide/show at the same time when
             toggling legend items.
         line
-            plotly.graph_objects.candlestick.Line instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.candlestick.Line` instance
+            or dict with compatible properties
         low
             Sets the low values.
         lowsrc
-            Sets the source reference on plot.ly for  low .
+            Sets the source reference on Chart Studio Cloud for
+            low .
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -2184,7 +2325,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover.
@@ -2193,7 +2335,8 @@ class Figure(BaseFigure):
         open
             Sets the open values.
         opensrc
-            Sets the source reference on plot.ly for  open .
+            Sets the source reference on Chart Studio Cloud for
+            open .
         selectedpoints
             Array containing integer indices of selected points.
             Has an effect only for traces that support selections.
@@ -2205,15 +2348,16 @@ class Figure(BaseFigure):
             Determines whether or not an item corresponding to this
             trace is shown in the legend.
         stream
-            plotly.graph_objects.candlestick.Stream instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.candlestick.Stream`
+            instance or dict with compatible properties
         text
             Sets hover text elements associated with each sample
             point. If a single string, the same string appears over
             all the data points. If an array of string, the items
             are mapped in order to this trace's sample points.
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         uid
             Assign an id to this trace, Use this to provide object
             constancy between traces during animations and
@@ -2255,21 +2399,40 @@ class Figure(BaseFigure):
             coordinates refer to `layout.xaxis2`, and so on.
         xcalendar
             Sets the calendar system to use with `x` date data.
+        xperiod
+            Only relevant when the axis `type` is "date". Sets the
+            period positioning in milliseconds or "M<n>" on the x
+            axis. Special values in the form of "M<n>" could be
+            used to declare the number of months. In this case `n`
+            must be a positive integer.
+        xperiod0
+            Only relevant when the axis `type` is "date". Sets the
+            base for period positioning in milliseconds or date
+            string on the x0 axis. When `x0period` is round number
+            of weeks, the `x0period0` by default would be on a
+            Sunday i.e. 2000-01-02, otherwise it would be at
+            2000-01-01.
+        xperiodalignment
+            Only relevant when the axis `type` is "date". Sets the
+            alignment of data points on the x axis.
         xsrc
-            Sets the source reference on plot.ly for  x .
+            Sets the source reference on Chart Studio Cloud for  x
+            .
         yaxis
             Sets a reference between this trace's y coordinates and
             a 2D cartesian y axis. If "y" (the default value), the
             y coordinates refer to `layout.yaxis`. If "y2", the y
             coordinates refer to `layout.yaxis2`, and so on.
-        row : int or None (default)
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
         secondary_y: boolean or None (default None)
             If True, associate this trace with the secondary y-axis of the
             subplot at the specified row and col. Only valid if all of the
@@ -2285,6 +2448,8 @@ class Figure(BaseFigure):
         -------
         Figure
         """
+        from plotly.graph_objs import Candlestick
+
         new_trace = Candlestick(
             close=close,
             closesrc=closesrc,
@@ -2323,6 +2488,9 @@ class Figure(BaseFigure):
             x=x,
             xaxis=xaxis,
             xcalendar=xcalendar,
+            xperiod=xperiod,
+            xperiod0=xperiod0,
+            xperiodalignment=xperiodalignment,
             xsrc=xsrc,
             yaxis=yaxis,
             **kwargs
@@ -2387,10 +2555,11 @@ class Figure(BaseFigure):
             coordinates. Use with `da` where `a0` is the starting
             coordinate and `da` the step.
         aaxis
-            plotly.graph_objects.carpet.Aaxis instance or dict with
-            compatible properties
+            :class:`plotly.graph_objects.carpet.Aaxis` instance or
+            dict with compatible properties
         asrc
-            Sets the source reference on plot.ly for  a .
+            Sets the source reference on Chart Studio Cloud for  a
+            .
         b
             A two dimensional array of y coordinates at each carpet
             point.
@@ -2399,10 +2568,11 @@ class Figure(BaseFigure):
             coordinates. Use with `db` where `b0` is the starting
             coordinate and `db` the step.
         baxis
-            plotly.graph_objects.carpet.Baxis instance or dict with
-            compatible properties
+            :class:`plotly.graph_objects.carpet.Baxis` instance or
+            dict with compatible properties
         bsrc
-            Sets the source reference on plot.ly for  b .
+            Sets the source reference on Chart Studio Cloud for  b
+            .
         carpet
             An identifier for this carpet, so that `scattercarpet`
             and `contourcarpet` traces can specify a carpet plot on
@@ -2422,7 +2592,8 @@ class Figure(BaseFigure):
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         da
             Sets the a coordinate step. See `a0` for more info.
         db
@@ -2435,7 +2606,8 @@ class Figure(BaseFigure):
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -2450,15 +2622,16 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover.
         opacity
             Sets the opacity of the trace.
         stream
-            plotly.graph_objects.carpet.Stream instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.carpet.Stream` instance or
+            dict with compatible properties
         uid
             Assign an id to this trace, Use this to provide object
             constancy between traces during animations and
@@ -2496,7 +2669,8 @@ class Figure(BaseFigure):
             x coordinates refer to `layout.xaxis`. If "x2", the x
             coordinates refer to `layout.xaxis2`, and so on.
         xsrc
-            Sets the source reference on plot.ly for  x .
+            Sets the source reference on Chart Studio Cloud for  x
+            .
         y
             A two dimensional array of y coordinates at each carpet
             point.
@@ -2506,15 +2680,18 @@ class Figure(BaseFigure):
             y coordinates refer to `layout.yaxis`. If "y2", the y
             coordinates refer to `layout.yaxis2`, and so on.
         ysrc
-            Sets the source reference on plot.ly for  y .
-        row : int or None (default)
+            Sets the source reference on Chart Studio Cloud for  y
+            .
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
         secondary_y: boolean or None (default None)
             If True, associate this trace with the secondary y-axis of the
             subplot at the specified row and col. Only valid if all of the
@@ -2530,6 +2707,8 @@ class Figure(BaseFigure):
         -------
         Figure
         """
+        from plotly.graph_objs import Carpet
+
         new_trace = Carpet(
             a=a,
             a0=a0,
@@ -2641,8 +2820,8 @@ class Figure(BaseFigure):
             `layout.coloraxis2`, etc. Note that multiple color
             scales can be linked to the same color axis.
         colorbar
-            plotly.graph_objects.choropleth.ColorBar instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.choropleth.ColorBar`
+            instance or dict with compatible properties
         colorscale
             Sets the colorscale. The colorscale must be an array
             containing arrays mapping a normalized value to an rgb,
@@ -2661,7 +2840,8 @@ class Figure(BaseFigure):
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         featureidkey
             Sets the key in GeoJSON features which is used as id to
             match the items included in the `locations` array. Only
@@ -2686,10 +2866,11 @@ class Figure(BaseFigure):
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.choropleth.Hoverlabel instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.choropleth.Hoverlabel`
+            instance or dict with compatible properties
         hovertemplate
             Template string used for rendering the information that
             appear on hover box. Note that this will override
@@ -2701,31 +2882,32 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. The variables
             available in `hovertemplate` are the ones emitted as
             event data described at this link
-            https://plot.ly/javascript/plotlyjs-events/#event-data.
-            Additionally, every attributes that can be specified
-            per-point (the ones that are `arrayOk: true`) are
-            available.  Anything contained in tag `<extra>` is
+            https://plotly.com/javascript/plotlyjs-events/#event-
+            data. Additionally, every attributes that can be
+            specified per-point (the ones that are `arrayOk: true`)
+            are available.  Anything contained in tag `<extra>` is
             displayed in the secondary box, for example
             "<extra>{fullData.name}</extra>". To hide the secondary
             box completely, use an empty tag `<extra></extra>`.
         hovertemplatesrc
-            Sets the source reference on plot.ly for  hovertemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            hovertemplate .
         hovertext
             Same as `text`.
         hovertextsrc
-            Sets the source reference on plot.ly for  hovertext .
+            Sets the source reference on Chart Studio Cloud for
+            hovertext .
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         legendgroup
             Sets the legend group for this trace. Traces part of
             the same legend group hide/show at the same time when
@@ -2741,10 +2923,11 @@ class Figure(BaseFigure):
             Sets the coordinates via location IDs or names. See
             `locationmode` for more info.
         locationssrc
-            Sets the source reference on plot.ly for  locations .
+            Sets the source reference on Chart Studio Cloud for
+            locations .
         marker
-            plotly.graph_objects.choropleth.Marker instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.choropleth.Marker`
+            instance or dict with compatible properties
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -2759,7 +2942,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover.
@@ -2768,8 +2952,8 @@ class Figure(BaseFigure):
             will correspond to the last color in the array and
             `zmax` will correspond to the first color.
         selected
-            plotly.graph_objects.choropleth.Selected instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.choropleth.Selected`
+            instance or dict with compatible properties
         selectedpoints
             Array containing integer indices of selected points.
             Has an effect only for traces that support selections.
@@ -2784,12 +2968,13 @@ class Figure(BaseFigure):
             Determines whether or not a colorbar is displayed for
             this trace.
         stream
-            plotly.graph_objects.choropleth.Stream instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.choropleth.Stream`
+            instance or dict with compatible properties
         text
             Sets the text elements associated with each location.
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         uid
             Assign an id to this trace, Use this to provide object
             constancy between traces during animations and
@@ -2813,8 +2998,8 @@ class Figure(BaseFigure):
             preserve user-driven changes if you give each trace a
             `uid` that stays with it as it moves.
         unselected
-            plotly.graph_objects.choropleth.Unselected instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.choropleth.Unselected`
+            instance or dict with compatible properties
         visible
             Determines whether or not this trace is visible. If
             "legendonly", the trace is not drawn, but can appear as
@@ -2841,20 +3026,25 @@ class Figure(BaseFigure):
             have the same units as in `z` and if set, `zmax` must
             be set as well.
         zsrc
-            Sets the source reference on plot.ly for  z .
-        row : int or None (default)
+            Sets the source reference on Chart Studio Cloud for  z
+            .
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
 
         Returns
         -------
         Figure
         """
+        from plotly.graph_objs import Choropleth
+
         new_trace = Choropleth(
             autocolorscale=autocolorscale,
             coloraxis=coloraxis,
@@ -2984,8 +3174,8 @@ class Figure(BaseFigure):
             `layout.coloraxis2`, etc. Note that multiple color
             scales can be linked to the same color axis.
         colorbar
-            plotly.graph_objects.choroplethmapbox.ColorBar instance
-            or dict with compatible properties
+            :class:`plotly.graph_objects.choroplethmapbox.ColorBar`
+            instance or dict with compatible properties
         colorscale
             Sets the colorscale. The colorscale must be an array
             containing arrays mapping a normalized value to an rgb,
@@ -3004,7 +3194,8 @@ class Figure(BaseFigure):
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         featureidkey
             Sets the key in GeoJSON features which is used as id to
             match the items included in the `locations` array.
@@ -3021,10 +3212,11 @@ class Figure(BaseFigure):
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.choroplethmapbox.Hoverlabel
-            instance or dict with compatible properties
+            :class:`plotly.graph_objects.choroplethmapbox.Hoverlabe
+            l` instance or dict with compatible properties
         hovertemplate
             Template string used for rendering the information that
             appear on hover box. Note that this will override
@@ -3036,32 +3228,33 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. The variables
             available in `hovertemplate` are the ones emitted as
             event data described at this link
-            https://plot.ly/javascript/plotlyjs-events/#event-data.
-            Additionally, every attributes that can be specified
-            per-point (the ones that are `arrayOk: true`) are
-            available. variable `properties` Anything contained in
-            tag `<extra>` is displayed in the secondary box, for
+            https://plotly.com/javascript/plotlyjs-events/#event-
+            data. Additionally, every attributes that can be
+            specified per-point (the ones that are `arrayOk: true`)
+            are available. variable `properties` Anything contained
+            in tag `<extra>` is displayed in the secondary box, for
             example "<extra>{fullData.name}</extra>". To hide the
             secondary box completely, use an empty tag
             `<extra></extra>`.
         hovertemplatesrc
-            Sets the source reference on plot.ly for  hovertemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            hovertemplate .
         hovertext
             Same as `text`.
         hovertextsrc
-            Sets the source reference on plot.ly for  hovertext .
+            Sets the source reference on Chart Studio Cloud for
+            hovertext .
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         legendgroup
             Sets the legend group for this trace. Traces part of
             the same legend group hide/show at the same time when
@@ -3070,10 +3263,11 @@ class Figure(BaseFigure):
             Sets which features found in "geojson" to plot using
             their feature `id` field.
         locationssrc
-            Sets the source reference on plot.ly for  locations .
+            Sets the source reference on Chart Studio Cloud for
+            locations .
         marker
-            plotly.graph_objects.choroplethmapbox.Marker instance
-            or dict with compatible properties
+            :class:`plotly.graph_objects.choroplethmapbox.Marker`
+            instance or dict with compatible properties
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -3088,7 +3282,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover.
@@ -3097,8 +3292,8 @@ class Figure(BaseFigure):
             will correspond to the last color in the array and
             `zmax` will correspond to the first color.
         selected
-            plotly.graph_objects.choroplethmapbox.Selected instance
-            or dict with compatible properties
+            :class:`plotly.graph_objects.choroplethmapbox.Selected`
+            instance or dict with compatible properties
         selectedpoints
             Array containing integer indices of selected points.
             Has an effect only for traces that support selections.
@@ -3113,8 +3308,8 @@ class Figure(BaseFigure):
             Determines whether or not a colorbar is displayed for
             this trace.
         stream
-            plotly.graph_objects.choroplethmapbox.Stream instance
-            or dict with compatible properties
+            :class:`plotly.graph_objects.choroplethmapbox.Stream`
+            instance or dict with compatible properties
         subplot
             Sets a reference between this trace's data coordinates
             and a mapbox subplot. If "mapbox" (the default value),
@@ -3123,7 +3318,8 @@ class Figure(BaseFigure):
         text
             Sets the text elements associated with each location.
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         uid
             Assign an id to this trace, Use this to provide object
             constancy between traces during animations and
@@ -3147,8 +3343,8 @@ class Figure(BaseFigure):
             preserve user-driven changes if you give each trace a
             `uid` that stays with it as it moves.
         unselected
-            plotly.graph_objects.choroplethmapbox.Unselected
-            instance or dict with compatible properties
+            :class:`plotly.graph_objects.choroplethmapbox.Unselecte
+            d` instance or dict with compatible properties
         visible
             Determines whether or not this trace is visible. If
             "legendonly", the trace is not drawn, but can appear as
@@ -3175,20 +3371,25 @@ class Figure(BaseFigure):
             have the same units as in `z` and if set, `zmax` must
             be set as well.
         zsrc
-            Sets the source reference on plot.ly for  z .
-        row : int or None (default)
+            Sets the source reference on Chart Studio Cloud for  z
+            .
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
 
         Returns
         -------
         Figure
         """
+        from plotly.graph_objs import Choroplethmapbox
+
         new_trace = Choroplethmapbox(
             autocolorscale=autocolorscale,
             below=below,
@@ -3342,8 +3543,8 @@ class Figure(BaseFigure):
             `layout.coloraxis2`, etc. Note that multiple color
             scales can be linked to the same color axis.
         colorbar
-            plotly.graph_objects.cone.ColorBar instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.cone.ColorBar` instance or
+            dict with compatible properties
         colorscale
             Sets the colorscale. The colorscale must be an array
             containing arrays mapping a normalized value to an rgb,
@@ -3362,17 +3563,19 @@ class Figure(BaseFigure):
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         hoverinfo
             Determines which trace information appear on hover. If
             `none` or `skip` are set, no information is displayed
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.cone.Hoverlabel instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.cone.Hoverlabel` instance
+            or dict with compatible properties
         hovertemplate
             Template string used for rendering the information that
             appear on hover box. Note that this will override
@@ -3384,42 +3587,43 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. The variables
             available in `hovertemplate` are the ones emitted as
             event data described at this link
-            https://plot.ly/javascript/plotlyjs-events/#event-data.
-            Additionally, every attributes that can be specified
-            per-point (the ones that are `arrayOk: true`) are
-            available. variable `norm` Anything contained in tag
-            `<extra>` is displayed in the secondary box, for
+            https://plotly.com/javascript/plotlyjs-events/#event-
+            data. Additionally, every attributes that can be
+            specified per-point (the ones that are `arrayOk: true`)
+            are available. variable `norm` Anything contained in
+            tag `<extra>` is displayed in the secondary box, for
             example "<extra>{fullData.name}</extra>". To hide the
             secondary box completely, use an empty tag
             `<extra></extra>`.
         hovertemplatesrc
-            Sets the source reference on plot.ly for  hovertemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            hovertemplate .
         hovertext
             Same as `text`.
         hovertextsrc
-            Sets the source reference on plot.ly for  hovertext .
+            Sets the source reference on Chart Studio Cloud for
+            hovertext .
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         legendgroup
             Sets the legend group for this trace. Traces part of
             the same legend group hide/show at the same time when
             toggling legend items.
         lighting
-            plotly.graph_objects.cone.Lighting instance or dict
-            with compatible properties
-        lightposition
-            plotly.graph_objects.cone.Lightposition instance or
+            :class:`plotly.graph_objects.cone.Lighting` instance or
             dict with compatible properties
+        lightposition
+            :class:`plotly.graph_objects.cone.Lightposition`
+            instance or dict with compatible properties
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -3434,7 +3638,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover.
@@ -3480,15 +3685,16 @@ class Figure(BaseFigure):
             the same units as the u/v/w vector field, its the
             default value is half the sample's maximum vector norm.
         stream
-            plotly.graph_objects.cone.Stream instance or dict with
-            compatible properties
+            :class:`plotly.graph_objects.cone.Stream` instance or
+            dict with compatible properties
         text
             Sets the text elements associated with the cones. If
             trace `hoverinfo` contains a "text" flag and
             "hovertext" is not set, these elements will be seen in
             the hover labels.
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         u
             Sets the x components of the vector field.
         uid
@@ -3514,7 +3720,8 @@ class Figure(BaseFigure):
             preserve user-driven changes if you give each trace a
             `uid` that stays with it as it moves.
         usrc
-            Sets the source reference on plot.ly for  u .
+            Sets the source reference on Chart Studio Cloud for  u
+            .
         v
             Sets the y components of the vector field.
         visible
@@ -3523,39 +3730,48 @@ class Figure(BaseFigure):
             a legend item (provided that the legend itself is
             visible).
         vsrc
-            Sets the source reference on plot.ly for  v .
+            Sets the source reference on Chart Studio Cloud for  v
+            .
         w
             Sets the z components of the vector field.
         wsrc
-            Sets the source reference on plot.ly for  w .
+            Sets the source reference on Chart Studio Cloud for  w
+            .
         x
             Sets the x coordinates of the vector field and of the
             displayed cones.
         xsrc
-            Sets the source reference on plot.ly for  x .
+            Sets the source reference on Chart Studio Cloud for  x
+            .
         y
             Sets the y coordinates of the vector field and of the
             displayed cones.
         ysrc
-            Sets the source reference on plot.ly for  y .
+            Sets the source reference on Chart Studio Cloud for  y
+            .
         z
             Sets the z coordinates of the vector field and of the
             displayed cones.
         zsrc
-            Sets the source reference on plot.ly for  z .
-        row : int or None (default)
+            Sets the source reference on Chart Studio Cloud for  z
+            .
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
 
         Returns
         -------
         Figure
         """
+        from plotly.graph_objs import Cone
+
         new_trace = Cone(
             anchor=anchor,
             autocolorscale=autocolorscale,
@@ -3657,12 +3873,18 @@ class Figure(BaseFigure):
         x0=None,
         xaxis=None,
         xcalendar=None,
+        xperiod=None,
+        xperiod0=None,
+        xperiodalignment=None,
         xsrc=None,
         xtype=None,
         y=None,
         y0=None,
         yaxis=None,
         ycalendar=None,
+        yperiod=None,
+        yperiod0=None,
+        yperiodalignment=None,
         ysrc=None,
         ytype=None,
         z=None,
@@ -3710,8 +3932,8 @@ class Figure(BaseFigure):
             `layout.coloraxis2`, etc. Note that multiple color
             scales can be linked to the same color axis.
         colorbar
-            plotly.graph_objects.contour.ColorBar instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.contour.ColorBar` instance
+            or dict with compatible properties
         colorscale
             Sets the colorscale. The colorscale must be an array
             containing arrays mapping a normalized value to an rgb,
@@ -3730,15 +3952,16 @@ class Figure(BaseFigure):
             to true if `z` is a one dimensional array otherwise it
             is defaulted to false.
         contours
-            plotly.graph_objects.contour.Contours instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.contour.Contours` instance
+            or dict with compatible properties
         customdata
             Assigns extra data each datum. This may be useful when
             listening to hover, click and selection events. Note
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         dx
             Sets the x coordinate step. See `x0` for more info.
         dy
@@ -3754,10 +3977,11 @@ class Figure(BaseFigure):
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.contour.Hoverlabel instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.contour.Hoverlabel`
+            instance or dict with compatible properties
         hoverongaps
             Determines whether or not gaps (i.e. {nan} or missing
             values) in the `z` data have hover labels associated
@@ -3773,38 +3997,39 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. The variables
             available in `hovertemplate` are the ones emitted as
             event data described at this link
-            https://plot.ly/javascript/plotlyjs-events/#event-data.
-            Additionally, every attributes that can be specified
-            per-point (the ones that are `arrayOk: true`) are
-            available.  Anything contained in tag `<extra>` is
+            https://plotly.com/javascript/plotlyjs-events/#event-
+            data. Additionally, every attributes that can be
+            specified per-point (the ones that are `arrayOk: true`)
+            are available.  Anything contained in tag `<extra>` is
             displayed in the secondary box, for example
             "<extra>{fullData.name}</extra>". To hide the secondary
             box completely, use an empty tag `<extra></extra>`.
         hovertemplatesrc
-            Sets the source reference on plot.ly for  hovertemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            hovertemplate .
         hovertext
             Same as `text`.
         hovertextsrc
-            Sets the source reference on plot.ly for  hovertext .
+            Sets the source reference on Chart Studio Cloud for
+            hovertext .
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         legendgroup
             Sets the legend group for this trace. Traces part of
             the same legend group hide/show at the same time when
             toggling legend items.
         line
-            plotly.graph_objects.contour.Line instance or dict with
-            compatible properties
+            :class:`plotly.graph_objects.contour.Line` instance or
+            dict with compatible properties
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -3819,7 +4044,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover.
@@ -3842,12 +4068,13 @@ class Figure(BaseFigure):
             Determines whether or not a colorbar is displayed for
             this trace.
         stream
-            plotly.graph_objects.contour.Stream instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.contour.Stream` instance
+            or dict with compatible properties
         text
             Sets the text elements associated with each z value.
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         transpose
             Transposes the z data.
         uid
@@ -3890,8 +4117,25 @@ class Figure(BaseFigure):
             coordinates refer to `layout.xaxis2`, and so on.
         xcalendar
             Sets the calendar system to use with `x` date data.
+        xperiod
+            Only relevant when the axis `type` is "date". Sets the
+            period positioning in milliseconds or "M<n>" on the x
+            axis. Special values in the form of "M<n>" could be
+            used to declare the number of months. In this case `n`
+            must be a positive integer.
+        xperiod0
+            Only relevant when the axis `type` is "date". Sets the
+            base for period positioning in milliseconds or date
+            string on the x0 axis. When `x0period` is round number
+            of weeks, the `x0period0` by default would be on a
+            Sunday i.e. 2000-01-02, otherwise it would be at
+            2000-01-01.
+        xperiodalignment
+            Only relevant when the axis `type` is "date". Sets the
+            alignment of data points on the x axis.
         xsrc
-            Sets the source reference on plot.ly for  x .
+            Sets the source reference on Chart Studio Cloud for  x
+            .
         xtype
             If "array", the heatmap's x coordinates are given by
             "x" (the default behavior when `x` is provided). If
@@ -3911,8 +4155,25 @@ class Figure(BaseFigure):
             coordinates refer to `layout.yaxis2`, and so on.
         ycalendar
             Sets the calendar system to use with `y` date data.
+        yperiod
+            Only relevant when the axis `type` is "date". Sets the
+            period positioning in milliseconds or "M<n>" on the y
+            axis. Special values in the form of "M<n>" could be
+            used to declare the number of months. In this case `n`
+            must be a positive integer.
+        yperiod0
+            Only relevant when the axis `type` is "date". Sets the
+            base for period positioning in milliseconds or date
+            string on the y0 axis. When `y0period` is round number
+            of weeks, the `y0period0` by default would be on a
+            Sunday i.e. 2000-01-02, otherwise it would be at
+            2000-01-01.
+        yperiodalignment
+            Only relevant when the axis `type` is "date". Sets the
+            alignment of data points on the y axis.
         ysrc
-            Sets the source reference on plot.ly for  y .
+            Sets the source reference on Chart Studio Cloud for  y
+            .
         ytype
             If "array", the heatmap's y coordinates are given by
             "y" (the default behavior when `y` is provided) If
@@ -3945,15 +4206,18 @@ class Figure(BaseFigure):
             have the same units as in `z` and if set, `zmax` must
             be set as well.
         zsrc
-            Sets the source reference on plot.ly for  z .
-        row : int or None (default)
+            Sets the source reference on Chart Studio Cloud for  z
+            .
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
         secondary_y: boolean or None (default None)
             If True, associate this trace with the secondary y-axis of the
             subplot at the specified row and col. Only valid if all of the
@@ -3969,6 +4233,8 @@ class Figure(BaseFigure):
         -------
         Figure
         """
+        from plotly.graph_objs import Contour
+
         new_trace = Contour(
             autocolorscale=autocolorscale,
             autocontour=autocontour,
@@ -4013,12 +4279,18 @@ class Figure(BaseFigure):
             x0=x0,
             xaxis=xaxis,
             xcalendar=xcalendar,
+            xperiod=xperiod,
+            xperiod0=xperiod0,
+            xperiodalignment=xperiodalignment,
             xsrc=xsrc,
             xtype=xtype,
             y=y,
             y0=y0,
             yaxis=yaxis,
             ycalendar=ycalendar,
+            yperiod=yperiod,
+            yperiod0=yperiod0,
+            yperiodalignment=yperiodalignment,
             ysrc=ysrc,
             ytype=ytype,
             z=z,
@@ -4104,7 +4376,8 @@ class Figure(BaseFigure):
             coordinates. Use with `dx` where `x0` is the starting
             coordinate and `dx` the step.
         asrc
-            Sets the source reference on plot.ly for  a .
+            Sets the source reference on Chart Studio Cloud for  a
+            .
         atype
             If "array", the heatmap's x coordinates are given by
             "x" (the default behavior when `x` is provided). If
@@ -4130,7 +4403,8 @@ class Figure(BaseFigure):
             coordinates. Use with `dy` where `y0` is the starting
             coordinate and `dy` the step.
         bsrc
-            Sets the source reference on plot.ly for  b .
+            Sets the source reference on Chart Studio Cloud for  b
+            .
         btype
             If "array", the heatmap's y coordinates are given by
             "y" (the default behavior when `y` is provided) If
@@ -4148,8 +4422,8 @@ class Figure(BaseFigure):
             `layout.coloraxis2`, etc. Note that multiple color
             scales can be linked to the same color axis.
         colorbar
-            plotly.graph_objects.contourcarpet.ColorBar instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.contourcarpet.ColorBar`
+            instance or dict with compatible properties
         colorscale
             Sets the colorscale. The colorscale must be an array
             containing arrays mapping a normalized value to an rgb,
@@ -4163,15 +4437,16 @@ class Figure(BaseFigure):
             d,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,H
             ot,Blackbody,Earth,Electric,Viridis,Cividis.
         contours
-            plotly.graph_objects.contourcarpet.Contours instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.contourcarpet.Contours`
+            instance or dict with compatible properties
         customdata
             Assigns extra data each datum. This may be useful when
             listening to hover, click and selection events. Note
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         da
             Sets the x coordinate step. See `x0` for more info.
         db
@@ -4184,20 +4459,22 @@ class Figure(BaseFigure):
         hovertext
             Same as `text`.
         hovertextsrc
-            Sets the source reference on plot.ly for  hovertext .
+            Sets the source reference on Chart Studio Cloud for
+            hovertext .
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         legendgroup
             Sets the legend group for this trace. Traces part of
             the same legend group hide/show at the same time when
             toggling legend items.
         line
-            plotly.graph_objects.contourcarpet.Line instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.contourcarpet.Line`
+            instance or dict with compatible properties
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -4212,7 +4489,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover.
@@ -4235,12 +4513,13 @@ class Figure(BaseFigure):
             Determines whether or not a colorbar is displayed for
             this trace.
         stream
-            plotly.graph_objects.contourcarpet.Stream instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.contourcarpet.Stream`
+            instance or dict with compatible properties
         text
             Sets the text elements associated with each z value.
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         transpose
             Transposes the z data.
         uid
@@ -4301,15 +4580,18 @@ class Figure(BaseFigure):
             have the same units as in `z` and if set, `zmax` must
             be set as well.
         zsrc
-            Sets the source reference on plot.ly for  z .
-        row : int or None (default)
+            Sets the source reference on Chart Studio Cloud for  z
+            .
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
         secondary_y: boolean or None (default None)
             If True, associate this trace with the secondary y-axis of the
             subplot at the specified row and col. Only valid if all of the
@@ -4325,6 +4607,8 @@ class Figure(BaseFigure):
         -------
         Figure
         """
+        from plotly.graph_objs import Contourcarpet
+
         new_trace = Contourcarpet(
             a=a,
             a0=a0,
@@ -4458,8 +4742,8 @@ class Figure(BaseFigure):
             `layout.coloraxis2`, etc. Note that multiple color
             scales can be linked to the same color axis.
         colorbar
-            plotly.graph_objects.densitymapbox.ColorBar instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.densitymapbox.ColorBar`
+            instance or dict with compatible properties
         colorscale
             Sets the colorscale. The colorscale must be an array
             containing arrays mapping a normalized value to an rgb,
@@ -4478,17 +4762,19 @@ class Figure(BaseFigure):
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         hoverinfo
             Determines which trace information appear on hover. If
             `none` or `skip` are set, no information is displayed
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.densitymapbox.Hoverlabel instance
-            or dict with compatible properties
+            :class:`plotly.graph_objects.densitymapbox.Hoverlabel`
+            instance or dict with compatible properties
         hovertemplate
             Template string used for rendering the information that
             appear on hover box. Note that this will override
@@ -4500,21 +4786,20 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. The variables
             available in `hovertemplate` are the ones emitted as
             event data described at this link
-            https://plot.ly/javascript/plotlyjs-events/#event-data.
-            Additionally, every attributes that can be specified
-            per-point (the ones that are `arrayOk: true`) are
-            available.  Anything contained in tag `<extra>` is
+            https://plotly.com/javascript/plotlyjs-events/#event-
+            data. Additionally, every attributes that can be
+            specified per-point (the ones that are `arrayOk: true`)
+            are available.  Anything contained in tag `<extra>` is
             displayed in the secondary box, for example
             "<extra>{fullData.name}</extra>". To hide the secondary
             box completely, use an empty tag `<extra></extra>`.
         hovertemplatesrc
-            Sets the source reference on plot.ly for  hovertemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            hovertemplate .
         hovertext
             Sets hover text elements associated with each (lon,lat)
             pair If a single string, the same string appears over
@@ -4523,17 +4808,20 @@ class Figure(BaseFigure):
             coordinates. To be seen, trace `hoverinfo` must contain
             a "text" flag.
         hovertextsrc
-            Sets the source reference on plot.ly for  hovertext .
+            Sets the source reference on Chart Studio Cloud for
+            hovertext .
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         lat
             Sets the latitude coordinates (in degrees North).
         latsrc
-            Sets the source reference on plot.ly for  lat .
+            Sets the source reference on Chart Studio Cloud for
+            lat .
         legendgroup
             Sets the legend group for this trace. Traces part of
             the same legend group hide/show at the same time when
@@ -4541,7 +4829,8 @@ class Figure(BaseFigure):
         lon
             Sets the longitude coordinates (in degrees East).
         lonsrc
-            Sets the source reference on plot.ly for  lon .
+            Sets the source reference on Chart Studio Cloud for
+            lon .
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -4556,7 +4845,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover.
@@ -4567,7 +4857,8 @@ class Figure(BaseFigure):
             in pixels. Increasing the value makes the densitymapbox
             trace smoother, but less detailed.
         radiussrc
-            Sets the source reference on plot.ly for  radius .
+            Sets the source reference on Chart Studio Cloud for
+            radius .
         reversescale
             Reverses the color mapping if true. If true, `zmin`
             will correspond to the last color in the array and
@@ -4579,8 +4870,8 @@ class Figure(BaseFigure):
             Determines whether or not a colorbar is displayed for
             this trace.
         stream
-            plotly.graph_objects.densitymapbox.Stream instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.densitymapbox.Stream`
+            instance or dict with compatible properties
         subplot
             Sets a reference between this trace's data coordinates
             and a mapbox subplot. If "mapbox" (the default value),
@@ -4595,7 +4886,8 @@ class Figure(BaseFigure):
             flag and "hovertext" is not set, these elements will be
             seen in the hover labels.
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         uid
             Assign an id to this trace, Use this to provide object
             constancy between traces during animations and
@@ -4646,20 +4938,25 @@ class Figure(BaseFigure):
             have the same units as in `z` and if set, `zmax` must
             be set as well.
         zsrc
-            Sets the source reference on plot.ly for  z .
-        row : int or None (default)
+            Sets the source reference on Chart Studio Cloud for  z
+            .
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
 
         Returns
         -------
         Figure
         """
+        from plotly.graph_objs import Densitymapbox
+
         new_trace = Densitymapbox(
             autocolorscale=autocolorscale,
             below=below,
@@ -4758,10 +5055,16 @@ class Figure(BaseFigure):
         x=None,
         x0=None,
         xaxis=None,
+        xperiod=None,
+        xperiod0=None,
+        xperiodalignment=None,
         xsrc=None,
         y=None,
         y0=None,
         yaxis=None,
+        yperiod=None,
+        yperiod0=None,
+        yperiodalignment=None,
         ysrc=None,
         row=None,
         col=None,
@@ -4791,8 +5094,8 @@ class Figure(BaseFigure):
             and tick labels, make sure to set `xaxis.layer` and
             `yaxis.layer` to *below traces*.
         connector
-            plotly.graph_objects.funnel.Connector instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.funnel.Connector` instance
+            or dict with compatible properties
         constraintext
             Constrain the size of text inside or outside a bar to
             be no larger than the bar itself.
@@ -4802,7 +5105,8 @@ class Figure(BaseFigure):
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         dx
             Sets the x coordinate step. See `x0` for more info.
         dy
@@ -4813,10 +5117,11 @@ class Figure(BaseFigure):
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.funnel.Hoverlabel instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.funnel.Hoverlabel`
+            instance or dict with compatible properties
         hovertemplate
             Template string used for rendering the information that
             appear on hover box. Note that this will override
@@ -4828,23 +5133,22 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. The variables
             available in `hovertemplate` are the ones emitted as
             event data described at this link
-            https://plot.ly/javascript/plotlyjs-events/#event-data.
-            Additionally, every attributes that can be specified
-            per-point (the ones that are `arrayOk: true`) are
-            available. variables `percentInitial`,
+            https://plotly.com/javascript/plotlyjs-events/#event-
+            data. Additionally, every attributes that can be
+            specified per-point (the ones that are `arrayOk: true`)
+            are available. variables `percentInitial`,
             `percentPrevious` and `percentTotal`. Anything
             contained in tag `<extra>` is displayed in the
             secondary box, for example
             "<extra>{fullData.name}</extra>". To hide the secondary
             box completely, use an empty tag `<extra></extra>`.
         hovertemplatesrc
-            Sets the source reference on plot.ly for  hovertemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            hovertemplate .
         hovertext
             Sets hover text elements associated with each (x,y)
             pair. If a single string, the same string appears over
@@ -4853,13 +5157,15 @@ class Figure(BaseFigure):
             coordinates. To be seen, trace `hoverinfo` must contain
             a "text" flag.
         hovertextsrc
-            Sets the source reference on plot.ly for  hovertext .
+            Sets the source reference on Chart Studio Cloud for
+            hovertext .
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         insidetextanchor
             Determines if texts are kept at center or start/end
             points in `textposition` "inside" mode.
@@ -4870,8 +5176,8 @@ class Figure(BaseFigure):
             the same legend group hide/show at the same time when
             toggling legend items.
         marker
-            plotly.graph_objects.funnel.Marker instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.funnel.Marker` instance or
+            dict with compatible properties
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -4886,7 +5192,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover.
@@ -4922,8 +5229,8 @@ class Figure(BaseFigure):
             Determines whether or not an item corresponding to this
             trace is shown in the legend.
         stream
-            plotly.graph_objects.funnel.Stream instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.funnel.Stream` instance or
+            dict with compatible properties
         text
             Sets text elements associated with each (x,y) pair. If
             a single string, the same string appears over all the
@@ -4954,10 +5261,11 @@ class Figure(BaseFigure):
             inside the bar, but if the bar is too small and no bar
             is stacked on this one the text is moved outside.
         textpositionsrc
-            Sets the source reference on plot.ly for  textposition
-            .
+            Sets the source reference on Chart Studio Cloud for
+            textposition .
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         texttemplate
             Template string used for rendering the information text
             that appear on points. Note that this will override
@@ -4969,16 +5277,15 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. Every attributes
             that can be specified per-point (the ones that are
             `arrayOk: true`) are available. variables
             `percentInitial`, `percentPrevious`, `percentTotal`,
             `label` and `value`.
         texttemplatesrc
-            Sets the source reference on plot.ly for  texttemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            texttemplate .
         uid
             Assign an id to this trace, Use this to provide object
             constancy between traces during animations and
@@ -5019,8 +5326,25 @@ class Figure(BaseFigure):
             a 2D cartesian x axis. If "x" (the default value), the
             x coordinates refer to `layout.xaxis`. If "x2", the x
             coordinates refer to `layout.xaxis2`, and so on.
+        xperiod
+            Only relevant when the axis `type` is "date". Sets the
+            period positioning in milliseconds or "M<n>" on the x
+            axis. Special values in the form of "M<n>" could be
+            used to declare the number of months. In this case `n`
+            must be a positive integer.
+        xperiod0
+            Only relevant when the axis `type` is "date". Sets the
+            base for period positioning in milliseconds or date
+            string on the x0 axis. When `x0period` is round number
+            of weeks, the `x0period0` by default would be on a
+            Sunday i.e. 2000-01-02, otherwise it would be at
+            2000-01-01.
+        xperiodalignment
+            Only relevant when the axis `type` is "date". Sets the
+            alignment of data points on the x axis.
         xsrc
-            Sets the source reference on plot.ly for  x .
+            Sets the source reference on Chart Studio Cloud for  x
+            .
         y
             Sets the y coordinates.
         y0
@@ -5032,16 +5356,35 @@ class Figure(BaseFigure):
             a 2D cartesian y axis. If "y" (the default value), the
             y coordinates refer to `layout.yaxis`. If "y2", the y
             coordinates refer to `layout.yaxis2`, and so on.
+        yperiod
+            Only relevant when the axis `type` is "date". Sets the
+            period positioning in milliseconds or "M<n>" on the y
+            axis. Special values in the form of "M<n>" could be
+            used to declare the number of months. In this case `n`
+            must be a positive integer.
+        yperiod0
+            Only relevant when the axis `type` is "date". Sets the
+            base for period positioning in milliseconds or date
+            string on the y0 axis. When `y0period` is round number
+            of weeks, the `y0period0` by default would be on a
+            Sunday i.e. 2000-01-02, otherwise it would be at
+            2000-01-01.
+        yperiodalignment
+            Only relevant when the axis `type` is "date". Sets the
+            alignment of data points on the y axis.
         ysrc
-            Sets the source reference on plot.ly for  y .
-        row : int or None (default)
+            Sets the source reference on Chart Studio Cloud for  y
+            .
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
         secondary_y: boolean or None (default None)
             If True, associate this trace with the secondary y-axis of the
             subplot at the specified row and col. Only valid if all of the
@@ -5057,6 +5400,8 @@ class Figure(BaseFigure):
         -------
         Figure
         """
+        from plotly.graph_objs import Funnel
+
         new_trace = Funnel(
             alignmentgroup=alignmentgroup,
             cliponaxis=cliponaxis,
@@ -5106,10 +5451,16 @@ class Figure(BaseFigure):
             x=x,
             x0=x0,
             xaxis=xaxis,
+            xperiod=xperiod,
+            xperiod0=xperiod0,
+            xperiodalignment=xperiodalignment,
             xsrc=xsrc,
             y=y,
             y0=y0,
             yaxis=yaxis,
+            yperiod=yperiod,
+            yperiod0=yperiod0,
+            yperiodalignment=yperiodalignment,
             ysrc=ysrc,
             **kwargs
         )
@@ -5185,22 +5536,24 @@ class Figure(BaseFigure):
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         dlabel
             Sets the label step. See `label0` for more info.
         domain
-            plotly.graph_objects.funnelarea.Domain instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.funnelarea.Domain`
+            instance or dict with compatible properties
         hoverinfo
             Determines which trace information appear on hover. If
             `none` or `skip` are set, no information is displayed
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.funnelarea.Hoverlabel instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.funnelarea.Hoverlabel`
+            instance or dict with compatible properties
         hovertemplate
             Template string used for rendering the information that
             appear on hover box. Note that this will override
@@ -5212,22 +5565,22 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. The variables
             available in `hovertemplate` are the ones emitted as
             event data described at this link
-            https://plot.ly/javascript/plotlyjs-events/#event-data.
-            Additionally, every attributes that can be specified
-            per-point (the ones that are `arrayOk: true`) are
-            available. variables `label`, `color`, `value`, `text`
-            and `percent`. Anything contained in tag `<extra>` is
-            displayed in the secondary box, for example
-            "<extra>{fullData.name}</extra>". To hide the secondary
-            box completely, use an empty tag `<extra></extra>`.
+            https://plotly.com/javascript/plotlyjs-events/#event-
+            data. Additionally, every attributes that can be
+            specified per-point (the ones that are `arrayOk: true`)
+            are available. variables `label`, `color`, `value`,
+            `text` and `percent`. Anything contained in tag
+            `<extra>` is displayed in the secondary box, for
+            example "<extra>{fullData.name}</extra>". To hide the
+            secondary box completely, use an empty tag
+            `<extra></extra>`.
         hovertemplatesrc
-            Sets the source reference on plot.ly for  hovertemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            hovertemplate .
         hovertext
             Sets hover text elements associated with each sector.
             If a single string, the same string appears for all
@@ -5235,13 +5588,15 @@ class Figure(BaseFigure):
             mapped in order of this trace's sectors. To be seen,
             trace `hoverinfo` must contain a "text" flag.
         hovertextsrc
-            Sets the source reference on plot.ly for  hovertext .
+            Sets the source reference on Chart Studio Cloud for
+            hovertext .
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         insidetextfont
             Sets the font used for `textinfo` lying inside the
             sector.
@@ -5256,14 +5611,15 @@ class Figure(BaseFigure):
             array attributes (including color) we use the first
             non-empty entry among all occurrences of the label.
         labelssrc
-            Sets the source reference on plot.ly for  labels .
+            Sets the source reference on Chart Studio Cloud for
+            labels .
         legendgroup
             Sets the legend group for this trace. Traces part of
             the same legend group hide/show at the same time when
             toggling legend items.
         marker
-            plotly.graph_objects.funnelarea.Marker instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.funnelarea.Marker`
+            instance or dict with compatible properties
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -5278,7 +5634,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover.
@@ -5293,8 +5650,8 @@ class Figure(BaseFigure):
             Determines whether or not an item corresponding to this
             trace is shown in the legend.
         stream
-            plotly.graph_objects.funnelarea.Stream instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.funnelarea.Stream`
+            instance or dict with compatible properties
         text
             Sets text elements associated with each sector. If
             trace `textinfo` contains a "text" flag, these elements
@@ -5308,10 +5665,11 @@ class Figure(BaseFigure):
         textposition
             Specifies the location of the `textinfo`.
         textpositionsrc
-            Sets the source reference on plot.ly for  textposition
-            .
+            Sets the source reference on Chart Studio Cloud for
+            textposition .
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         texttemplate
             Template string used for rendering the information text
             that appear on points. Note that this will override
@@ -5323,18 +5681,17 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. Every attributes
             that can be specified per-point (the ones that are
             `arrayOk: true`) are available. variables `label`,
             `color`, `value`, `text` and `percent`.
         texttemplatesrc
-            Sets the source reference on plot.ly for  texttemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            texttemplate .
         title
-            plotly.graph_objects.funnelarea.Title instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.funnelarea.Title` instance
+            or dict with compatible properties
         uid
             Assign an id to this trace, Use this to provide object
             constancy between traces during animations and
@@ -5361,25 +5718,30 @@ class Figure(BaseFigure):
             Sets the values of the sectors. If omitted, we count
             occurrences of each label.
         valuessrc
-            Sets the source reference on plot.ly for  values .
+            Sets the source reference on Chart Studio Cloud for
+            values .
         visible
             Determines whether or not this trace is visible. If
             "legendonly", the trace is not drawn, but can appear as
             a legend item (provided that the legend itself is
             visible).
-        row : int or None (default)
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
 
         Returns
         -------
         Figure
         """
+        from plotly.graph_objs import Funnelarea
+
         new_trace = Funnelarea(
             aspectratio=aspectratio,
             baseratio=baseratio,
@@ -5468,6 +5830,9 @@ class Figure(BaseFigure):
         xaxis=None,
         xcalendar=None,
         xgap=None,
+        xperiod=None,
+        xperiod0=None,
+        xperiodalignment=None,
         xsrc=None,
         xtype=None,
         y=None,
@@ -5475,6 +5840,9 @@ class Figure(BaseFigure):
         yaxis=None,
         ycalendar=None,
         ygap=None,
+        yperiod=None,
+        yperiod0=None,
+        yperiodalignment=None,
         ysrc=None,
         ytype=None,
         z=None,
@@ -5528,8 +5896,8 @@ class Figure(BaseFigure):
             `layout.coloraxis2`, etc. Note that multiple color
             scales can be linked to the same color axis.
         colorbar
-            plotly.graph_objects.heatmap.ColorBar instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.heatmap.ColorBar` instance
+            or dict with compatible properties
         colorscale
             Sets the colorscale. The colorscale must be an array
             containing arrays mapping a normalized value to an rgb,
@@ -5553,7 +5921,8 @@ class Figure(BaseFigure):
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         dx
             Sets the x coordinate step. See `x0` for more info.
         dy
@@ -5564,10 +5933,11 @@ class Figure(BaseFigure):
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.heatmap.Hoverlabel instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.heatmap.Hoverlabel`
+            instance or dict with compatible properties
         hoverongaps
             Determines whether or not gaps (i.e. {nan} or missing
             values) in the `z` data have hover labels associated
@@ -5583,31 +5953,32 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. The variables
             available in `hovertemplate` are the ones emitted as
             event data described at this link
-            https://plot.ly/javascript/plotlyjs-events/#event-data.
-            Additionally, every attributes that can be specified
-            per-point (the ones that are `arrayOk: true`) are
-            available.  Anything contained in tag `<extra>` is
+            https://plotly.com/javascript/plotlyjs-events/#event-
+            data. Additionally, every attributes that can be
+            specified per-point (the ones that are `arrayOk: true`)
+            are available.  Anything contained in tag `<extra>` is
             displayed in the secondary box, for example
             "<extra>{fullData.name}</extra>". To hide the secondary
             box completely, use an empty tag `<extra></extra>`.
         hovertemplatesrc
-            Sets the source reference on plot.ly for  hovertemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            hovertemplate .
         hovertext
             Same as `text`.
         hovertextsrc
-            Sets the source reference on plot.ly for  hovertext .
+            Sets the source reference on Chart Studio Cloud for
+            hovertext .
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         legendgroup
             Sets the legend group for this trace. Traces part of
             the same legend group hide/show at the same time when
@@ -5626,7 +5997,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover.
@@ -5643,12 +6015,13 @@ class Figure(BaseFigure):
             Determines whether or not a colorbar is displayed for
             this trace.
         stream
-            plotly.graph_objects.heatmap.Stream instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.heatmap.Stream` instance
+            or dict with compatible properties
         text
             Sets the text elements associated with each z value.
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         transpose
             Transposes the z data.
         uid
@@ -5693,8 +6066,25 @@ class Figure(BaseFigure):
             Sets the calendar system to use with `x` date data.
         xgap
             Sets the horizontal gap (in pixels) between bricks.
+        xperiod
+            Only relevant when the axis `type` is "date". Sets the
+            period positioning in milliseconds or "M<n>" on the x
+            axis. Special values in the form of "M<n>" could be
+            used to declare the number of months. In this case `n`
+            must be a positive integer.
+        xperiod0
+            Only relevant when the axis `type` is "date". Sets the
+            base for period positioning in milliseconds or date
+            string on the x0 axis. When `x0period` is round number
+            of weeks, the `x0period0` by default would be on a
+            Sunday i.e. 2000-01-02, otherwise it would be at
+            2000-01-01.
+        xperiodalignment
+            Only relevant when the axis `type` is "date". Sets the
+            alignment of data points on the x axis.
         xsrc
-            Sets the source reference on plot.ly for  x .
+            Sets the source reference on Chart Studio Cloud for  x
+            .
         xtype
             If "array", the heatmap's x coordinates are given by
             "x" (the default behavior when `x` is provided). If
@@ -5716,8 +6106,25 @@ class Figure(BaseFigure):
             Sets the calendar system to use with `y` date data.
         ygap
             Sets the vertical gap (in pixels) between bricks.
+        yperiod
+            Only relevant when the axis `type` is "date". Sets the
+            period positioning in milliseconds or "M<n>" on the y
+            axis. Special values in the form of "M<n>" could be
+            used to declare the number of months. In this case `n`
+            must be a positive integer.
+        yperiod0
+            Only relevant when the axis `type` is "date". Sets the
+            base for period positioning in milliseconds or date
+            string on the y0 axis. When `y0period` is round number
+            of weeks, the `y0period0` by default would be on a
+            Sunday i.e. 2000-01-02, otherwise it would be at
+            2000-01-01.
+        yperiodalignment
+            Only relevant when the axis `type` is "date". Sets the
+            alignment of data points on the y axis.
         ysrc
-            Sets the source reference on plot.ly for  y .
+            Sets the source reference on Chart Studio Cloud for  y
+            .
         ytype
             If "array", the heatmap's y coordinates are given by
             "y" (the default behavior when `y` is provided) If
@@ -5752,15 +6159,18 @@ class Figure(BaseFigure):
         zsmooth
             Picks a smoothing algorithm use to smooth `z` data.
         zsrc
-            Sets the source reference on plot.ly for  z .
-        row : int or None (default)
+            Sets the source reference on Chart Studio Cloud for  z
+            .
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
         secondary_y: boolean or None (default None)
             If True, associate this trace with the secondary y-axis of the
             subplot at the specified row and col. Only valid if all of the
@@ -5776,6 +6186,8 @@ class Figure(BaseFigure):
         -------
         Figure
         """
+        from plotly.graph_objs import Heatmap
+
         new_trace = Heatmap(
             autocolorscale=autocolorscale,
             coloraxis=coloraxis,
@@ -5816,6 +6228,9 @@ class Figure(BaseFigure):
             xaxis=xaxis,
             xcalendar=xcalendar,
             xgap=xgap,
+            xperiod=xperiod,
+            xperiod0=xperiod0,
+            xperiodalignment=xperiodalignment,
             xsrc=xsrc,
             xtype=xtype,
             y=y,
@@ -5823,6 +6238,9 @@ class Figure(BaseFigure):
             yaxis=yaxis,
             ycalendar=ycalendar,
             ygap=ygap,
+            yperiod=yperiod,
+            yperiod0=yperiod0,
+            yperiodalignment=yperiodalignment,
             ysrc=ysrc,
             ytype=ytype,
             z=z,
@@ -5880,6 +6298,7 @@ class Figure(BaseFigure):
         zmax=None,
         zmid=None,
         zmin=None,
+        zsmooth=None,
         zsrc=None,
         row=None,
         col=None,
@@ -5908,8 +6327,8 @@ class Figure(BaseFigure):
             `layout.coloraxis2`, etc. Note that multiple color
             scales can be linked to the same color axis.
         colorbar
-            plotly.graph_objects.heatmapgl.ColorBar instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.heatmapgl.ColorBar`
+            instance or dict with compatible properties
         colorscale
             Sets the colorscale. The colorscale must be an array
             containing arrays mapping a normalized value to an rgb,
@@ -5928,7 +6347,8 @@ class Figure(BaseFigure):
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         dx
             Sets the x coordinate step. See `x0` for more info.
         dy
@@ -5939,16 +6359,18 @@ class Figure(BaseFigure):
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.heatmapgl.Hoverlabel instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.heatmapgl.Hoverlabel`
+            instance or dict with compatible properties
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -5963,7 +6385,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover.
@@ -5977,12 +6400,13 @@ class Figure(BaseFigure):
             Determines whether or not a colorbar is displayed for
             this trace.
         stream
-            plotly.graph_objects.heatmapgl.Stream instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.heatmapgl.Stream` instance
+            or dict with compatible properties
         text
             Sets the text elements associated with each z value.
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         transpose
             Transposes the z data.
         uid
@@ -6024,7 +6448,8 @@ class Figure(BaseFigure):
             x coordinates refer to `layout.xaxis`. If "x2", the x
             coordinates refer to `layout.xaxis2`, and so on.
         xsrc
-            Sets the source reference on plot.ly for  x .
+            Sets the source reference on Chart Studio Cloud for  x
+            .
         xtype
             If "array", the heatmap's x coordinates are given by
             "x" (the default behavior when `x` is provided). If
@@ -6043,7 +6468,8 @@ class Figure(BaseFigure):
             y coordinates refer to `layout.yaxis`. If "y2", the y
             coordinates refer to `layout.yaxis2`, and so on.
         ysrc
-            Sets the source reference on plot.ly for  y .
+            Sets the source reference on Chart Studio Cloud for  y
+            .
         ytype
             If "array", the heatmap's y coordinates are given by
             "y" (the default behavior when `y` is provided) If
@@ -6070,16 +6496,21 @@ class Figure(BaseFigure):
             Sets the lower bound of the color domain. Value should
             have the same units as in `z` and if set, `zmax` must
             be set as well.
+        zsmooth
+            Picks a smoothing algorithm use to smooth `z` data.
         zsrc
-            Sets the source reference on plot.ly for  z .
-        row : int or None (default)
+            Sets the source reference on Chart Studio Cloud for  z
+            .
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
         secondary_y: boolean or None (default None)
             If True, associate this trace with the secondary y-axis of the
             subplot at the specified row and col. Only valid if all of the
@@ -6095,6 +6526,8 @@ class Figure(BaseFigure):
         -------
         Figure
         """
+        from plotly.graph_objs import Heatmapgl
+
         new_trace = Heatmapgl(
             autocolorscale=autocolorscale,
             coloraxis=coloraxis,
@@ -6137,6 +6570,7 @@ class Figure(BaseFigure):
             zmax=zmax,
             zmid=zmid,
             zmin=zmin,
+            zsmooth=zsmooth,
             zsrc=zsrc,
             **kwargs
         )
@@ -6237,21 +6671,22 @@ class Figure(BaseFigure):
             can have compatible bin settings. Note that histogram
             and histogram2d* trace can share the same `bingroup`
         cumulative
-            plotly.graph_objects.histogram.Cumulative instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.histogram.Cumulative`
+            instance or dict with compatible properties
         customdata
             Assigns extra data each datum. This may be useful when
             listening to hover, click and selection events. Note
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         error_x
-            plotly.graph_objects.histogram.ErrorX instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.histogram.ErrorX` instance
+            or dict with compatible properties
         error_y
-            plotly.graph_objects.histogram.ErrorY instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.histogram.ErrorY` instance
+            or dict with compatible properties
         histfunc
             Specifies the binning function used for this histogram
             trace. If "count", the histogram values are computed by
@@ -6283,10 +6718,11 @@ class Figure(BaseFigure):
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.histogram.Hoverlabel instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.histogram.Hoverlabel`
+            instance or dict with compatible properties
         hovertemplate
             Template string used for rendering the information that
             appear on hover box. Note that this will override
@@ -6298,39 +6734,40 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. The variables
             available in `hovertemplate` are the ones emitted as
             event data described at this link
-            https://plot.ly/javascript/plotlyjs-events/#event-data.
-            Additionally, every attributes that can be specified
-            per-point (the ones that are `arrayOk: true`) are
-            available. variable `binNumber` Anything contained in
-            tag `<extra>` is displayed in the secondary box, for
+            https://plotly.com/javascript/plotlyjs-events/#event-
+            data. Additionally, every attributes that can be
+            specified per-point (the ones that are `arrayOk: true`)
+            are available. variable `binNumber` Anything contained
+            in tag `<extra>` is displayed in the secondary box, for
             example "<extra>{fullData.name}</extra>". To hide the
             secondary box completely, use an empty tag
             `<extra></extra>`.
         hovertemplatesrc
-            Sets the source reference on plot.ly for  hovertemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            hovertemplate .
         hovertext
             Same as `text`.
         hovertextsrc
-            Sets the source reference on plot.ly for  hovertext .
+            Sets the source reference on Chart Studio Cloud for
+            hovertext .
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         legendgroup
             Sets the legend group for this trace. Traces part of
             the same legend group hide/show at the same time when
             toggling legend items.
         marker
-            plotly.graph_objects.histogram.Marker instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.histogram.Marker` instance
+            or dict with compatible properties
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -6345,7 +6782,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover.
@@ -6372,8 +6810,8 @@ class Figure(BaseFigure):
             value of the each bar spans along the vertical
             (horizontal).
         selected
-            plotly.graph_objects.histogram.Selected instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.histogram.Selected`
+            instance or dict with compatible properties
         selectedpoints
             Array containing integer indices of selected points.
             Has an effect only for traces that support selections.
@@ -6385,15 +6823,16 @@ class Figure(BaseFigure):
             Determines whether or not an item corresponding to this
             trace is shown in the legend.
         stream
-            plotly.graph_objects.histogram.Stream instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.histogram.Stream` instance
+            or dict with compatible properties
         text
             Sets hover text elements associated with each bar. If a
             single string, the same string appears over all bars.
             If an array of string, the items are mapped in order to
             the this trace's coordinates.
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         uid
             Assign an id to this trace, Use this to provide object
             constancy between traces during animations and
@@ -6417,8 +6856,8 @@ class Figure(BaseFigure):
             preserve user-driven changes if you give each trace a
             `uid` that stays with it as it moves.
         unselected
-            plotly.graph_objects.histogram.Unselected instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.histogram.Unselected`
+            instance or dict with compatible properties
         visible
             Determines whether or not this trace is visible. If
             "legendonly", the trace is not drawn, but can appear as
@@ -6432,12 +6871,13 @@ class Figure(BaseFigure):
             x coordinates refer to `layout.xaxis`. If "x2", the x
             coordinates refer to `layout.xaxis2`, and so on.
         xbins
-            plotly.graph_objects.histogram.XBins instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.histogram.XBins` instance
+            or dict with compatible properties
         xcalendar
             Sets the calendar system to use with `x` date data.
         xsrc
-            Sets the source reference on plot.ly for  x .
+            Sets the source reference on Chart Studio Cloud for  x
+            .
         y
             Sets the sample data to be binned on the y axis.
         yaxis
@@ -6446,20 +6886,23 @@ class Figure(BaseFigure):
             y coordinates refer to `layout.yaxis`. If "y2", the y
             coordinates refer to `layout.yaxis2`, and so on.
         ybins
-            plotly.graph_objects.histogram.YBins instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.histogram.YBins` instance
+            or dict with compatible properties
         ycalendar
             Sets the calendar system to use with `y` date data.
         ysrc
-            Sets the source reference on plot.ly for  y .
-        row : int or None (default)
+            Sets the source reference on Chart Studio Cloud for  y
+            .
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
         secondary_y: boolean or None (default None)
             If True, associate this trace with the secondary y-axis of the
             subplot at the specified row and col. Only valid if all of the
@@ -6475,6 +6918,8 @@ class Figure(BaseFigure):
         -------
         Figure
         """
+        from plotly.graph_objs import Histogram
+
         new_trace = Histogram(
             alignmentgroup=alignmentgroup,
             autobinx=autobinx,
@@ -6636,8 +7081,8 @@ class Figure(BaseFigure):
             `layout.coloraxis2`, etc. Note that multiple color
             scales can be linked to the same color axis.
         colorbar
-            plotly.graph_objects.histogram2d.ColorBar instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.histogram2d.ColorBar`
+            instance or dict with compatible properties
         colorscale
             Sets the colorscale. The colorscale must be an array
             containing arrays mapping a normalized value to an rgb,
@@ -6656,7 +7101,8 @@ class Figure(BaseFigure):
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         histfunc
             Specifies the binning function used for this histogram
             trace. If "count", the histogram values are computed by
@@ -6688,10 +7134,11 @@ class Figure(BaseFigure):
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.histogram2d.Hoverlabel instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.histogram2d.Hoverlabel`
+            instance or dict with compatible properties
         hovertemplate
             Template string used for rendering the information that
             appear on hover box. Note that this will override
@@ -6703,35 +7150,35 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. The variables
             available in `hovertemplate` are the ones emitted as
             event data described at this link
-            https://plot.ly/javascript/plotlyjs-events/#event-data.
-            Additionally, every attributes that can be specified
-            per-point (the ones that are `arrayOk: true`) are
-            available. variable `z` Anything contained in tag
+            https://plotly.com/javascript/plotlyjs-events/#event-
+            data. Additionally, every attributes that can be
+            specified per-point (the ones that are `arrayOk: true`)
+            are available. variable `z` Anything contained in tag
             `<extra>` is displayed in the secondary box, for
             example "<extra>{fullData.name}</extra>". To hide the
             secondary box completely, use an empty tag
             `<extra></extra>`.
         hovertemplatesrc
-            Sets the source reference on plot.ly for  hovertemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            hovertemplate .
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         legendgroup
             Sets the legend group for this trace. Traces part of
             the same legend group hide/show at the same time when
             toggling legend items.
         marker
-            plotly.graph_objects.histogram2d.Marker instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.histogram2d.Marker`
+            instance or dict with compatible properties
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -6746,7 +7193,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover.
@@ -6775,8 +7223,8 @@ class Figure(BaseFigure):
             Determines whether or not a colorbar is displayed for
             this trace.
         stream
-            plotly.graph_objects.histogram2d.Stream instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.histogram2d.Stream`
+            instance or dict with compatible properties
         uid
             Assign an id to this trace, Use this to provide object
             constancy between traces during animations and
@@ -6819,14 +7267,15 @@ class Figure(BaseFigure):
             Note that the same `xbingroup` value can be used to set
             (1D) histogram `bingroup`
         xbins
-            plotly.graph_objects.histogram2d.XBins instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.histogram2d.XBins`
+            instance or dict with compatible properties
         xcalendar
             Sets the calendar system to use with `x` date data.
         xgap
             Sets the horizontal gap (in pixels) between bricks.
         xsrc
-            Sets the source reference on plot.ly for  x .
+            Sets the source reference on Chart Studio Cloud for  x
+            .
         y
             Sets the sample data to be binned on the y axis.
         yaxis
@@ -6842,14 +7291,15 @@ class Figure(BaseFigure):
             Note that the same `ybingroup` value can be used to set
             (1D) histogram `bingroup`
         ybins
-            plotly.graph_objects.histogram2d.YBins instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.histogram2d.YBins`
+            instance or dict with compatible properties
         ycalendar
             Sets the calendar system to use with `y` date data.
         ygap
             Sets the vertical gap (in pixels) between bricks.
         ysrc
-            Sets the source reference on plot.ly for  y .
+            Sets the source reference on Chart Studio Cloud for  y
+            .
         z
             Sets the aggregation data.
         zauto
@@ -6878,15 +7328,18 @@ class Figure(BaseFigure):
         zsmooth
             Picks a smoothing algorithm use to smooth `z` data.
         zsrc
-            Sets the source reference on plot.ly for  z .
-        row : int or None (default)
+            Sets the source reference on Chart Studio Cloud for  z
+            .
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
         secondary_y: boolean or None (default None)
             If True, associate this trace with the secondary y-axis of the
             subplot at the specified row and col. Only valid if all of the
@@ -6902,6 +7355,8 @@ class Figure(BaseFigure):
         -------
         Figure
         """
+        from plotly.graph_objs import Histogram2d
+
         new_trace = Histogram2d(
             autobinx=autobinx,
             autobiny=autobiny,
@@ -7074,8 +7529,8 @@ class Figure(BaseFigure):
             `layout.coloraxis2`, etc. Note that multiple color
             scales can be linked to the same color axis.
         colorbar
-            plotly.graph_objects.histogram2dcontour.ColorBar
-            instance or dict with compatible properties
+            :class:`plotly.graph_objects.histogram2dcontour.ColorBa
+            r` instance or dict with compatible properties
         colorscale
             Sets the colorscale. The colorscale must be an array
             containing arrays mapping a normalized value to an rgb,
@@ -7089,15 +7544,16 @@ class Figure(BaseFigure):
             d,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,H
             ot,Blackbody,Earth,Electric,Viridis,Cividis.
         contours
-            plotly.graph_objects.histogram2dcontour.Contours
-            instance or dict with compatible properties
+            :class:`plotly.graph_objects.histogram2dcontour.Contour
+            s` instance or dict with compatible properties
         customdata
             Assigns extra data each datum. This may be useful when
             listening to hover, click and selection events. Note
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         histfunc
             Specifies the binning function used for this histogram
             trace. If "count", the histogram values are computed by
@@ -7129,10 +7585,11 @@ class Figure(BaseFigure):
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.histogram2dcontour.Hoverlabel
-            instance or dict with compatible properties
+            :class:`plotly.graph_objects.histogram2dcontour.Hoverla
+            bel` instance or dict with compatible properties
         hovertemplate
             Template string used for rendering the information that
             appear on hover box. Note that this will override
@@ -7144,38 +7601,38 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. The variables
             available in `hovertemplate` are the ones emitted as
             event data described at this link
-            https://plot.ly/javascript/plotlyjs-events/#event-data.
-            Additionally, every attributes that can be specified
-            per-point (the ones that are `arrayOk: true`) are
-            available. variable `z` Anything contained in tag
+            https://plotly.com/javascript/plotlyjs-events/#event-
+            data. Additionally, every attributes that can be
+            specified per-point (the ones that are `arrayOk: true`)
+            are available. variable `z` Anything contained in tag
             `<extra>` is displayed in the secondary box, for
             example "<extra>{fullData.name}</extra>". To hide the
             secondary box completely, use an empty tag
             `<extra></extra>`.
         hovertemplatesrc
-            Sets the source reference on plot.ly for  hovertemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            hovertemplate .
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         legendgroup
             Sets the legend group for this trace. Traces part of
             the same legend group hide/show at the same time when
             toggling legend items.
         line
-            plotly.graph_objects.histogram2dcontour.Line instance
-            or dict with compatible properties
+            :class:`plotly.graph_objects.histogram2dcontour.Line`
+            instance or dict with compatible properties
         marker
-            plotly.graph_objects.histogram2dcontour.Marker instance
-            or dict with compatible properties
+            :class:`plotly.graph_objects.histogram2dcontour.Marker`
+            instance or dict with compatible properties
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -7190,7 +7647,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover.
@@ -7225,8 +7683,8 @@ class Figure(BaseFigure):
             Determines whether or not a colorbar is displayed for
             this trace.
         stream
-            plotly.graph_objects.histogram2dcontour.Stream instance
-            or dict with compatible properties
+            :class:`plotly.graph_objects.histogram2dcontour.Stream`
+            instance or dict with compatible properties
         uid
             Assign an id to this trace, Use this to provide object
             constancy between traces during animations and
@@ -7269,12 +7727,13 @@ class Figure(BaseFigure):
             Note that the same `xbingroup` value can be used to set
             (1D) histogram `bingroup`
         xbins
-            plotly.graph_objects.histogram2dcontour.XBins instance
-            or dict with compatible properties
+            :class:`plotly.graph_objects.histogram2dcontour.XBins`
+            instance or dict with compatible properties
         xcalendar
             Sets the calendar system to use with `x` date data.
         xsrc
-            Sets the source reference on plot.ly for  x .
+            Sets the source reference on Chart Studio Cloud for  x
+            .
         y
             Sets the sample data to be binned on the y axis.
         yaxis
@@ -7290,12 +7749,13 @@ class Figure(BaseFigure):
             Note that the same `ybingroup` value can be used to set
             (1D) histogram `bingroup`
         ybins
-            plotly.graph_objects.histogram2dcontour.YBins instance
-            or dict with compatible properties
+            :class:`plotly.graph_objects.histogram2dcontour.YBins`
+            instance or dict with compatible properties
         ycalendar
             Sets the calendar system to use with `y` date data.
         ysrc
-            Sets the source reference on plot.ly for  y .
+            Sets the source reference on Chart Studio Cloud for  y
+            .
         z
             Sets the aggregation data.
         zauto
@@ -7322,15 +7782,18 @@ class Figure(BaseFigure):
             have the same units as in `z` and if set, `zmax` must
             be set as well.
         zsrc
-            Sets the source reference on plot.ly for  z .
-        row : int or None (default)
+            Sets the source reference on Chart Studio Cloud for  z
+            .
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
         secondary_y: boolean or None (default None)
             If True, associate this trace with the secondary y-axis of the
             subplot at the specified row and col. Only valid if all of the
@@ -7346,6 +7809,8 @@ class Figure(BaseFigure):
         -------
         Figure
         """
+        from plotly.graph_objs import Histogram2dContour
+
         new_trace = Histogram2dContour(
             autobinx=autobinx,
             autobiny=autobiny,
@@ -7427,6 +7892,7 @@ class Figure(BaseFigure):
         metasrc=None,
         name=None,
         opacity=None,
+        source=None,
         stream=None,
         text=None,
         textsrc=None,
@@ -7460,14 +7926,17 @@ class Figure(BaseFigure):
         ----------
         colormodel
             Color model used to map the numerical color components
-            described in `z` into colors.
+            described in `z` into colors. If `source` is specified,
+            this attribute will be set to `rgba256` otherwise it
+            defaults to `rgb`.
         customdata
             Assigns extra data each datum. This may be useful when
             listening to hover, click and selection events. Note
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         dx
             Set the pixel's horizontal size.
         dy
@@ -7478,10 +7947,11 @@ class Figure(BaseFigure):
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.image.Hoverlabel instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.image.Hoverlabel` instance
+            or dict with compatible properties
         hovertemplate
             Template string used for rendering the information that
             appear on hover box. Note that this will override
@@ -7493,32 +7963,33 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. The variables
             available in `hovertemplate` are the ones emitted as
             event data described at this link
-            https://plot.ly/javascript/plotlyjs-events/#event-data.
-            Additionally, every attributes that can be specified
-            per-point (the ones that are `arrayOk: true`) are
-            available. variables `z`, `color` and `colormodel`.
+            https://plotly.com/javascript/plotlyjs-events/#event-
+            data. Additionally, every attributes that can be
+            specified per-point (the ones that are `arrayOk: true`)
+            are available. variables `z`, `color` and `colormodel`.
             Anything contained in tag `<extra>` is displayed in the
             secondary box, for example
             "<extra>{fullData.name}</extra>". To hide the secondary
             box completely, use an empty tag `<extra></extra>`.
         hovertemplatesrc
-            Sets the source reference on plot.ly for  hovertemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            hovertemplate .
         hovertext
             Same as `text`.
         hovertextsrc
-            Sets the source reference on plot.ly for  hovertext .
+            Sets the source reference on Chart Studio Cloud for
+            hovertext .
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -7533,19 +8004,25 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover.
         opacity
             Sets the opacity of the trace.
+        source
+            Specifies the data URI of the image to be visualized.
+            The URI consists of "data:image/[<media
+            subtype>][;base64],<data>"
         stream
-            plotly.graph_objects.image.Stream instance or dict with
-            compatible properties
+            :class:`plotly.graph_objects.image.Stream` instance or
+            dict with compatible properties
         text
             Sets the text elements associated with each z value.
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         uid
             Assign an id to this trace, Use this to provide object
             constancy between traces during animations and
@@ -7595,7 +8072,8 @@ class Figure(BaseFigure):
             component. Note that the default value will depend on
             the colormodel. For the `rgb` colormodel, it is [255,
             255, 255]. For the `rgba` colormodel, it is [255, 255,
-            255, 1]. For the `hsl` colormodel, it is [360, 100,
+            255, 1]. For the `rgba256` colormodel, it is [255, 255,
+            255, 255]. For the `hsl` colormodel, it is [360, 100,
             100]. For the `hsla` colormodel, it is [360, 100, 100,
             1].
         zmin
@@ -7603,18 +8081,22 @@ class Figure(BaseFigure):
             component. Note that the default value will depend on
             the colormodel. For the `rgb` colormodel, it is [0, 0,
             0]. For the `rgba` colormodel, it is [0, 0, 0, 0]. For
-            the `hsl` colormodel, it is [0, 0, 0]. For the `hsla`
+            the `rgba256` colormodel, it is [0, 0, 0, 0]. For the
+            `hsl` colormodel, it is [0, 0, 0]. For the `hsla`
             colormodel, it is [0, 0, 0, 0].
         zsrc
-            Sets the source reference on plot.ly for  z .
-        row : int or None (default)
+            Sets the source reference on Chart Studio Cloud for  z
+            .
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
         secondary_y: boolean or None (default None)
             If True, associate this trace with the secondary y-axis of the
             subplot at the specified row and col. Only valid if all of the
@@ -7630,6 +8112,8 @@ class Figure(BaseFigure):
         -------
         Figure
         """
+        from plotly.graph_objs import Image
+
         new_trace = Image(
             colormodel=colormodel,
             customdata=customdata,
@@ -7649,6 +8133,7 @@ class Figure(BaseFigure):
             metasrc=metasrc,
             name=name,
             opacity=opacity,
+            source=source,
             stream=stream,
             text=text,
             textsrc=textsrc,
@@ -7715,13 +8200,14 @@ class Figure(BaseFigure):
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         delta
-            plotly.graph_objects.indicator.Delta instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.indicator.Delta` instance
+            or dict with compatible properties
         domain
-            plotly.graph_objects.indicator.Domain instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.indicator.Domain` instance
+            or dict with compatible properties
         gauge
             The gauge of the Indicator plot.
         ids
@@ -7729,7 +8215,8 @@ class Figure(BaseFigure):
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -7744,7 +8231,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         mode
             Determines how the value is displayed on the graph.
             `number` displays the value numerically in text.
@@ -7755,14 +8243,14 @@ class Figure(BaseFigure):
             Sets the trace name. The trace name appear as the
             legend item and on hover.
         number
-            plotly.graph_objects.indicator.Number instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.indicator.Number` instance
+            or dict with compatible properties
         stream
-            plotly.graph_objects.indicator.Stream instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.indicator.Stream` instance
+            or dict with compatible properties
         title
-            plotly.graph_objects.indicator.Title instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.indicator.Title` instance
+            or dict with compatible properties
         uid
             Assign an id to this trace, Use this to provide object
             constancy between traces during animations and
@@ -7792,19 +8280,23 @@ class Figure(BaseFigure):
             "legendonly", the trace is not drawn, but can appear as
             a legend item (provided that the legend itself is
             visible).
-        row : int or None (default)
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
 
         Returns
         -------
         Figure
         """
+        from plotly.graph_objs import Indicator
+
         new_trace = Indicator(
             align=align,
             customdata=customdata,
@@ -7907,8 +8399,8 @@ class Figure(BaseFigure):
             chosen according to whether numbers in the `color`
             array are all positive, all negative or mixed.
         caps
-            plotly.graph_objects.isosurface.Caps instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.isosurface.Caps` instance
+            or dict with compatible properties
         cauto
             Determines whether or not the color domain is computed
             with respect to the input data (here `value`) or the
@@ -7935,8 +8427,8 @@ class Figure(BaseFigure):
             `layout.coloraxis2`, etc. Note that multiple color
             scales can be linked to the same color axis.
         colorbar
-            plotly.graph_objects.isosurface.ColorBar instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.isosurface.ColorBar`
+            instance or dict with compatible properties
         colorscale
             Sets the colorscale. The colorscale must be an array
             containing arrays mapping a normalized value to an rgb,
@@ -7950,15 +8442,16 @@ class Figure(BaseFigure):
             d,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,H
             ot,Blackbody,Earth,Electric,Viridis,Cividis.
         contour
-            plotly.graph_objects.isosurface.Contour instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.isosurface.Contour`
+            instance or dict with compatible properties
         customdata
             Assigns extra data each datum. This may be useful when
             listening to hover, click and selection events. Note
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         flatshading
             Determines whether or not normal smoothing is applied
             to the meshes, creating meshes with an angular, low-
@@ -7969,10 +8462,11 @@ class Figure(BaseFigure):
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.isosurface.Hoverlabel instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.isosurface.Hoverlabel`
+            instance or dict with compatible properties
         hovertemplate
             Template string used for rendering the information that
             appear on hover box. Note that this will override
@@ -7984,31 +8478,32 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. The variables
             available in `hovertemplate` are the ones emitted as
             event data described at this link
-            https://plot.ly/javascript/plotlyjs-events/#event-data.
-            Additionally, every attributes that can be specified
-            per-point (the ones that are `arrayOk: true`) are
-            available.  Anything contained in tag `<extra>` is
+            https://plotly.com/javascript/plotlyjs-events/#event-
+            data. Additionally, every attributes that can be
+            specified per-point (the ones that are `arrayOk: true`)
+            are available.  Anything contained in tag `<extra>` is
             displayed in the secondary box, for example
             "<extra>{fullData.name}</extra>". To hide the secondary
             box completely, use an empty tag `<extra></extra>`.
         hovertemplatesrc
-            Sets the source reference on plot.ly for  hovertemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            hovertemplate .
         hovertext
             Same as `text`.
         hovertextsrc
-            Sets the source reference on plot.ly for  hovertext .
+            Sets the source reference on Chart Studio Cloud for
+            hovertext .
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         isomax
             Sets the maximum boundary for iso-surface plot.
         isomin
@@ -8018,11 +8513,11 @@ class Figure(BaseFigure):
             the same legend group hide/show at the same time when
             toggling legend items.
         lighting
-            plotly.graph_objects.isosurface.Lighting instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.isosurface.Lighting`
+            instance or dict with compatible properties
         lightposition
-            plotly.graph_objects.isosurface.Lightposition instance
-            or dict with compatible properties
+            :class:`plotly.graph_objects.isosurface.Lightposition`
+            instance or dict with compatible properties
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -8037,7 +8532,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover.
@@ -8066,24 +8562,25 @@ class Figure(BaseFigure):
             Determines whether or not a colorbar is displayed for
             this trace.
         slices
-            plotly.graph_objects.isosurface.Slices instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.isosurface.Slices`
+            instance or dict with compatible properties
         spaceframe
-            plotly.graph_objects.isosurface.Spaceframe instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.isosurface.Spaceframe`
+            instance or dict with compatible properties
         stream
-            plotly.graph_objects.isosurface.Stream instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.isosurface.Stream`
+            instance or dict with compatible properties
         surface
-            plotly.graph_objects.isosurface.Surface instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.isosurface.Surface`
+            instance or dict with compatible properties
         text
             Sets the text elements associated with the vertices. If
             trace `hoverinfo` contains a "text" flag and
             "hovertext" is not set, these elements will be seen in
             the hover labels.
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         uid
             Assign an id to this trace, Use this to provide object
             constancy between traces during animations and
@@ -8109,7 +8606,8 @@ class Figure(BaseFigure):
         value
             Sets the 4th dimension (value) of the vertices.
         valuesrc
-            Sets the source reference on plot.ly for  value .
+            Sets the source reference on Chart Studio Cloud for
+            value .
         visible
             Determines whether or not this trace is visible. If
             "legendonly", the trace is not drawn, but can appear as
@@ -8118,28 +8616,35 @@ class Figure(BaseFigure):
         x
             Sets the X coordinates of the vertices on X axis.
         xsrc
-            Sets the source reference on plot.ly for  x .
+            Sets the source reference on Chart Studio Cloud for  x
+            .
         y
             Sets the Y coordinates of the vertices on Y axis.
         ysrc
-            Sets the source reference on plot.ly for  y .
+            Sets the source reference on Chart Studio Cloud for  y
+            .
         z
             Sets the Z coordinates of the vertices on Z axis.
         zsrc
-            Sets the source reference on plot.ly for  z .
-        row : int or None (default)
+            Sets the source reference on Chart Studio Cloud for  z
+            .
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
 
         Returns
         -------
         Figure
         """
+        from plotly.graph_objs import Isosurface
+
         new_trace = Isosurface(
             autocolorscale=autocolorscale,
             caps=caps,
@@ -8330,8 +8835,8 @@ class Figure(BaseFigure):
             `layout.coloraxis2`, etc. Note that multiple color
             scales can be linked to the same color axis.
         colorbar
-            plotly.graph_objects.mesh3d.ColorBar instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.mesh3d.ColorBar` instance
+            or dict with compatible properties
         colorscale
             Sets the colorscale. The colorscale must be an array
             containing arrays mapping a normalized value to an rgb,
@@ -8345,15 +8850,16 @@ class Figure(BaseFigure):
             d,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,H
             ot,Blackbody,Earth,Electric,Viridis,Cividis.
         contour
-            plotly.graph_objects.mesh3d.Contour instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.mesh3d.Contour` instance
+            or dict with compatible properties
         customdata
             Assigns extra data each datum. This may be useful when
             listening to hover, click and selection events. Note
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         delaunayaxis
             Sets the Delaunay axis, which is the axis that is
             perpendicular to the surface of the Delaunay
@@ -8364,7 +8870,8 @@ class Figure(BaseFigure):
             Sets the color of each face Overrides "color" and
             "vertexcolor".
         facecolorsrc
-            Sets the source reference on plot.ly for  facecolor .
+            Sets the source reference on Chart Studio Cloud for
+            facecolor .
         flatshading
             Determines whether or not normal smoothing is applied
             to the meshes, creating meshes with an angular, low-
@@ -8375,10 +8882,11 @@ class Figure(BaseFigure):
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.mesh3d.Hoverlabel instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.mesh3d.Hoverlabel`
+            instance or dict with compatible properties
         hovertemplate
             Template string used for rendering the information that
             appear on hover box. Note that this will override
@@ -8390,25 +8898,25 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. The variables
             available in `hovertemplate` are the ones emitted as
             event data described at this link
-            https://plot.ly/javascript/plotlyjs-events/#event-data.
-            Additionally, every attributes that can be specified
-            per-point (the ones that are `arrayOk: true`) are
-            available.  Anything contained in tag `<extra>` is
+            https://plotly.com/javascript/plotlyjs-events/#event-
+            data. Additionally, every attributes that can be
+            specified per-point (the ones that are `arrayOk: true`)
+            are available.  Anything contained in tag `<extra>` is
             displayed in the secondary box, for example
             "<extra>{fullData.name}</extra>". To hide the secondary
             box completely, use an empty tag `<extra></extra>`.
         hovertemplatesrc
-            Sets the source reference on plot.ly for  hovertemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            hovertemplate .
         hovertext
             Same as `text`.
         hovertextsrc
-            Sets the source reference on plot.ly for  hovertext .
+            Sets the source reference on Chart Studio Cloud for
+            hovertext .
         i
             A vector of vertex indices, i.e. integer values between
             0 and the length of the vertex vectors, representing
@@ -8423,7 +8931,8 @@ class Figure(BaseFigure):
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         intensity
             Sets the intensity values for vertices or cells as
             defined by `intensitymode`. It can be used for plotting
@@ -8431,9 +8940,11 @@ class Figure(BaseFigure):
         intensitymode
             Determines the source of `intensity` values.
         intensitysrc
-            Sets the source reference on plot.ly for  intensity .
+            Sets the source reference on Chart Studio Cloud for
+            intensity .
         isrc
-            Sets the source reference on plot.ly for  i .
+            Sets the source reference on Chart Studio Cloud for  i
+            .
         j
             A vector of vertex indices, i.e. integer values between
             0 and the length of the vertex vectors, representing
@@ -8444,7 +8955,8 @@ class Figure(BaseFigure):
             each element in `j` represents a point in space, which
             is the second vertex of a triangle.
         jsrc
-            Sets the source reference on plot.ly for  j .
+            Sets the source reference on Chart Studio Cloud for  j
+            .
         k
             A vector of vertex indices, i.e. integer values between
             0 and the length of the vertex vectors, representing
@@ -8455,17 +8967,18 @@ class Figure(BaseFigure):
             each element in `k` represents a point in space, which
             is the third vertex of a triangle.
         ksrc
-            Sets the source reference on plot.ly for  k .
+            Sets the source reference on Chart Studio Cloud for  k
+            .
         legendgroup
             Sets the legend group for this trace. Traces part of
             the same legend group hide/show at the same time when
             toggling legend items.
         lighting
-            plotly.graph_objects.mesh3d.Lighting instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.mesh3d.Lighting` instance
+            or dict with compatible properties
         lightposition
-            plotly.graph_objects.mesh3d.Lightposition instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.mesh3d.Lightposition`
+            instance or dict with compatible properties
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -8480,7 +8993,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover.
@@ -8509,15 +9023,16 @@ class Figure(BaseFigure):
             Determines whether or not a colorbar is displayed for
             this trace.
         stream
-            plotly.graph_objects.mesh3d.Stream instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.mesh3d.Stream` instance or
+            dict with compatible properties
         text
             Sets the text elements associated with the vertices. If
             trace `hoverinfo` contains a "text" flag and
             "hovertext" is not set, these elements will be seen in
             the hover labels.
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         uid
             Assign an id to this trace, Use this to provide object
             constancy between traces during animations and
@@ -8547,7 +9062,8 @@ class Figure(BaseFigure):
             format, the alpha color should be normalized to be
             between 0 and 1.
         vertexcolorsrc
-            Sets the source reference on plot.ly for  vertexcolor .
+            Sets the source reference on Chart Studio Cloud for
+            vertexcolor .
         visible
             Determines whether or not this trace is visible. If
             "legendonly", the trace is not drawn, but can appear as
@@ -8560,7 +9076,8 @@ class Figure(BaseFigure):
         xcalendar
             Sets the calendar system to use with `x` date data.
         xsrc
-            Sets the source reference on plot.ly for  x .
+            Sets the source reference on Chart Studio Cloud for  x
+            .
         y
             Sets the Y coordinates of the vertices. The nth element
             of vectors `x`, `y` and `z` jointly represent the X, Y
@@ -8568,7 +9085,8 @@ class Figure(BaseFigure):
         ycalendar
             Sets the calendar system to use with `y` date data.
         ysrc
-            Sets the source reference on plot.ly for  y .
+            Sets the source reference on Chart Studio Cloud for  y
+            .
         z
             Sets the Z coordinates of the vertices. The nth element
             of vectors `x`, `y` and `z` jointly represent the X, Y
@@ -8576,20 +9094,25 @@ class Figure(BaseFigure):
         zcalendar
             Sets the calendar system to use with `z` date data.
         zsrc
-            Sets the source reference on plot.ly for  z .
-        row : int or None (default)
+            Sets the source reference on Chart Studio Cloud for  z
+            .
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
 
         Returns
         -------
         Figure
         """
+        from plotly.graph_objs import Mesh3d
+
         new_trace = Mesh3d(
             alphahull=alphahull,
             autocolorscale=autocolorscale,
@@ -8697,6 +9220,9 @@ class Figure(BaseFigure):
         x=None,
         xaxis=None,
         xcalendar=None,
+        xperiod=None,
+        xperiod0=None,
+        xperiodalignment=None,
         xsrc=None,
         yaxis=None,
         row=None,
@@ -8721,55 +9247,62 @@ class Figure(BaseFigure):
         close
             Sets the close values.
         closesrc
-            Sets the source reference on plot.ly for  close .
+            Sets the source reference on Chart Studio Cloud for
+            close .
         customdata
             Assigns extra data each datum. This may be useful when
             listening to hover, click and selection events. Note
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         decreasing
-            plotly.graph_objects.ohlc.Decreasing instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.ohlc.Decreasing` instance
+            or dict with compatible properties
         high
             Sets the high values.
         highsrc
-            Sets the source reference on plot.ly for  high .
+            Sets the source reference on Chart Studio Cloud for
+            high .
         hoverinfo
             Determines which trace information appear on hover. If
             `none` or `skip` are set, no information is displayed
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.ohlc.Hoverlabel instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.ohlc.Hoverlabel` instance
+            or dict with compatible properties
         hovertext
             Same as `text`.
         hovertextsrc
-            Sets the source reference on plot.ly for  hovertext .
+            Sets the source reference on Chart Studio Cloud for
+            hovertext .
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         increasing
-            plotly.graph_objects.ohlc.Increasing instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.ohlc.Increasing` instance
+            or dict with compatible properties
         legendgroup
             Sets the legend group for this trace. Traces part of
             the same legend group hide/show at the same time when
             toggling legend items.
         line
-            plotly.graph_objects.ohlc.Line instance or dict with
-            compatible properties
+            :class:`plotly.graph_objects.ohlc.Line` instance or
+            dict with compatible properties
         low
             Sets the low values.
         lowsrc
-            Sets the source reference on plot.ly for  low .
+            Sets the source reference on Chart Studio Cloud for
+            low .
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -8784,7 +9317,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover.
@@ -8793,7 +9327,8 @@ class Figure(BaseFigure):
         open
             Sets the open values.
         opensrc
-            Sets the source reference on plot.ly for  open .
+            Sets the source reference on Chart Studio Cloud for
+            open .
         selectedpoints
             Array containing integer indices of selected points.
             Has an effect only for traces that support selections.
@@ -8805,15 +9340,16 @@ class Figure(BaseFigure):
             Determines whether or not an item corresponding to this
             trace is shown in the legend.
         stream
-            plotly.graph_objects.ohlc.Stream instance or dict with
-            compatible properties
+            :class:`plotly.graph_objects.ohlc.Stream` instance or
+            dict with compatible properties
         text
             Sets hover text elements associated with each sample
             point. If a single string, the same string appears over
             all the data points. If an array of string, the items
             are mapped in order to this trace's sample points.
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         tickwidth
             Sets the width of the open/close tick marks relative to
             the "x" minimal interval.
@@ -8854,21 +9390,40 @@ class Figure(BaseFigure):
             coordinates refer to `layout.xaxis2`, and so on.
         xcalendar
             Sets the calendar system to use with `x` date data.
+        xperiod
+            Only relevant when the axis `type` is "date". Sets the
+            period positioning in milliseconds or "M<n>" on the x
+            axis. Special values in the form of "M<n>" could be
+            used to declare the number of months. In this case `n`
+            must be a positive integer.
+        xperiod0
+            Only relevant when the axis `type` is "date". Sets the
+            base for period positioning in milliseconds or date
+            string on the x0 axis. When `x0period` is round number
+            of weeks, the `x0period0` by default would be on a
+            Sunday i.e. 2000-01-02, otherwise it would be at
+            2000-01-01.
+        xperiodalignment
+            Only relevant when the axis `type` is "date". Sets the
+            alignment of data points on the x axis.
         xsrc
-            Sets the source reference on plot.ly for  x .
+            Sets the source reference on Chart Studio Cloud for  x
+            .
         yaxis
             Sets a reference between this trace's y coordinates and
             a 2D cartesian y axis. If "y" (the default value), the
             y coordinates refer to `layout.yaxis`. If "y2", the y
             coordinates refer to `layout.yaxis2`, and so on.
-        row : int or None (default)
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
         secondary_y: boolean or None (default None)
             If True, associate this trace with the secondary y-axis of the
             subplot at the specified row and col. Only valid if all of the
@@ -8884,6 +9439,8 @@ class Figure(BaseFigure):
         -------
         Figure
         """
+        from plotly.graph_objs import Ohlc
+
         new_trace = Ohlc(
             close=close,
             closesrc=closesrc,
@@ -8922,6 +9479,9 @@ class Figure(BaseFigure):
             x=x,
             xaxis=xaxis,
             xcalendar=xcalendar,
+            xperiod=xperiod,
+            xperiod0=xperiod0,
+            xperiodalignment=xperiodalignment,
             xsrc=xsrc,
             yaxis=yaxis,
             **kwargs
@@ -8978,7 +9538,8 @@ class Figure(BaseFigure):
             Defaults to 1 so that each state represents one
             observation
         countssrc
-            Sets the source reference on plot.ly for  counts .
+            Sets the source reference on Chart Studio Cloud for
+            counts .
         dimensions
             The dimensions (variables) of the parallel categories
             diagram.
@@ -8988,8 +9549,8 @@ class Figure(BaseFigure):
             the default property values to use for elements of
             parcats.dimensions
         domain
-            plotly.graph_objects.parcats.Domain instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.parcats.Domain` instance
+            or dict with compatible properties
         hoverinfo
             Determines which trace information appear on hover. If
             `none` or `skip` are set, no information is displayed
@@ -9013,15 +9574,14 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. The variables
             available in `hovertemplate` are the ones emitted as
             event data described at this link
-            https://plot.ly/javascript/plotlyjs-events/#event-data.
-            Additionally, every attributes that can be specified
-            per-point (the ones that are `arrayOk: true`) are
-            available. variables `count`, `probability`,
+            https://plotly.com/javascript/plotlyjs-events/#event-
+            data. Additionally, every attributes that can be
+            specified per-point (the ones that are `arrayOk: true`)
+            are available. variables `count`, `probability`,
             `category`, `categorycount`, `colorcount` and
             `bandcolorcount`. Anything contained in tag `<extra>`
             is displayed in the secondary box, for example
@@ -9030,8 +9590,8 @@ class Figure(BaseFigure):
         labelfont
             Sets the font for the `dimension` labels.
         line
-            plotly.graph_objects.parcats.Line instance or dict with
-            compatible properties
+            :class:`plotly.graph_objects.parcats.Line` instance or
+            dict with compatible properties
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -9046,7 +9606,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover.
@@ -9056,8 +9617,8 @@ class Figure(BaseFigure):
             If `backward`, sort paths based on dimensions
             categories from right to left.
         stream
-            plotly.graph_objects.parcats.Stream instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.parcats.Stream` instance
+            or dict with compatible properties
         tickfont
             Sets the font for the `category` labels.
         uid
@@ -9087,19 +9648,23 @@ class Figure(BaseFigure):
             "legendonly", the trace is not drawn, but can appear as
             a legend item (provided that the legend itself is
             visible).
-        row : int or None (default)
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
 
         Returns
         -------
         Figure
         """
+        from plotly.graph_objs import Parcats
+
         new_trace = Parcats(
             arrangement=arrangement,
             bundlecolors=bundlecolors,
@@ -9167,7 +9732,8 @@ class Figure(BaseFigure):
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         dimensions
             The dimensions (variables) of the parallel coordinates
             chart. 2..60 dimensions are supported.
@@ -9177,14 +9743,15 @@ class Figure(BaseFigure):
             the default property values to use for elements of
             parcoords.dimensions
         domain
-            plotly.graph_objects.parcoords.Domain instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.parcoords.Domain` instance
+            or dict with compatible properties
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         labelangle
             Sets the angle of the labels with respect to the
             horizontal. For example, a `tickangle` of -90 draws the
@@ -9200,8 +9767,8 @@ class Figure(BaseFigure):
             may be positioned better inside margins when
             `labelposition` is set to "bottom".
         line
-            plotly.graph_objects.parcoords.Line instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.parcoords.Line` instance
+            or dict with compatible properties
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -9216,15 +9783,16 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover.
         rangefont
             Sets the font for the `dimension` range values.
         stream
-            plotly.graph_objects.parcoords.Stream instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.parcoords.Stream` instance
+            or dict with compatible properties
         tickfont
             Sets the font for the `dimension` tick values.
         uid
@@ -9254,19 +9822,23 @@ class Figure(BaseFigure):
             "legendonly", the trace is not drawn, but can appear as
             a legend item (provided that the legend itself is
             visible).
-        row : int or None (default)
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
 
         Returns
         -------
         Figure
         """
+        from plotly.graph_objs import Parcoords
+
         new_trace = Parcoords(
             customdata=customdata,
             customdatasrc=customdatasrc,
@@ -9367,15 +9939,16 @@ class Figure(BaseFigure):
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         direction
             Specifies the direction at which succeeding sectors
             follow one another.
         dlabel
             Sets the label step. See `label0` for more info.
         domain
-            plotly.graph_objects.pie.Domain instance or dict with
-            compatible properties
+            :class:`plotly.graph_objects.pie.Domain` instance or
+            dict with compatible properties
         hole
             Sets the fraction of the radius to cut out of the pie.
             Use this to make a donut chart.
@@ -9385,10 +9958,11 @@ class Figure(BaseFigure):
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.pie.Hoverlabel instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.pie.Hoverlabel` instance
+            or dict with compatible properties
         hovertemplate
             Template string used for rendering the information that
             appear on hover box. Note that this will override
@@ -9400,23 +9974,22 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. The variables
             available in `hovertemplate` are the ones emitted as
             event data described at this link
-            https://plot.ly/javascript/plotlyjs-events/#event-data.
-            Additionally, every attributes that can be specified
-            per-point (the ones that are `arrayOk: true`) are
-            available. variables `label`, `color`, `value`,
+            https://plotly.com/javascript/plotlyjs-events/#event-
+            data. Additionally, every attributes that can be
+            specified per-point (the ones that are `arrayOk: true`)
+            are available. variables `label`, `color`, `value`,
             `percent` and `text`. Anything contained in tag
             `<extra>` is displayed in the secondary box, for
             example "<extra>{fullData.name}</extra>". To hide the
             secondary box completely, use an empty tag
             `<extra></extra>`.
         hovertemplatesrc
-            Sets the source reference on plot.ly for  hovertemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            hovertemplate .
         hovertext
             Sets hover text elements associated with each sector.
             If a single string, the same string appears for all
@@ -9424,23 +9997,28 @@ class Figure(BaseFigure):
             mapped in order of this trace's sectors. To be seen,
             trace `hoverinfo` must contain a "text" flag.
         hovertextsrc
-            Sets the source reference on plot.ly for  hovertext .
+            Sets the source reference on Chart Studio Cloud for
+            hovertext .
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         insidetextfont
             Sets the font used for `textinfo` lying inside the
             sector.
         insidetextorientation
-            Determines the orientation of text inside slices. With
-            "auto" the texts may automatically be rotated to fit
-            with the maximum size inside the slice. Using
-            "horizontal" option forces text to be horizontal. Using
-            "radial" option forces text to be radial. Using
-            "tangential" option forces text to be tangential.
+            Controls the orientation of the text inside chart
+            sectors. When set to "auto", text may be oriented in
+            any direction in order to be as big as possible in the
+            middle of a sector. The "horizontal" option orients
+            text to be parallel with the bottom of the chart, and
+            may make text smaller in order to achieve that goal.
+            The "radial" option orients text along the radius of
+            the sector. The "tangential" option orients text
+            perpendicular to the radius of the sector.
         label0
             Alternate to `labels`. Builds a numeric set of labels.
             Use with `dlabel` where `label0` is the starting label
@@ -9452,14 +10030,15 @@ class Figure(BaseFigure):
             array attributes (including color) we use the first
             non-empty entry among all occurrences of the label.
         labelssrc
-            Sets the source reference on plot.ly for  labels .
+            Sets the source reference on Chart Studio Cloud for
+            labels .
         legendgroup
             Sets the legend group for this trace. Traces part of
             the same legend group hide/show at the same time when
             toggling legend items.
         marker
-            plotly.graph_objects.pie.Marker instance or dict with
-            compatible properties
+            :class:`plotly.graph_objects.pie.Marker` instance or
+            dict with compatible properties
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -9474,7 +10053,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover.
@@ -9489,7 +10069,8 @@ class Figure(BaseFigure):
             slices apart from each other equally or an array to
             highlight one or more slices.
         pullsrc
-            Sets the source reference on plot.ly for  pull .
+            Sets the source reference on Chart Studio Cloud for
+            pull .
         rotation
             Instead of the first slice starting at 12 o'clock,
             rotate to some other angle.
@@ -9505,8 +10086,8 @@ class Figure(BaseFigure):
             Determines whether or not the sectors are reordered
             from largest to smallest.
         stream
-            plotly.graph_objects.pie.Stream instance or dict with
-            compatible properties
+            :class:`plotly.graph_objects.pie.Stream` instance or
+            dict with compatible properties
         text
             Sets text elements associated with each sector. If
             trace `textinfo` contains a "text" flag, these elements
@@ -9520,10 +10101,11 @@ class Figure(BaseFigure):
         textposition
             Specifies the location of the `textinfo`.
         textpositionsrc
-            Sets the source reference on plot.ly for  textposition
-            .
+            Sets the source reference on Chart Studio Cloud for
+            textposition .
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         texttemplate
             Template string used for rendering the information text
             that appear on points. Note that this will override
@@ -9535,18 +10117,17 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. Every attributes
             that can be specified per-point (the ones that are
             `arrayOk: true`) are available. variables `label`,
             `color`, `value`, `percent` and `text`.
         texttemplatesrc
-            Sets the source reference on plot.ly for  texttemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            texttemplate .
         title
-            plotly.graph_objects.pie.Title instance or dict with
-            compatible properties
+            :class:`plotly.graph_objects.pie.Title` instance or
+            dict with compatible properties
         titlefont
             Deprecated: Please use pie.title.font instead. Sets the
             font used for `title`. Note that the title's font used
@@ -9582,25 +10163,30 @@ class Figure(BaseFigure):
             Sets the values of the sectors. If omitted, we count
             occurrences of each label.
         valuessrc
-            Sets the source reference on plot.ly for  values .
+            Sets the source reference on Chart Studio Cloud for
+            values .
         visible
             Determines whether or not this trace is visible. If
             "legendonly", the trace is not drawn, but can appear as
             a legend item (provided that the legend itself is
             visible).
-        row : int or None (default)
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
 
         Returns
         -------
         Figure
         """
+        from plotly.graph_objs import Pie
+
         new_trace = Pie(
             automargin=automargin,
             customdata=customdata,
@@ -9712,23 +10298,26 @@ class Figure(BaseFigure):
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         hoverinfo
             Determines which trace information appear on hover. If
             `none` or `skip` are set, no information is displayed
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.pointcloud.Hoverlabel instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.pointcloud.Hoverlabel`
+            instance or dict with compatible properties
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         indices
             A sequential value, 0..n, supply it to avoid creating
             this array inside plotting. If specified, it must be a
@@ -9739,14 +10328,15 @@ class Figure(BaseFigure):
             as the largest number of points during use, and reuse
             it on each `Plotly.restyle()` call.
         indicessrc
-            Sets the source reference on plot.ly for  indices .
+            Sets the source reference on Chart Studio Cloud for
+            indices .
         legendgroup
             Sets the legend group for this trace. Traces part of
             the same legend group hide/show at the same time when
             toggling legend items.
         marker
-            plotly.graph_objects.pointcloud.Marker instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.pointcloud.Marker`
+            instance or dict with compatible properties
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -9761,7 +10351,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover.
@@ -9771,8 +10362,8 @@ class Figure(BaseFigure):
             Determines whether or not an item corresponding to this
             trace is shown in the legend.
         stream
-            plotly.graph_objects.pointcloud.Stream instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.pointcloud.Stream`
+            instance or dict with compatible properties
         text
             Sets text elements associated with each (x,y) pair. If
             a single string, the same string appears over all the
@@ -9782,7 +10373,8 @@ class Figure(BaseFigure):
             "hovertext" is not set, these elements will be seen in
             the hover labels.
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         uid
             Assign an id to this trace, Use this to provide object
             constancy between traces during animations and
@@ -9823,16 +10415,19 @@ class Figure(BaseFigure):
             conjunction with `xy` and `ybounds` for the performance
             benefits.
         xboundssrc
-            Sets the source reference on plot.ly for  xbounds .
+            Sets the source reference on Chart Studio Cloud for
+            xbounds .
         xsrc
-            Sets the source reference on plot.ly for  x .
+            Sets the source reference on Chart Studio Cloud for  x
+            .
         xy
             Faster alternative to specifying `x` and `y`
             separately. If supplied, it must be a typed
             `Float32Array` array that represents points such that
             `xy[i * 2] = x[i]` and `xy[i * 2 + 1] = y[i]`
         xysrc
-            Sets the source reference on plot.ly for  xy .
+            Sets the source reference on Chart Studio Cloud for  xy
+            .
         y
             Sets the y coordinates.
         yaxis
@@ -9846,17 +10441,21 @@ class Figure(BaseFigure):
             conjunction with `xy` and `xbounds` for the performance
             benefits.
         yboundssrc
-            Sets the source reference on plot.ly for  ybounds .
+            Sets the source reference on Chart Studio Cloud for
+            ybounds .
         ysrc
-            Sets the source reference on plot.ly for  y .
-        row : int or None (default)
+            Sets the source reference on Chart Studio Cloud for  y
+            .
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
         secondary_y: boolean or None (default None)
             If True, associate this trace with the secondary y-axis of the
             subplot at the specified row and col. Only valid if all of the
@@ -9872,6 +10471,8 @@ class Figure(BaseFigure):
         -------
         Figure
         """
+        from plotly.graph_objs import Pointcloud
+
         new_trace = Pointcloud(
             customdata=customdata,
             customdatasrc=customdatasrc,
@@ -9963,10 +10564,11 @@ class Figure(BaseFigure):
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         domain
-            plotly.graph_objects.sankey.Domain instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.sankey.Domain` instance or
+            dict with compatible properties
         hoverinfo
             Determines which trace information appear on hover. If
             `none` or `skip` are set, no information is displayed
@@ -9975,14 +10577,15 @@ class Figure(BaseFigure):
             superseded by `node.hoverinfo` and `node.hoverinfo` for
             nodes and links respectively.
         hoverlabel
-            plotly.graph_objects.sankey.Hoverlabel instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.sankey.Hoverlabel`
+            instance or dict with compatible properties
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         link
             The links of the Sankey plot.
         meta
@@ -9999,7 +10602,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover.
@@ -10015,8 +10619,8 @@ class Figure(BaseFigure):
             any other non-array values means no selection all where
             the `selected` and `unselected` styles have no effect.
         stream
-            plotly.graph_objects.sankey.Stream instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.sankey.Stream` instance or
+            dict with compatible properties
         textfont
             Sets the font for node labels
         uid
@@ -10055,19 +10659,23 @@ class Figure(BaseFigure):
             "legendonly", the trace is not drawn, but can appear as
             a legend item (provided that the legend itself is
             visible).
-        row : int or None (default)
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
 
         Returns
         -------
         Figure
         """
+        from plotly.graph_objs import Sankey
+
         new_trace = Sankey(
             arrangement=arrangement,
             customdata=customdata,
@@ -10152,11 +10760,17 @@ class Figure(BaseFigure):
         x0=None,
         xaxis=None,
         xcalendar=None,
+        xperiod=None,
+        xperiod0=None,
+        xperiodalignment=None,
         xsrc=None,
         y=None,
         y0=None,
         yaxis=None,
         ycalendar=None,
+        yperiod=None,
+        yperiod0=None,
+        yperiodalignment=None,
         ysrc=None,
         row=None,
         col=None,
@@ -10190,17 +10804,18 @@ class Figure(BaseFigure):
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         dx
             Sets the x coordinate step. See `x0` for more info.
         dy
             Sets the y coordinate step. See `y0` for more info.
         error_x
-            plotly.graph_objects.scatter.ErrorX instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.scatter.ErrorX` instance
+            or dict with compatible properties
         error_y
-            plotly.graph_objects.scatter.ErrorY instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.scatter.ErrorY` instance
+            or dict with compatible properties
         fill
             Sets the area to fill with a solid color. Defaults to
             "none" unless this trace is stacked, then it gets
@@ -10245,10 +10860,11 @@ class Figure(BaseFigure):
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.scatter.Hoverlabel instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.scatter.Hoverlabel`
+            instance or dict with compatible properties
         hoveron
             Do the hover effects highlight individual points
             (markers or line points) or do they highlight filled
@@ -10266,21 +10882,20 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. The variables
             available in `hovertemplate` are the ones emitted as
             event data described at this link
-            https://plot.ly/javascript/plotlyjs-events/#event-data.
-            Additionally, every attributes that can be specified
-            per-point (the ones that are `arrayOk: true`) are
-            available.  Anything contained in tag `<extra>` is
+            https://plotly.com/javascript/plotlyjs-events/#event-
+            data. Additionally, every attributes that can be
+            specified per-point (the ones that are `arrayOk: true`)
+            are available.  Anything contained in tag `<extra>` is
             displayed in the secondary box, for example
             "<extra>{fullData.name}</extra>". To hide the secondary
             box completely, use an empty tag `<extra></extra>`.
         hovertemplatesrc
-            Sets the source reference on plot.ly for  hovertemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            hovertemplate .
         hovertext
             Sets hover text elements associated with each (x,y)
             pair. If a single string, the same string appears over
@@ -10289,23 +10904,25 @@ class Figure(BaseFigure):
             coordinates. To be seen, trace `hoverinfo` must contain
             a "text" flag.
         hovertextsrc
-            Sets the source reference on plot.ly for  hovertext .
+            Sets the source reference on Chart Studio Cloud for
+            hovertext .
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         legendgroup
             Sets the legend group for this trace. Traces part of
             the same legend group hide/show at the same time when
             toggling legend items.
         line
-            plotly.graph_objects.scatter.Line instance or dict with
-            compatible properties
+            :class:`plotly.graph_objects.scatter.Line` instance or
+            dict with compatible properties
         marker
-            plotly.graph_objects.scatter.Marker instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.scatter.Marker` instance
+            or dict with compatible properties
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -10320,7 +10937,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         mode
             Determines the drawing mode for this scatter trace. If
             the provided `mode` includes "text" then the `text`
@@ -10345,10 +10963,11 @@ class Figure(BaseFigure):
             switch to the "scatterpolar" trace type.Sets the radial
             coordinatesfor legacy polar chart only.
         rsrc
-            Sets the source reference on plot.ly for  r .
+            Sets the source reference on Chart Studio Cloud for  r
+            .
         selected
-            plotly.graph_objects.scatter.Selected instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.scatter.Selected` instance
+            or dict with compatible properties
         selectedpoints
             Array containing integer indices of selected points.
             Has an effect only for traces that support selections.
@@ -10384,8 +11003,8 @@ class Figure(BaseFigure):
             fill-linked traces are not already consecutive, the
             later ones will be pushed down in the drawing order.
         stream
-            plotly.graph_objects.scatter.Stream instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.scatter.Stream` instance
+            or dict with compatible properties
         t
             t coordinates in scatter traces are deprecated!Please
             switch to the "scatterpolar" trace type.Sets the
@@ -10404,10 +11023,11 @@ class Figure(BaseFigure):
             Sets the positions of the `text` elements with respects
             to the (x,y) coordinates.
         textpositionsrc
-            Sets the source reference on plot.ly for  textposition
-            .
+            Sets the source reference on Chart Studio Cloud for
+            textposition .
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         texttemplate
             Template string used for rendering the information text
             that appear on points. Note that this will override
@@ -10419,16 +11039,16 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. Every attributes
             that can be specified per-point (the ones that are
             `arrayOk: true`) are available.
         texttemplatesrc
-            Sets the source reference on plot.ly for  texttemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            texttemplate .
         tsrc
-            Sets the source reference on plot.ly for  t .
+            Sets the source reference on Chart Studio Cloud for  t
+            .
         uid
             Assign an id to this trace, Use this to provide object
             constancy between traces during animations and
@@ -10452,8 +11072,8 @@ class Figure(BaseFigure):
             preserve user-driven changes if you give each trace a
             `uid` that stays with it as it moves.
         unselected
-            plotly.graph_objects.scatter.Unselected instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.scatter.Unselected`
+            instance or dict with compatible properties
         visible
             Determines whether or not this trace is visible. If
             "legendonly", the trace is not drawn, but can appear as
@@ -10472,8 +11092,25 @@ class Figure(BaseFigure):
             coordinates refer to `layout.xaxis2`, and so on.
         xcalendar
             Sets the calendar system to use with `x` date data.
+        xperiod
+            Only relevant when the axis `type` is "date". Sets the
+            period positioning in milliseconds or "M<n>" on the x
+            axis. Special values in the form of "M<n>" could be
+            used to declare the number of months. In this case `n`
+            must be a positive integer.
+        xperiod0
+            Only relevant when the axis `type` is "date". Sets the
+            base for period positioning in milliseconds or date
+            string on the x0 axis. When `x0period` is round number
+            of weeks, the `x0period0` by default would be on a
+            Sunday i.e. 2000-01-02, otherwise it would be at
+            2000-01-01.
+        xperiodalignment
+            Only relevant when the axis `type` is "date". Sets the
+            alignment of data points on the x axis.
         xsrc
-            Sets the source reference on plot.ly for  x .
+            Sets the source reference on Chart Studio Cloud for  x
+            .
         y
             Sets the y coordinates.
         y0
@@ -10487,16 +11124,35 @@ class Figure(BaseFigure):
             coordinates refer to `layout.yaxis2`, and so on.
         ycalendar
             Sets the calendar system to use with `y` date data.
+        yperiod
+            Only relevant when the axis `type` is "date". Sets the
+            period positioning in milliseconds or "M<n>" on the y
+            axis. Special values in the form of "M<n>" could be
+            used to declare the number of months. In this case `n`
+            must be a positive integer.
+        yperiod0
+            Only relevant when the axis `type` is "date". Sets the
+            base for period positioning in milliseconds or date
+            string on the y0 axis. When `y0period` is round number
+            of weeks, the `y0period0` by default would be on a
+            Sunday i.e. 2000-01-02, otherwise it would be at
+            2000-01-01.
+        yperiodalignment
+            Only relevant when the axis `type` is "date". Sets the
+            alignment of data points on the y axis.
         ysrc
-            Sets the source reference on plot.ly for  y .
-        row : int or None (default)
+            Sets the source reference on Chart Studio Cloud for  y
+            .
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
         secondary_y: boolean or None (default None)
             If True, associate this trace with the secondary y-axis of the
             subplot at the specified row and col. Only valid if all of the
@@ -10512,6 +11168,8 @@ class Figure(BaseFigure):
         -------
         Figure
         """
+        from plotly.graph_objs import Scatter
+
         new_trace = Scatter(
             cliponaxis=cliponaxis,
             connectgaps=connectgaps,
@@ -10568,11 +11226,17 @@ class Figure(BaseFigure):
             x0=x0,
             xaxis=xaxis,
             xcalendar=xcalendar,
+            xperiod=xperiod,
+            xperiod0=xperiod0,
+            xperiodalignment=xperiodalignment,
             xsrc=xsrc,
             y=y,
             y0=y0,
             yaxis=yaxis,
             ycalendar=ycalendar,
+            yperiod=yperiod,
+            yperiod0=yperiod0,
+            yperiodalignment=yperiodalignment,
             ysrc=ysrc,
             **kwargs
         )
@@ -10653,26 +11317,28 @@ class Figure(BaseFigure):
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         error_x
-            plotly.graph_objects.scatter3d.ErrorX instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.scatter3d.ErrorX` instance
+            or dict with compatible properties
         error_y
-            plotly.graph_objects.scatter3d.ErrorY instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.scatter3d.ErrorY` instance
+            or dict with compatible properties
         error_z
-            plotly.graph_objects.scatter3d.ErrorZ instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.scatter3d.ErrorZ` instance
+            or dict with compatible properties
         hoverinfo
             Determines which trace information appear on hover. If
             `none` or `skip` are set, no information is displayed
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.scatter3d.Hoverlabel instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.scatter3d.Hoverlabel`
+            instance or dict with compatible properties
         hovertemplate
             Template string used for rendering the information that
             appear on hover box. Note that this will override
@@ -10684,21 +11350,20 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. The variables
             available in `hovertemplate` are the ones emitted as
             event data described at this link
-            https://plot.ly/javascript/plotlyjs-events/#event-data.
-            Additionally, every attributes that can be specified
-            per-point (the ones that are `arrayOk: true`) are
-            available.  Anything contained in tag `<extra>` is
+            https://plotly.com/javascript/plotlyjs-events/#event-
+            data. Additionally, every attributes that can be
+            specified per-point (the ones that are `arrayOk: true`)
+            are available.  Anything contained in tag `<extra>` is
             displayed in the secondary box, for example
             "<extra>{fullData.name}</extra>". To hide the secondary
             box completely, use an empty tag `<extra></extra>`.
         hovertemplatesrc
-            Sets the source reference on plot.ly for  hovertemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            hovertemplate .
         hovertext
             Sets text elements associated with each (x,y,z)
             triplet. If a single string, the same string appears
@@ -10707,23 +11372,25 @@ class Figure(BaseFigure):
             coordinates. To be seen, trace `hoverinfo` must contain
             a "text" flag.
         hovertextsrc
-            Sets the source reference on plot.ly for  hovertext .
+            Sets the source reference on Chart Studio Cloud for
+            hovertext .
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         legendgroup
             Sets the legend group for this trace. Traces part of
             the same legend group hide/show at the same time when
             toggling legend items.
         line
-            plotly.graph_objects.scatter3d.Line instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.scatter3d.Line` instance
+            or dict with compatible properties
         marker
-            plotly.graph_objects.scatter3d.Marker instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.scatter3d.Marker` instance
+            or dict with compatible properties
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -10738,7 +11405,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         mode
             Determines the drawing mode for this scatter trace. If
             the provided `mode` includes "text" then the `text`
@@ -10752,8 +11420,8 @@ class Figure(BaseFigure):
         opacity
             Sets the opacity of the trace.
         projection
-            plotly.graph_objects.scatter3d.Projection instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.scatter3d.Projection`
+            instance or dict with compatible properties
         scene
             Sets a reference between this trace's 3D coordinate
             system and a 3D scene. If "scene" (the default value),
@@ -10764,8 +11432,8 @@ class Figure(BaseFigure):
             Determines whether or not an item corresponding to this
             trace is shown in the legend.
         stream
-            plotly.graph_objects.scatter3d.Stream instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.scatter3d.Stream` instance
+            or dict with compatible properties
         surfaceaxis
             If "-1", the scatter points are not fill with a surface
             If 0, 1, 2, the scatter points are filled with a
@@ -10781,16 +11449,17 @@ class Figure(BaseFigure):
             flag and "hovertext" is not set, these elements will be
             seen in the hover labels.
         textfont
-            plotly.graph_objects.scatter3d.Textfont instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.scatter3d.Textfont`
+            instance or dict with compatible properties
         textposition
             Sets the positions of the `text` elements with respects
             to the (x,y) coordinates.
         textpositionsrc
-            Sets the source reference on plot.ly for  textposition
-            .
+            Sets the source reference on Chart Studio Cloud for
+            textposition .
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         texttemplate
             Template string used for rendering the information text
             that appear on points. Note that this will override
@@ -10802,14 +11471,13 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. Every attributes
             that can be specified per-point (the ones that are
             `arrayOk: true`) are available.
         texttemplatesrc
-            Sets the source reference on plot.ly for  texttemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            texttemplate .
         uid
             Assign an id to this trace, Use this to provide object
             constancy between traces during animations and
@@ -10842,32 +11510,39 @@ class Figure(BaseFigure):
         xcalendar
             Sets the calendar system to use with `x` date data.
         xsrc
-            Sets the source reference on plot.ly for  x .
+            Sets the source reference on Chart Studio Cloud for  x
+            .
         y
             Sets the y coordinates.
         ycalendar
             Sets the calendar system to use with `y` date data.
         ysrc
-            Sets the source reference on plot.ly for  y .
+            Sets the source reference on Chart Studio Cloud for  y
+            .
         z
             Sets the z coordinates.
         zcalendar
             Sets the calendar system to use with `z` date data.
         zsrc
-            Sets the source reference on plot.ly for  z .
-        row : int or None (default)
+            Sets the source reference on Chart Studio Cloud for  z
+            .
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
 
         Returns
         -------
         Figure
         """
+        from plotly.graph_objs import Scatter3d
+
         new_trace = Scatter3d(
             connectgaps=connectgaps,
             customdata=customdata,
@@ -10984,11 +11659,13 @@ class Figure(BaseFigure):
         a
             Sets the a-axis coordinates.
         asrc
-            Sets the source reference on plot.ly for  a .
+            Sets the source reference on Chart Studio Cloud for  a
+            .
         b
             Sets the b-axis coordinates.
         bsrc
-            Sets the source reference on plot.ly for  b .
+            Sets the source reference on Chart Studio Cloud for  b
+            .
         carpet
             An identifier for this carpet, so that `scattercarpet`
             and `contourcarpet` traces can specify a carpet plot on
@@ -11002,7 +11679,8 @@ class Figure(BaseFigure):
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         fill
             Sets the area to fill with a solid color. Use with
             `fillcolor` if not "none". scatterternary has a subset
@@ -11024,10 +11702,11 @@ class Figure(BaseFigure):
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.scattercarpet.Hoverlabel instance
-            or dict with compatible properties
+            :class:`plotly.graph_objects.scattercarpet.Hoverlabel`
+            instance or dict with compatible properties
         hoveron
             Do the hover effects highlight individual points
             (markers or line points) or do they highlight filled
@@ -11045,21 +11724,20 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. The variables
             available in `hovertemplate` are the ones emitted as
             event data described at this link
-            https://plot.ly/javascript/plotlyjs-events/#event-data.
-            Additionally, every attributes that can be specified
-            per-point (the ones that are `arrayOk: true`) are
-            available.  Anything contained in tag `<extra>` is
+            https://plotly.com/javascript/plotlyjs-events/#event-
+            data. Additionally, every attributes that can be
+            specified per-point (the ones that are `arrayOk: true`)
+            are available.  Anything contained in tag `<extra>` is
             displayed in the secondary box, for example
             "<extra>{fullData.name}</extra>". To hide the secondary
             box completely, use an empty tag `<extra></extra>`.
         hovertemplatesrc
-            Sets the source reference on plot.ly for  hovertemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            hovertemplate .
         hovertext
             Sets hover text elements associated with each (a,b)
             point. If a single string, the same string appears over
@@ -11067,23 +11745,25 @@ class Figure(BaseFigure):
             are mapped in order to the the data points in (a,b). To
             be seen, trace `hoverinfo` must contain a "text" flag.
         hovertextsrc
-            Sets the source reference on plot.ly for  hovertext .
+            Sets the source reference on Chart Studio Cloud for
+            hovertext .
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         legendgroup
             Sets the legend group for this trace. Traces part of
             the same legend group hide/show at the same time when
             toggling legend items.
         line
-            plotly.graph_objects.scattercarpet.Line instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.scattercarpet.Line`
+            instance or dict with compatible properties
         marker
-            plotly.graph_objects.scattercarpet.Marker instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.scattercarpet.Marker`
+            instance or dict with compatible properties
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -11098,7 +11778,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         mode
             Determines the drawing mode for this scatter trace. If
             the provided `mode` includes "text" then the `text`
@@ -11112,8 +11793,8 @@ class Figure(BaseFigure):
         opacity
             Sets the opacity of the trace.
         selected
-            plotly.graph_objects.scattercarpet.Selected instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.scattercarpet.Selected`
+            instance or dict with compatible properties
         selectedpoints
             Array containing integer indices of selected points.
             Has an effect only for traces that support selections.
@@ -11125,8 +11806,8 @@ class Figure(BaseFigure):
             Determines whether or not an item corresponding to this
             trace is shown in the legend.
         stream
-            plotly.graph_objects.scattercarpet.Stream instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.scattercarpet.Stream`
+            instance or dict with compatible properties
         text
             Sets text elements associated with each (a,b) point. If
             a single string, the same string appears over all the
@@ -11141,10 +11822,11 @@ class Figure(BaseFigure):
             Sets the positions of the `text` elements with respects
             to the (x,y) coordinates.
         textpositionsrc
-            Sets the source reference on plot.ly for  textposition
-            .
+            Sets the source reference on Chart Studio Cloud for
+            textposition .
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         texttemplate
             Template string used for rendering the information text
             that appear on points. Note that this will override
@@ -11156,15 +11838,14 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. Every attributes
             that can be specified per-point (the ones that are
             `arrayOk: true`) are available. variables `a`, `b` and
             `text`.
         texttemplatesrc
-            Sets the source reference on plot.ly for  texttemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            texttemplate .
         uid
             Assign an id to this trace, Use this to provide object
             constancy between traces during animations and
@@ -11188,8 +11869,8 @@ class Figure(BaseFigure):
             preserve user-driven changes if you give each trace a
             `uid` that stays with it as it moves.
         unselected
-            plotly.graph_objects.scattercarpet.Unselected instance
-            or dict with compatible properties
+            :class:`plotly.graph_objects.scattercarpet.Unselected`
+            instance or dict with compatible properties
         visible
             Determines whether or not this trace is visible. If
             "legendonly", the trace is not drawn, but can appear as
@@ -11205,14 +11886,16 @@ class Figure(BaseFigure):
             a 2D cartesian y axis. If "y" (the default value), the
             y coordinates refer to `layout.yaxis`. If "y2", the y
             coordinates refer to `layout.yaxis2`, and so on.
-        row : int or None (default)
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
         secondary_y: boolean or None (default None)
             If True, associate this trace with the secondary y-axis of the
             subplot at the specified row and col. Only valid if all of the
@@ -11228,6 +11911,8 @@ class Figure(BaseFigure):
         -------
         Figure
         """
+        from plotly.graph_objs import Scattercarpet
+
         new_trace = Scattercarpet(
             a=a,
             asrc=asrc,
@@ -11350,7 +12035,8 @@ class Figure(BaseFigure):
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         featureidkey
             Sets the key in GeoJSON features which is used as id to
             match the items included in the `locations` array. Only
@@ -11385,10 +12071,11 @@ class Figure(BaseFigure):
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.scattergeo.Hoverlabel instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.scattergeo.Hoverlabel`
+            instance or dict with compatible properties
         hovertemplate
             Template string used for rendering the information that
             appear on hover box. Note that this will override
@@ -11400,21 +12087,20 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. The variables
             available in `hovertemplate` are the ones emitted as
             event data described at this link
-            https://plot.ly/javascript/plotlyjs-events/#event-data.
-            Additionally, every attributes that can be specified
-            per-point (the ones that are `arrayOk: true`) are
-            available.  Anything contained in tag `<extra>` is
+            https://plotly.com/javascript/plotlyjs-events/#event-
+            data. Additionally, every attributes that can be
+            specified per-point (the ones that are `arrayOk: true`)
+            are available.  Anything contained in tag `<extra>` is
             displayed in the secondary box, for example
             "<extra>{fullData.name}</extra>". To hide the secondary
             box completely, use an empty tag `<extra></extra>`.
         hovertemplatesrc
-            Sets the source reference on plot.ly for  hovertemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            hovertemplate .
         hovertext
             Sets hover text elements associated with each (lon,lat)
             pair or item in `locations`. If a single string, the
@@ -11423,24 +12109,27 @@ class Figure(BaseFigure):
             this trace's (lon,lat) or `locations` coordinates. To
             be seen, trace `hoverinfo` must contain a "text" flag.
         hovertextsrc
-            Sets the source reference on plot.ly for  hovertext .
+            Sets the source reference on Chart Studio Cloud for
+            hovertext .
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         lat
             Sets the latitude coordinates (in degrees North).
         latsrc
-            Sets the source reference on plot.ly for  lat .
+            Sets the source reference on Chart Studio Cloud for
+            lat .
         legendgroup
             Sets the legend group for this trace. Traces part of
             the same legend group hide/show at the same time when
             toggling legend items.
         line
-            plotly.graph_objects.scattergeo.Line instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.scattergeo.Line` instance
+            or dict with compatible properties
         locationmode
             Determines the set of locations used to match entries
             in `locations` to regions on the map. Values "ISO-3",
@@ -11453,14 +12142,16 @@ class Figure(BaseFigure):
             Coordinates correspond to the centroid of each location
             given. See `locationmode` for more info.
         locationssrc
-            Sets the source reference on plot.ly for  locations .
+            Sets the source reference on Chart Studio Cloud for
+            locations .
         lon
             Sets the longitude coordinates (in degrees East).
         lonsrc
-            Sets the source reference on plot.ly for  lon .
+            Sets the source reference on Chart Studio Cloud for
+            lon .
         marker
-            plotly.graph_objects.scattergeo.Marker instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.scattergeo.Marker`
+            instance or dict with compatible properties
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -11475,7 +12166,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         mode
             Determines the drawing mode for this scatter trace. If
             the provided `mode` includes "text" then the `text`
@@ -11489,8 +12181,8 @@ class Figure(BaseFigure):
         opacity
             Sets the opacity of the trace.
         selected
-            plotly.graph_objects.scattergeo.Selected instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.scattergeo.Selected`
+            instance or dict with compatible properties
         selectedpoints
             Array containing integer indices of selected points.
             Has an effect only for traces that support selections.
@@ -11502,8 +12194,8 @@ class Figure(BaseFigure):
             Determines whether or not an item corresponding to this
             trace is shown in the legend.
         stream
-            plotly.graph_objects.scattergeo.Stream instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.scattergeo.Stream`
+            instance or dict with compatible properties
         text
             Sets text elements associated with each (lon,lat) pair
             or item in `locations`. If a single string, the same
@@ -11519,10 +12211,11 @@ class Figure(BaseFigure):
             Sets the positions of the `text` elements with respects
             to the (x,y) coordinates.
         textpositionsrc
-            Sets the source reference on plot.ly for  textposition
-            .
+            Sets the source reference on Chart Studio Cloud for
+            textposition .
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         texttemplate
             Template string used for rendering the information text
             that appear on points. Note that this will override
@@ -11534,15 +12227,14 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. Every attributes
             that can be specified per-point (the ones that are
             `arrayOk: true`) are available. variables `lat`, `lon`,
             `location` and `text`.
         texttemplatesrc
-            Sets the source reference on plot.ly for  texttemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            texttemplate .
         uid
             Assign an id to this trace, Use this to provide object
             constancy between traces during animations and
@@ -11566,26 +12258,30 @@ class Figure(BaseFigure):
             preserve user-driven changes if you give each trace a
             `uid` that stays with it as it moves.
         unselected
-            plotly.graph_objects.scattergeo.Unselected instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.scattergeo.Unselected`
+            instance or dict with compatible properties
         visible
             Determines whether or not this trace is visible. If
             "legendonly", the trace is not drawn, but can appear as
             a legend item (provided that the legend itself is
             visible).
-        row : int or None (default)
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
 
         Returns
         -------
         Figure
         """
+        from plotly.graph_objs import Scattergeo
+
         new_trace = Scattergeo(
             connectgaps=connectgaps,
             customdata=customdata,
@@ -11685,11 +12381,17 @@ class Figure(BaseFigure):
         x0=None,
         xaxis=None,
         xcalendar=None,
+        xperiod=None,
+        xperiod0=None,
+        xperiodalignment=None,
         xsrc=None,
         y=None,
         y0=None,
         yaxis=None,
         ycalendar=None,
+        yperiod=None,
+        yperiod0=None,
+        yperiodalignment=None,
         ysrc=None,
         row=None,
         col=None,
@@ -11715,17 +12417,18 @@ class Figure(BaseFigure):
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         dx
             Sets the x coordinate step. See `x0` for more info.
         dy
             Sets the y coordinate step. See `y0` for more info.
         error_x
-            plotly.graph_objects.scattergl.ErrorX instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.scattergl.ErrorX` instance
+            or dict with compatible properties
         error_y
-            plotly.graph_objects.scattergl.ErrorY instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.scattergl.ErrorY` instance
+            or dict with compatible properties
         fill
             Sets the area to fill with a solid color. Defaults to
             "none" unless this trace is stacked, then it gets
@@ -11759,10 +12462,11 @@ class Figure(BaseFigure):
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.scattergl.Hoverlabel instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.scattergl.Hoverlabel`
+            instance or dict with compatible properties
         hovertemplate
             Template string used for rendering the information that
             appear on hover box. Note that this will override
@@ -11774,21 +12478,20 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. The variables
             available in `hovertemplate` are the ones emitted as
             event data described at this link
-            https://plot.ly/javascript/plotlyjs-events/#event-data.
-            Additionally, every attributes that can be specified
-            per-point (the ones that are `arrayOk: true`) are
-            available.  Anything contained in tag `<extra>` is
+            https://plotly.com/javascript/plotlyjs-events/#event-
+            data. Additionally, every attributes that can be
+            specified per-point (the ones that are `arrayOk: true`)
+            are available.  Anything contained in tag `<extra>` is
             displayed in the secondary box, for example
             "<extra>{fullData.name}</extra>". To hide the secondary
             box completely, use an empty tag `<extra></extra>`.
         hovertemplatesrc
-            Sets the source reference on plot.ly for  hovertemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            hovertemplate .
         hovertext
             Sets hover text elements associated with each (x,y)
             pair. If a single string, the same string appears over
@@ -11797,23 +12500,25 @@ class Figure(BaseFigure):
             coordinates. To be seen, trace `hoverinfo` must contain
             a "text" flag.
         hovertextsrc
-            Sets the source reference on plot.ly for  hovertext .
+            Sets the source reference on Chart Studio Cloud for
+            hovertext .
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         legendgroup
             Sets the legend group for this trace. Traces part of
             the same legend group hide/show at the same time when
             toggling legend items.
         line
-            plotly.graph_objects.scattergl.Line instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.scattergl.Line` instance
+            or dict with compatible properties
         marker
-            plotly.graph_objects.scattergl.Marker instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.scattergl.Marker` instance
+            or dict with compatible properties
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -11828,7 +12533,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         mode
             Determines the drawing mode for this scatter trace.
         name
@@ -11837,8 +12543,8 @@ class Figure(BaseFigure):
         opacity
             Sets the opacity of the trace.
         selected
-            plotly.graph_objects.scattergl.Selected instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.scattergl.Selected`
+            instance or dict with compatible properties
         selectedpoints
             Array containing integer indices of selected points.
             Has an effect only for traces that support selections.
@@ -11850,8 +12556,8 @@ class Figure(BaseFigure):
             Determines whether or not an item corresponding to this
             trace is shown in the legend.
         stream
-            plotly.graph_objects.scattergl.Stream instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.scattergl.Stream` instance
+            or dict with compatible properties
         text
             Sets text elements associated with each (x,y) pair. If
             a single string, the same string appears over all the
@@ -11866,10 +12572,11 @@ class Figure(BaseFigure):
             Sets the positions of the `text` elements with respects
             to the (x,y) coordinates.
         textpositionsrc
-            Sets the source reference on plot.ly for  textposition
-            .
+            Sets the source reference on Chart Studio Cloud for
+            textposition .
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         texttemplate
             Template string used for rendering the information text
             that appear on points. Note that this will override
@@ -11881,14 +12588,13 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. Every attributes
             that can be specified per-point (the ones that are
             `arrayOk: true`) are available.
         texttemplatesrc
-            Sets the source reference on plot.ly for  texttemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            texttemplate .
         uid
             Assign an id to this trace, Use this to provide object
             constancy between traces during animations and
@@ -11912,8 +12618,8 @@ class Figure(BaseFigure):
             preserve user-driven changes if you give each trace a
             `uid` that stays with it as it moves.
         unselected
-            plotly.graph_objects.scattergl.Unselected instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.scattergl.Unselected`
+            instance or dict with compatible properties
         visible
             Determines whether or not this trace is visible. If
             "legendonly", the trace is not drawn, but can appear as
@@ -11932,8 +12638,25 @@ class Figure(BaseFigure):
             coordinates refer to `layout.xaxis2`, and so on.
         xcalendar
             Sets the calendar system to use with `x` date data.
+        xperiod
+            Only relevant when the axis `type` is "date". Sets the
+            period positioning in milliseconds or "M<n>" on the x
+            axis. Special values in the form of "M<n>" could be
+            used to declare the number of months. In this case `n`
+            must be a positive integer.
+        xperiod0
+            Only relevant when the axis `type` is "date". Sets the
+            base for period positioning in milliseconds or date
+            string on the x0 axis. When `x0period` is round number
+            of weeks, the `x0period0` by default would be on a
+            Sunday i.e. 2000-01-02, otherwise it would be at
+            2000-01-01.
+        xperiodalignment
+            Only relevant when the axis `type` is "date". Sets the
+            alignment of data points on the x axis.
         xsrc
-            Sets the source reference on plot.ly for  x .
+            Sets the source reference on Chart Studio Cloud for  x
+            .
         y
             Sets the y coordinates.
         y0
@@ -11947,16 +12670,35 @@ class Figure(BaseFigure):
             coordinates refer to `layout.yaxis2`, and so on.
         ycalendar
             Sets the calendar system to use with `y` date data.
+        yperiod
+            Only relevant when the axis `type` is "date". Sets the
+            period positioning in milliseconds or "M<n>" on the y
+            axis. Special values in the form of "M<n>" could be
+            used to declare the number of months. In this case `n`
+            must be a positive integer.
+        yperiod0
+            Only relevant when the axis `type` is "date". Sets the
+            base for period positioning in milliseconds or date
+            string on the y0 axis. When `y0period` is round number
+            of weeks, the `y0period0` by default would be on a
+            Sunday i.e. 2000-01-02, otherwise it would be at
+            2000-01-01.
+        yperiodalignment
+            Only relevant when the axis `type` is "date". Sets the
+            alignment of data points on the y axis.
         ysrc
-            Sets the source reference on plot.ly for  y .
-        row : int or None (default)
+            Sets the source reference on Chart Studio Cloud for  y
+            .
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
         secondary_y: boolean or None (default None)
             If True, associate this trace with the secondary y-axis of the
             subplot at the specified row and col. Only valid if all of the
@@ -11972,6 +12714,8 @@ class Figure(BaseFigure):
         -------
         Figure
         """
+        from plotly.graph_objs import Scattergl
+
         new_trace = Scattergl(
             connectgaps=connectgaps,
             customdata=customdata,
@@ -12018,11 +12762,17 @@ class Figure(BaseFigure):
             x0=x0,
             xaxis=xaxis,
             xcalendar=xcalendar,
+            xperiod=xperiod,
+            xperiod0=xperiod0,
+            xperiodalignment=xperiodalignment,
             xsrc=xsrc,
             y=y,
             y0=y0,
             yaxis=yaxis,
             ycalendar=ycalendar,
+            yperiod=yperiod,
+            yperiod0=yperiod0,
+            yperiodalignment=yperiodalignment,
             ysrc=ysrc,
             **kwargs
         )
@@ -12100,7 +12850,8 @@ class Figure(BaseFigure):
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         fill
             Sets the area to fill with a solid color. Use with
             `fillcolor` if not "none". "toself" connects the
@@ -12116,10 +12867,11 @@ class Figure(BaseFigure):
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.scattermapbox.Hoverlabel instance
-            or dict with compatible properties
+            :class:`plotly.graph_objects.scattermapbox.Hoverlabel`
+            instance or dict with compatible properties
         hovertemplate
             Template string used for rendering the information that
             appear on hover box. Note that this will override
@@ -12131,21 +12883,20 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. The variables
             available in `hovertemplate` are the ones emitted as
             event data described at this link
-            https://plot.ly/javascript/plotlyjs-events/#event-data.
-            Additionally, every attributes that can be specified
-            per-point (the ones that are `arrayOk: true`) are
-            available.  Anything contained in tag `<extra>` is
+            https://plotly.com/javascript/plotlyjs-events/#event-
+            data. Additionally, every attributes that can be
+            specified per-point (the ones that are `arrayOk: true`)
+            are available.  Anything contained in tag `<extra>` is
             displayed in the secondary box, for example
             "<extra>{fullData.name}</extra>". To hide the secondary
             box completely, use an empty tag `<extra></extra>`.
         hovertemplatesrc
-            Sets the source reference on plot.ly for  hovertemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            hovertemplate .
         hovertext
             Sets hover text elements associated with each (lon,lat)
             pair If a single string, the same string appears over
@@ -12154,31 +12905,35 @@ class Figure(BaseFigure):
             coordinates. To be seen, trace `hoverinfo` must contain
             a "text" flag.
         hovertextsrc
-            Sets the source reference on plot.ly for  hovertext .
+            Sets the source reference on Chart Studio Cloud for
+            hovertext .
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         lat
             Sets the latitude coordinates (in degrees North).
         latsrc
-            Sets the source reference on plot.ly for  lat .
+            Sets the source reference on Chart Studio Cloud for
+            lat .
         legendgroup
             Sets the legend group for this trace. Traces part of
             the same legend group hide/show at the same time when
             toggling legend items.
         line
-            plotly.graph_objects.scattermapbox.Line instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.scattermapbox.Line`
+            instance or dict with compatible properties
         lon
             Sets the longitude coordinates (in degrees East).
         lonsrc
-            Sets the source reference on plot.ly for  lon .
+            Sets the source reference on Chart Studio Cloud for
+            lon .
         marker
-            plotly.graph_objects.scattermapbox.Marker instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.scattermapbox.Marker`
+            instance or dict with compatible properties
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -12193,7 +12948,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         mode
             Determines the drawing mode for this scatter trace. If
             the provided `mode` includes "text" then the `text`
@@ -12205,8 +12961,8 @@ class Figure(BaseFigure):
         opacity
             Sets the opacity of the trace.
         selected
-            plotly.graph_objects.scattermapbox.Selected instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.scattermapbox.Selected`
+            instance or dict with compatible properties
         selectedpoints
             Array containing integer indices of selected points.
             Has an effect only for traces that support selections.
@@ -12218,8 +12974,8 @@ class Figure(BaseFigure):
             Determines whether or not an item corresponding to this
             trace is shown in the legend.
         stream
-            plotly.graph_objects.scattermapbox.Stream instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.scattermapbox.Stream`
+            instance or dict with compatible properties
         subplot
             Sets a reference between this trace's data coordinates
             and a mapbox subplot. If "mapbox" (the default value),
@@ -12241,7 +12997,8 @@ class Figure(BaseFigure):
             Sets the positions of the `text` elements with respects
             to the (x,y) coordinates.
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         texttemplate
             Template string used for rendering the information text
             that appear on points. Note that this will override
@@ -12253,15 +13010,14 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. Every attributes
             that can be specified per-point (the ones that are
             `arrayOk: true`) are available. variables `lat`, `lon`
             and `text`.
         texttemplatesrc
-            Sets the source reference on plot.ly for  texttemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            texttemplate .
         uid
             Assign an id to this trace, Use this to provide object
             constancy between traces during animations and
@@ -12285,26 +13041,30 @@ class Figure(BaseFigure):
             preserve user-driven changes if you give each trace a
             `uid` that stays with it as it moves.
         unselected
-            plotly.graph_objects.scattermapbox.Unselected instance
-            or dict with compatible properties
+            :class:`plotly.graph_objects.scattermapbox.Unselected`
+            instance or dict with compatible properties
         visible
             Determines whether or not this trace is visible. If
             "legendonly", the trace is not drawn, but can appear as
             a legend item (provided that the legend itself is
             visible).
-        row : int or None (default)
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
 
         Returns
         -------
         Figure
         """
+        from plotly.graph_objs import Scattermapbox
+
         new_trace = Scattermapbox(
             below=below,
             connectgaps=connectgaps,
@@ -12435,7 +13195,8 @@ class Figure(BaseFigure):
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         dr
             Sets the r coordinate step.
         dtheta
@@ -12463,10 +13224,11 @@ class Figure(BaseFigure):
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.scatterpolar.Hoverlabel instance
-            or dict with compatible properties
+            :class:`plotly.graph_objects.scatterpolar.Hoverlabel`
+            instance or dict with compatible properties
         hoveron
             Do the hover effects highlight individual points
             (markers or line points) or do they highlight filled
@@ -12484,21 +13246,20 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. The variables
             available in `hovertemplate` are the ones emitted as
             event data described at this link
-            https://plot.ly/javascript/plotlyjs-events/#event-data.
-            Additionally, every attributes that can be specified
-            per-point (the ones that are `arrayOk: true`) are
-            available.  Anything contained in tag `<extra>` is
+            https://plotly.com/javascript/plotlyjs-events/#event-
+            data. Additionally, every attributes that can be
+            specified per-point (the ones that are `arrayOk: true`)
+            are available.  Anything contained in tag `<extra>` is
             displayed in the secondary box, for example
             "<extra>{fullData.name}</extra>". To hide the secondary
             box completely, use an empty tag `<extra></extra>`.
         hovertemplatesrc
-            Sets the source reference on plot.ly for  hovertemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            hovertemplate .
         hovertext
             Sets hover text elements associated with each (x,y)
             pair. If a single string, the same string appears over
@@ -12507,23 +13268,25 @@ class Figure(BaseFigure):
             coordinates. To be seen, trace `hoverinfo` must contain
             a "text" flag.
         hovertextsrc
-            Sets the source reference on plot.ly for  hovertext .
+            Sets the source reference on Chart Studio Cloud for
+            hovertext .
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         legendgroup
             Sets the legend group for this trace. Traces part of
             the same legend group hide/show at the same time when
             toggling legend items.
         line
-            plotly.graph_objects.scatterpolar.Line instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.scatterpolar.Line`
+            instance or dict with compatible properties
         marker
-            plotly.graph_objects.scatterpolar.Marker instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.scatterpolar.Marker`
+            instance or dict with compatible properties
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -12538,7 +13301,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         mode
             Determines the drawing mode for this scatter trace. If
             the provided `mode` includes "text" then the `text`
@@ -12558,10 +13322,11 @@ class Figure(BaseFigure):
             coordinates. Use with `dr` where `r0` is the starting
             coordinate and `dr` the step.
         rsrc
-            Sets the source reference on plot.ly for  r .
+            Sets the source reference on Chart Studio Cloud for  r
+            .
         selected
-            plotly.graph_objects.scatterpolar.Selected instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.scatterpolar.Selected`
+            instance or dict with compatible properties
         selectedpoints
             Array containing integer indices of selected points.
             Has an effect only for traces that support selections.
@@ -12573,8 +13338,8 @@ class Figure(BaseFigure):
             Determines whether or not an item corresponding to this
             trace is shown in the legend.
         stream
-            plotly.graph_objects.scatterpolar.Stream instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.scatterpolar.Stream`
+            instance or dict with compatible properties
         subplot
             Sets a reference between this trace's data coordinates
             and a polar subplot. If "polar" (the default value),
@@ -12594,10 +13359,11 @@ class Figure(BaseFigure):
             Sets the positions of the `text` elements with respects
             to the (x,y) coordinates.
         textpositionsrc
-            Sets the source reference on plot.ly for  textposition
-            .
+            Sets the source reference on Chart Studio Cloud for
+            textposition .
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         texttemplate
             Template string used for rendering the information text
             that appear on points. Note that this will override
@@ -12609,15 +13375,14 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. Every attributes
             that can be specified per-point (the ones that are
             `arrayOk: true`) are available. variables `r`, `theta`
             and `text`.
         texttemplatesrc
-            Sets the source reference on plot.ly for  texttemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            texttemplate .
         theta
             Sets the angular coordinates
         theta0
@@ -12625,7 +13390,8 @@ class Figure(BaseFigure):
             coordinates. Use with `dtheta` where `theta0` is the
             starting coordinate and `dtheta` the step.
         thetasrc
-            Sets the source reference on plot.ly for  theta .
+            Sets the source reference on Chart Studio Cloud for
+            theta .
         thetaunit
             Sets the unit of input "theta" values. Has an effect
             only when on "linear" angular axes.
@@ -12652,26 +13418,30 @@ class Figure(BaseFigure):
             preserve user-driven changes if you give each trace a
             `uid` that stays with it as it moves.
         unselected
-            plotly.graph_objects.scatterpolar.Unselected instance
-            or dict with compatible properties
+            :class:`plotly.graph_objects.scatterpolar.Unselected`
+            instance or dict with compatible properties
         visible
             Determines whether or not this trace is visible. If
             "legendonly", the trace is not drawn, but can appear as
             a legend item (provided that the legend itself is
             visible).
-        row : int or None (default)
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
 
         Returns
         -------
         Figure
         """
+        from plotly.graph_objs import Scatterpolar
+
         new_trace = Scatterpolar(
             cliponaxis=cliponaxis,
             connectgaps=connectgaps,
@@ -12800,7 +13570,8 @@ class Figure(BaseFigure):
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         dr
             Sets the r coordinate step.
         dtheta
@@ -12840,10 +13611,11 @@ class Figure(BaseFigure):
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.scatterpolargl.Hoverlabel instance
-            or dict with compatible properties
+            :class:`plotly.graph_objects.scatterpolargl.Hoverlabel`
+            instance or dict with compatible properties
         hovertemplate
             Template string used for rendering the information that
             appear on hover box. Note that this will override
@@ -12855,21 +13627,20 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. The variables
             available in `hovertemplate` are the ones emitted as
             event data described at this link
-            https://plot.ly/javascript/plotlyjs-events/#event-data.
-            Additionally, every attributes that can be specified
-            per-point (the ones that are `arrayOk: true`) are
-            available.  Anything contained in tag `<extra>` is
+            https://plotly.com/javascript/plotlyjs-events/#event-
+            data. Additionally, every attributes that can be
+            specified per-point (the ones that are `arrayOk: true`)
+            are available.  Anything contained in tag `<extra>` is
             displayed in the secondary box, for example
             "<extra>{fullData.name}</extra>". To hide the secondary
             box completely, use an empty tag `<extra></extra>`.
         hovertemplatesrc
-            Sets the source reference on plot.ly for  hovertemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            hovertemplate .
         hovertext
             Sets hover text elements associated with each (x,y)
             pair. If a single string, the same string appears over
@@ -12878,23 +13649,25 @@ class Figure(BaseFigure):
             coordinates. To be seen, trace `hoverinfo` must contain
             a "text" flag.
         hovertextsrc
-            Sets the source reference on plot.ly for  hovertext .
+            Sets the source reference on Chart Studio Cloud for
+            hovertext .
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         legendgroup
             Sets the legend group for this trace. Traces part of
             the same legend group hide/show at the same time when
             toggling legend items.
         line
-            plotly.graph_objects.scatterpolargl.Line instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.scatterpolargl.Line`
+            instance or dict with compatible properties
         marker
-            plotly.graph_objects.scatterpolargl.Marker instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.scatterpolargl.Marker`
+            instance or dict with compatible properties
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -12909,7 +13682,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         mode
             Determines the drawing mode for this scatter trace. If
             the provided `mode` includes "text" then the `text`
@@ -12929,10 +13703,11 @@ class Figure(BaseFigure):
             coordinates. Use with `dr` where `r0` is the starting
             coordinate and `dr` the step.
         rsrc
-            Sets the source reference on plot.ly for  r .
+            Sets the source reference on Chart Studio Cloud for  r
+            .
         selected
-            plotly.graph_objects.scatterpolargl.Selected instance
-            or dict with compatible properties
+            :class:`plotly.graph_objects.scatterpolargl.Selected`
+            instance or dict with compatible properties
         selectedpoints
             Array containing integer indices of selected points.
             Has an effect only for traces that support selections.
@@ -12944,8 +13719,8 @@ class Figure(BaseFigure):
             Determines whether or not an item corresponding to this
             trace is shown in the legend.
         stream
-            plotly.graph_objects.scatterpolargl.Stream instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.scatterpolargl.Stream`
+            instance or dict with compatible properties
         subplot
             Sets a reference between this trace's data coordinates
             and a polar subplot. If "polar" (the default value),
@@ -12965,10 +13740,11 @@ class Figure(BaseFigure):
             Sets the positions of the `text` elements with respects
             to the (x,y) coordinates.
         textpositionsrc
-            Sets the source reference on plot.ly for  textposition
-            .
+            Sets the source reference on Chart Studio Cloud for
+            textposition .
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         texttemplate
             Template string used for rendering the information text
             that appear on points. Note that this will override
@@ -12980,15 +13756,14 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. Every attributes
             that can be specified per-point (the ones that are
             `arrayOk: true`) are available. variables `r`, `theta`
             and `text`.
         texttemplatesrc
-            Sets the source reference on plot.ly for  texttemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            texttemplate .
         theta
             Sets the angular coordinates
         theta0
@@ -12996,7 +13771,8 @@ class Figure(BaseFigure):
             coordinates. Use with `dtheta` where `theta0` is the
             starting coordinate and `dtheta` the step.
         thetasrc
-            Sets the source reference on plot.ly for  theta .
+            Sets the source reference on Chart Studio Cloud for
+            theta .
         thetaunit
             Sets the unit of input "theta" values. Has an effect
             only when on "linear" angular axes.
@@ -13023,26 +13799,30 @@ class Figure(BaseFigure):
             preserve user-driven changes if you give each trace a
             `uid` that stays with it as it moves.
         unselected
-            plotly.graph_objects.scatterpolargl.Unselected instance
-            or dict with compatible properties
+            :class:`plotly.graph_objects.scatterpolargl.Unselected`
+            instance or dict with compatible properties
         visible
             Determines whether or not this trace is visible. If
             "legendonly", the trace is not drawn, but can appear as
             a legend item (provided that the legend itself is
             visible).
-        row : int or None (default)
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
 
         Returns
         -------
         Figure
         """
+        from plotly.graph_objs import Scatterpolargl
+
         new_trace = Scatterpolargl(
             connectgaps=connectgaps,
             customdata=customdata,
@@ -13164,7 +13944,8 @@ class Figure(BaseFigure):
             two arrays are provided they must be normalized to
             match `ternary<i>.sum`.
         asrc
-            Sets the source reference on plot.ly for  a .
+            Sets the source reference on Chart Studio Cloud for  a
+            .
         b
             Sets the quantity of component `a` in each data point.
             If `a`, `b`, and `c` are all provided, they need not be
@@ -13172,7 +13953,8 @@ class Figure(BaseFigure):
             two arrays are provided they must be normalized to
             match `ternary<i>.sum`.
         bsrc
-            Sets the source reference on plot.ly for  b .
+            Sets the source reference on Chart Studio Cloud for  b
+            .
         c
             Sets the quantity of component `a` in each data point.
             If `a`, `b`, and `c` are all provided, they need not be
@@ -13189,14 +13971,16 @@ class Figure(BaseFigure):
             Determines whether or not gaps (i.e. {nan} or missing
             values) in the provided data arrays are connected.
         csrc
-            Sets the source reference on plot.ly for  c .
+            Sets the source reference on Chart Studio Cloud for  c
+            .
         customdata
             Assigns extra data each datum. This may be useful when
             listening to hover, click and selection events. Note
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         fill
             Sets the area to fill with a solid color. Use with
             `fillcolor` if not "none". scatterternary has a subset
@@ -13218,10 +14002,11 @@ class Figure(BaseFigure):
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.scatterternary.Hoverlabel instance
-            or dict with compatible properties
+            :class:`plotly.graph_objects.scatterternary.Hoverlabel`
+            instance or dict with compatible properties
         hoveron
             Do the hover effects highlight individual points
             (markers or line points) or do they highlight filled
@@ -13239,21 +14024,20 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. The variables
             available in `hovertemplate` are the ones emitted as
             event data described at this link
-            https://plot.ly/javascript/plotlyjs-events/#event-data.
-            Additionally, every attributes that can be specified
-            per-point (the ones that are `arrayOk: true`) are
-            available.  Anything contained in tag `<extra>` is
+            https://plotly.com/javascript/plotlyjs-events/#event-
+            data. Additionally, every attributes that can be
+            specified per-point (the ones that are `arrayOk: true`)
+            are available.  Anything contained in tag `<extra>` is
             displayed in the secondary box, for example
             "<extra>{fullData.name}</extra>". To hide the secondary
             box completely, use an empty tag `<extra></extra>`.
         hovertemplatesrc
-            Sets the source reference on plot.ly for  hovertemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            hovertemplate .
         hovertext
             Sets hover text elements associated with each (a,b,c)
             point. If a single string, the same string appears over
@@ -13262,23 +14046,25 @@ class Figure(BaseFigure):
             To be seen, trace `hoverinfo` must contain a "text"
             flag.
         hovertextsrc
-            Sets the source reference on plot.ly for  hovertext .
+            Sets the source reference on Chart Studio Cloud for
+            hovertext .
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         legendgroup
             Sets the legend group for this trace. Traces part of
             the same legend group hide/show at the same time when
             toggling legend items.
         line
-            plotly.graph_objects.scatterternary.Line instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.scatterternary.Line`
+            instance or dict with compatible properties
         marker
-            plotly.graph_objects.scatterternary.Marker instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.scatterternary.Marker`
+            instance or dict with compatible properties
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -13293,7 +14079,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         mode
             Determines the drawing mode for this scatter trace. If
             the provided `mode` includes "text" then the `text`
@@ -13307,8 +14094,8 @@ class Figure(BaseFigure):
         opacity
             Sets the opacity of the trace.
         selected
-            plotly.graph_objects.scatterternary.Selected instance
-            or dict with compatible properties
+            :class:`plotly.graph_objects.scatterternary.Selected`
+            instance or dict with compatible properties
         selectedpoints
             Array containing integer indices of selected points.
             Has an effect only for traces that support selections.
@@ -13320,8 +14107,8 @@ class Figure(BaseFigure):
             Determines whether or not an item corresponding to this
             trace is shown in the legend.
         stream
-            plotly.graph_objects.scatterternary.Stream instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.scatterternary.Stream`
+            instance or dict with compatible properties
         subplot
             Sets a reference between this trace's data coordinates
             and a ternary subplot. If "ternary" (the default
@@ -13348,10 +14135,11 @@ class Figure(BaseFigure):
             Sets the positions of the `text` elements with respects
             to the (x,y) coordinates.
         textpositionsrc
-            Sets the source reference on plot.ly for  textposition
-            .
+            Sets the source reference on Chart Studio Cloud for
+            textposition .
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         texttemplate
             Template string used for rendering the information text
             that appear on points. Note that this will override
@@ -13363,15 +14151,14 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. Every attributes
             that can be specified per-point (the ones that are
             `arrayOk: true`) are available. variables `a`, `b`, `c`
             and `text`.
         texttemplatesrc
-            Sets the source reference on plot.ly for  texttemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            texttemplate .
         uid
             Assign an id to this trace, Use this to provide object
             constancy between traces during animations and
@@ -13395,26 +14182,30 @@ class Figure(BaseFigure):
             preserve user-driven changes if you give each trace a
             `uid` that stays with it as it moves.
         unselected
-            plotly.graph_objects.scatterternary.Unselected instance
-            or dict with compatible properties
+            :class:`plotly.graph_objects.scatterternary.Unselected`
+            instance or dict with compatible properties
         visible
             Determines whether or not this trace is visible. If
             "legendonly", the trace is not drawn, but can appear as
             a legend item (provided that the legend itself is
             visible).
-        row : int or None (default)
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
 
         Returns
         -------
         Figure
         """
+        from plotly.graph_objs import Scatterternary
+
         new_trace = Scatterternary(
             a=a,
             asrc=asrc,
@@ -13526,13 +14317,15 @@ class Figure(BaseFigure):
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         diagonal
-            plotly.graph_objects.splom.Diagonal instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.splom.Diagonal` instance
+            or dict with compatible properties
         dimensions
-            A tuple of plotly.graph_objects.splom.Dimension
-            instances or dicts with compatible properties
+            A tuple of
+            :class:`plotly.graph_objects.splom.Dimension` instances
+            or dicts with compatible properties
         dimensiondefaults
             When used in a template (as
             layout.template.data.splom.dimensiondefaults), sets the
@@ -13544,10 +14337,11 @@ class Figure(BaseFigure):
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.splom.Hoverlabel instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.splom.Hoverlabel` instance
+            or dict with compatible properties
         hovertemplate
             Template string used for rendering the information that
             appear on hover box. Note that this will override
@@ -13559,38 +14353,39 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. The variables
             available in `hovertemplate` are the ones emitted as
             event data described at this link
-            https://plot.ly/javascript/plotlyjs-events/#event-data.
-            Additionally, every attributes that can be specified
-            per-point (the ones that are `arrayOk: true`) are
-            available.  Anything contained in tag `<extra>` is
+            https://plotly.com/javascript/plotlyjs-events/#event-
+            data. Additionally, every attributes that can be
+            specified per-point (the ones that are `arrayOk: true`)
+            are available.  Anything contained in tag `<extra>` is
             displayed in the secondary box, for example
             "<extra>{fullData.name}</extra>". To hide the secondary
             box completely, use an empty tag `<extra></extra>`.
         hovertemplatesrc
-            Sets the source reference on plot.ly for  hovertemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            hovertemplate .
         hovertext
             Same as `text`.
         hovertextsrc
-            Sets the source reference on plot.ly for  hovertext .
+            Sets the source reference on Chart Studio Cloud for
+            hovertext .
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         legendgroup
             Sets the legend group for this trace. Traces part of
             the same legend group hide/show at the same time when
             toggling legend items.
         marker
-            plotly.graph_objects.splom.Marker instance or dict with
-            compatible properties
+            :class:`plotly.graph_objects.splom.Marker` instance or
+            dict with compatible properties
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -13605,15 +14400,16 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover.
         opacity
             Sets the opacity of the trace.
         selected
-            plotly.graph_objects.splom.Selected instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.splom.Selected` instance
+            or dict with compatible properties
         selectedpoints
             Array containing integer indices of selected points.
             Has an effect only for traces that support selections.
@@ -13631,8 +14427,8 @@ class Figure(BaseFigure):
             Determines whether or not subplots on the upper half
             from the diagonal are displayed.
         stream
-            plotly.graph_objects.splom.Stream instance or dict with
-            compatible properties
+            :class:`plotly.graph_objects.splom.Stream` instance or
+            dict with compatible properties
         text
             Sets text elements associated with each (x,y) pair to
             appear on hover. If a single string, the same string
@@ -13640,7 +14436,8 @@ class Figure(BaseFigure):
             string, the items are mapped in order to the this
             trace's (x,y) coordinates.
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         uid
             Assign an id to this trace, Use this to provide object
             constancy between traces during animations and
@@ -13664,8 +14461,8 @@ class Figure(BaseFigure):
             preserve user-driven changes if you give each trace a
             `uid` that stays with it as it moves.
         unselected
-            plotly.graph_objects.splom.Unselected instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.splom.Unselected` instance
+            or dict with compatible properties
         visible
             Determines whether or not this trace is visible. If
             "legendonly", the trace is not drawn, but can appear as
@@ -13687,19 +14484,23 @@ class Figure(BaseFigure):
             is false and `showupperhalf` or `showlowerhalf` is
             false, this splom trace will generate one less x-axis
             and one less y-axis.
-        row : int or None (default)
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
 
         Returns
         -------
         Figure
         """
+        from plotly.graph_objs import Splom
+
         new_trace = Splom(
             customdata=customdata,
             customdatasrc=customdatasrc,
@@ -13842,8 +14643,8 @@ class Figure(BaseFigure):
             `layout.coloraxis2`, etc. Note that multiple color
             scales can be linked to the same color axis.
         colorbar
-            plotly.graph_objects.streamtube.ColorBar instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.streamtube.ColorBar`
+            instance or dict with compatible properties
         colorscale
             Sets the colorscale. The colorscale must be an array
             containing arrays mapping a normalized value to an rgb,
@@ -13862,17 +14663,19 @@ class Figure(BaseFigure):
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         hoverinfo
             Determines which trace information appear on hover. If
             `none` or `skip` are set, no information is displayed
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.streamtube.Hoverlabel instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.streamtube.Hoverlabel`
+            instance or dict with compatible properties
         hovertemplate
             Template string used for rendering the information that
             appear on hover box. Note that this will override
@@ -13884,23 +14687,22 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. The variables
             available in `hovertemplate` are the ones emitted as
             event data described at this link
-            https://plot.ly/javascript/plotlyjs-events/#event-data.
-            Additionally, every attributes that can be specified
-            per-point (the ones that are `arrayOk: true`) are
-            available. variables `tubex`, `tubey`, `tubez`,
+            https://plotly.com/javascript/plotlyjs-events/#event-
+            data. Additionally, every attributes that can be
+            specified per-point (the ones that are `arrayOk: true`)
+            are available. variables `tubex`, `tubey`, `tubez`,
             `tubeu`, `tubev`, `tubew`, `norm` and `divergence`.
             Anything contained in tag `<extra>` is displayed in the
             secondary box, for example
             "<extra>{fullData.name}</extra>". To hide the secondary
             box completely, use an empty tag `<extra></extra>`.
         hovertemplatesrc
-            Sets the source reference on plot.ly for  hovertemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            hovertemplate .
         hovertext
             Same as `text`.
         ids
@@ -13908,17 +14710,18 @@ class Figure(BaseFigure):
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         legendgroup
             Sets the legend group for this trace. Traces part of
             the same legend group hide/show at the same time when
             toggling legend items.
         lighting
-            plotly.graph_objects.streamtube.Lighting instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.streamtube.Lighting`
+            instance or dict with compatible properties
         lightposition
-            plotly.graph_objects.streamtube.Lightposition instance
-            or dict with compatible properties
+            :class:`plotly.graph_objects.streamtube.Lightposition`
+            instance or dict with compatible properties
         maxdisplayed
             The maximum number of displayed segments in a
             streamtube.
@@ -13936,7 +14739,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover.
@@ -13969,11 +14773,11 @@ class Figure(BaseFigure):
             1, which avoids two max divergence tubes from touching
             at adjacent starting positions.
         starts
-            plotly.graph_objects.streamtube.Starts instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.streamtube.Starts`
+            instance or dict with compatible properties
         stream
-            plotly.graph_objects.streamtube.Stream instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.streamtube.Stream`
+            instance or dict with compatible properties
         text
             Sets a text element associated with this trace. If
             trace `hoverinfo` contains a "text" flag, this text
@@ -14004,7 +14808,8 @@ class Figure(BaseFigure):
             preserve user-driven changes if you give each trace a
             `uid` that stays with it as it moves.
         usrc
-            Sets the source reference on plot.ly for  u .
+            Sets the source reference on Chart Studio Cloud for  u
+            .
         v
             Sets the y components of the vector field.
         visible
@@ -14013,36 +14818,45 @@ class Figure(BaseFigure):
             a legend item (provided that the legend itself is
             visible).
         vsrc
-            Sets the source reference on plot.ly for  v .
+            Sets the source reference on Chart Studio Cloud for  v
+            .
         w
             Sets the z components of the vector field.
         wsrc
-            Sets the source reference on plot.ly for  w .
+            Sets the source reference on Chart Studio Cloud for  w
+            .
         x
             Sets the x coordinates of the vector field.
         xsrc
-            Sets the source reference on plot.ly for  x .
+            Sets the source reference on Chart Studio Cloud for  x
+            .
         y
             Sets the y coordinates of the vector field.
         ysrc
-            Sets the source reference on plot.ly for  y .
+            Sets the source reference on Chart Studio Cloud for  y
+            .
         z
             Sets the z coordinates of the vector field.
         zsrc
-            Sets the source reference on plot.ly for  z .
-        row : int or None (default)
+            Sets the source reference on Chart Studio Cloud for  z
+            .
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
 
         Returns
         -------
         Figure
         """
+        from plotly.graph_objs import Streamtube
+
         new_trace = Streamtube(
             autocolorscale=autocolorscale,
             cauto=cauto,
@@ -14128,6 +14942,9 @@ class Figure(BaseFigure):
         outsidetextfont=None,
         parents=None,
         parentssrc=None,
+        root=None,
+        rotation=None,
+        sort=None,
         stream=None,
         text=None,
         textfont=None,
@@ -14170,20 +14987,22 @@ class Figure(BaseFigure):
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         domain
-            plotly.graph_objects.sunburst.Domain instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.sunburst.Domain` instance
+            or dict with compatible properties
         hoverinfo
             Determines which trace information appear on hover. If
             `none` or `skip` are set, no information is displayed
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.sunburst.Hoverlabel instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.sunburst.Hoverlabel`
+            instance or dict with compatible properties
         hovertemplate
             Template string used for rendering the information that
             appear on hover box. Note that this will override
@@ -14195,23 +15014,22 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. The variables
             available in `hovertemplate` are the ones emitted as
             event data described at this link
-            https://plot.ly/javascript/plotlyjs-events/#event-data.
-            Additionally, every attributes that can be specified
-            per-point (the ones that are `arrayOk: true`) are
-            available. variables `currentPath`, `root`, `entry`,
-            `percentRoot`, `percentEntry` and `percentParent`.
-            Anything contained in tag `<extra>` is displayed in the
-            secondary box, for example
+            https://plotly.com/javascript/plotlyjs-events/#event-
+            data. Additionally, every attributes that can be
+            specified per-point (the ones that are `arrayOk: true`)
+            are available. variables `currentPath`, `root`,
+            `entry`, `percentRoot`, `percentEntry` and
+            `percentParent`. Anything contained in tag `<extra>` is
+            displayed in the secondary box, for example
             "<extra>{fullData.name}</extra>". To hide the secondary
             box completely, use an empty tag `<extra></extra>`.
         hovertemplatesrc
-            Sets the source reference on plot.ly for  hovertemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            hovertemplate .
         hovertext
             Sets hover text elements associated with each sector.
             If a single string, the same string appears for all
@@ -14219,30 +15037,36 @@ class Figure(BaseFigure):
             mapped in order of this trace's sectors. To be seen,
             trace `hoverinfo` must contain a "text" flag.
         hovertextsrc
-            Sets the source reference on plot.ly for  hovertext .
+            Sets the source reference on Chart Studio Cloud for
+            hovertext .
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         insidetextfont
             Sets the font used for `textinfo` lying inside the
             sector.
         insidetextorientation
-            Determines the orientation of text inside slices. With
-            "auto" the texts may automatically be rotated to fit
-            with the maximum size inside the slice. Using
-            "horizontal" option forces text to be horizontal. Using
-            "radial" option forces text to be radial. Using
-            "tangential" option forces text to be tangential.
+            Controls the orientation of the text inside chart
+            sectors. When set to "auto", text may be oriented in
+            any direction in order to be as big as possible in the
+            middle of a sector. The "horizontal" option orients
+            text to be parallel with the bottom of the chart, and
+            may make text smaller in order to achieve that goal.
+            The "radial" option orients text along the radius of
+            the sector. The "tangential" option orients text
+            perpendicular to the radius of the sector.
         labels
             Sets the labels of each of the sectors.
         labelssrc
-            Sets the source reference on plot.ly for  labels .
+            Sets the source reference on Chart Studio Cloud for
+            labels .
         leaf
-            plotly.graph_objects.sunburst.Leaf instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.sunburst.Leaf` instance or
+            dict with compatible properties
         level
             Sets the level from which this trace hierarchy is
             rendered. Set `level` to `''` to start from the root
@@ -14250,8 +15074,8 @@ class Figure(BaseFigure):
             filled in, otherwise plotly attempts to find a matching
             item in `labels`.
         marker
-            plotly.graph_objects.sunburst.Marker instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.sunburst.Marker` instance
+            or dict with compatible properties
         maxdepth
             Sets the number of rendered sectors from any given
             `level`. Set `maxdepth` to "-1" to render all the
@@ -14270,7 +15094,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover.
@@ -14291,10 +15116,20 @@ class Figure(BaseFigure):
             is not set, plotly attempts to find matching items in
             `labels`, but beware they must be unique.
         parentssrc
-            Sets the source reference on plot.ly for  parents .
+            Sets the source reference on Chart Studio Cloud for
+            parents .
+        root
+            :class:`plotly.graph_objects.sunburst.Root` instance or
+            dict with compatible properties
+        rotation
+            Rotates the whole diagram counterclockwise by some
+            angle. By default the first slice starts at 3 o'clock.
+        sort
+            Determines whether or not the sectors are reordered
+            from largest to smallest.
         stream
-            plotly.graph_objects.sunburst.Stream instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.sunburst.Stream` instance
+            or dict with compatible properties
         text
             Sets text elements associated with each sector. If
             trace `textinfo` contains a "text" flag, these elements
@@ -14306,7 +15141,8 @@ class Figure(BaseFigure):
         textinfo
             Determines which trace information appear on the graph.
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         texttemplate
             Template string used for rendering the information text
             that appear on points. Note that this will override
@@ -14318,16 +15154,15 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. Every attributes
             that can be specified per-point (the ones that are
             `arrayOk: true`) are available. variables
             `currentPath`, `root`, `entry`, `percentRoot`,
             `percentEntry`, `percentParent`, `label` and `value`.
         texttemplatesrc
-            Sets the source reference on plot.ly for  texttemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            texttemplate .
         uid
             Assign an id to this trace, Use this to provide object
             constancy between traces during animations and
@@ -14355,25 +15190,30 @@ class Figure(BaseFigure):
             Use with `branchvalues` to determine how the values are
             summed.
         valuessrc
-            Sets the source reference on plot.ly for  values .
+            Sets the source reference on Chart Studio Cloud for
+            values .
         visible
             Determines whether or not this trace is visible. If
             "legendonly", the trace is not drawn, but can appear as
             a legend item (provided that the legend itself is
             visible).
-        row : int or None (default)
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
 
         Returns
         -------
         Figure
         """
+        from plotly.graph_objs import Sunburst
+
         new_trace = Sunburst(
             branchvalues=branchvalues,
             count=count,
@@ -14404,6 +15244,9 @@ class Figure(BaseFigure):
             outsidetextfont=outsidetextfont,
             parents=parents,
             parentssrc=parentssrc,
+            root=root,
+            rotation=rotation,
+            sort=sort,
             stream=stream,
             text=text,
             textfont=textfont,
@@ -14451,6 +15294,7 @@ class Figure(BaseFigure):
         metasrc=None,
         name=None,
         opacity=None,
+        opacityscale=None,
         reversescale=None,
         scene=None,
         showlegend=None,
@@ -14524,8 +15368,8 @@ class Figure(BaseFigure):
             `layout.coloraxis2`, etc. Note that multiple color
             scales can be linked to the same color axis.
         colorbar
-            plotly.graph_objects.surface.ColorBar instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.surface.ColorBar` instance
+            or dict with compatible properties
         colorscale
             Sets the colorscale. The colorscale must be an array
             containing arrays mapping a normalized value to an rgb,
@@ -14542,15 +15386,16 @@ class Figure(BaseFigure):
             Determines whether or not gaps (i.e. {nan} or missing
             values) in the `z` data are filled in.
         contours
-            plotly.graph_objects.surface.Contours instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.surface.Contours` instance
+            or dict with compatible properties
         customdata
             Assigns extra data each datum. This may be useful when
             listening to hover, click and selection events. Note
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         hidesurface
             Determines whether or not a surface is drawn. For
             example, set `hidesurface` to False `contours.x.show`
@@ -14562,10 +15407,11 @@ class Figure(BaseFigure):
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.surface.Hoverlabel instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.surface.Hoverlabel`
+            instance or dict with compatible properties
         hovertemplate
             Template string used for rendering the information that
             appear on hover box. Note that this will override
@@ -14577,41 +15423,42 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. The variables
             available in `hovertemplate` are the ones emitted as
             event data described at this link
-            https://plot.ly/javascript/plotlyjs-events/#event-data.
-            Additionally, every attributes that can be specified
-            per-point (the ones that are `arrayOk: true`) are
-            available.  Anything contained in tag `<extra>` is
+            https://plotly.com/javascript/plotlyjs-events/#event-
+            data. Additionally, every attributes that can be
+            specified per-point (the ones that are `arrayOk: true`)
+            are available.  Anything contained in tag `<extra>` is
             displayed in the secondary box, for example
             "<extra>{fullData.name}</extra>". To hide the secondary
             box completely, use an empty tag `<extra></extra>`.
         hovertemplatesrc
-            Sets the source reference on plot.ly for  hovertemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            hovertemplate .
         hovertext
             Same as `text`.
         hovertextsrc
-            Sets the source reference on plot.ly for  hovertext .
+            Sets the source reference on Chart Studio Cloud for
+            hovertext .
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         legendgroup
             Sets the legend group for this trace. Traces part of
             the same legend group hide/show at the same time when
             toggling legend items.
         lighting
-            plotly.graph_objects.surface.Lighting instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.surface.Lighting` instance
+            or dict with compatible properties
         lightposition
-            plotly.graph_objects.surface.Lightposition instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.surface.Lightposition`
+            instance or dict with compatible properties
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -14626,7 +15473,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover.
@@ -14638,6 +15486,17 @@ class Figure(BaseFigure):
             transparent surfaces may not perfectly be sorted in
             depth by the webgl API. This behavior may be improved
             in the near future and is subject to change.
+        opacityscale
+            Sets the opacityscale. The opacityscale must be an
+            array containing arrays mapping a normalized value to
+            an opacity value. At minimum, a mapping for the lowest
+            (0) and highest (1) values are required. For example,
+            `[[0, 1], [0.5, 0.2], [1, 1]]` means that higher/lower
+            values would have higher opacity values and those in
+            the middle would be more transparent Alternatively,
+            `opacityscale` may be a palette name string of the
+            following list: 'min', 'max', 'extremes' and 'uniform'.
+            The default is 'uniform'.
         reversescale
             Reverses the color mapping if true. If true, `cmin`
             will correspond to the last color in the array and
@@ -14655,21 +15514,22 @@ class Figure(BaseFigure):
             Determines whether or not a colorbar is displayed for
             this trace.
         stream
-            plotly.graph_objects.surface.Stream instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.surface.Stream` instance
+            or dict with compatible properties
         surfacecolor
             Sets the surface color values, used for setting a color
             scale independent of `z`.
         surfacecolorsrc
-            Sets the source reference on plot.ly for  surfacecolor
-            .
+            Sets the source reference on Chart Studio Cloud for
+            surfacecolor .
         text
             Sets the text elements associated with each z value. If
             trace `hoverinfo` contains a "text" flag and
             "hovertext" is not set, these elements will be seen in
             the hover labels.
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         uid
             Assign an id to this trace, Use this to provide object
             constancy between traces during animations and
@@ -14702,32 +15562,39 @@ class Figure(BaseFigure):
         xcalendar
             Sets the calendar system to use with `x` date data.
         xsrc
-            Sets the source reference on plot.ly for  x .
+            Sets the source reference on Chart Studio Cloud for  x
+            .
         y
             Sets the y coordinates.
         ycalendar
             Sets the calendar system to use with `y` date data.
         ysrc
-            Sets the source reference on plot.ly for  y .
+            Sets the source reference on Chart Studio Cloud for  y
+            .
         z
             Sets the z coordinates.
         zcalendar
             Sets the calendar system to use with `z` date data.
         zsrc
-            Sets the source reference on plot.ly for  z .
-        row : int or None (default)
+            Sets the source reference on Chart Studio Cloud for  z
+            .
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
 
         Returns
         -------
         Figure
         """
+        from plotly.graph_objs import Surface
+
         new_trace = Surface(
             autocolorscale=autocolorscale,
             cauto=cauto,
@@ -14758,6 +15625,7 @@ class Figure(BaseFigure):
             metasrc=metasrc,
             name=name,
             opacity=opacity,
+            opacityscale=opacityscale,
             reversescale=reversescale,
             scene=scene,
             showlegend=showlegend,
@@ -14822,50 +15690,55 @@ class Figure(BaseFigure):
         Parameters
         ----------
         cells
-            plotly.graph_objects.table.Cells instance or dict with
-            compatible properties
+            :class:`plotly.graph_objects.table.Cells` instance or
+            dict with compatible properties
         columnorder
             Specifies the rendered order of the data columns; for
             example, a value `2` at position `0` means that column
             index `0` in the data will be rendered as the third
             column, as columns have an index base of zero.
         columnordersrc
-            Sets the source reference on plot.ly for  columnorder .
+            Sets the source reference on Chart Studio Cloud for
+            columnorder .
         columnwidth
             The width of columns expressed as a ratio. Columns fill
             the available width in proportion of their specified
             column widths.
         columnwidthsrc
-            Sets the source reference on plot.ly for  columnwidth .
+            Sets the source reference on Chart Studio Cloud for
+            columnwidth .
         customdata
             Assigns extra data each datum. This may be useful when
             listening to hover, click and selection events. Note
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         domain
-            plotly.graph_objects.table.Domain instance or dict with
-            compatible properties
+            :class:`plotly.graph_objects.table.Domain` instance or
+            dict with compatible properties
         header
-            plotly.graph_objects.table.Header instance or dict with
-            compatible properties
+            :class:`plotly.graph_objects.table.Header` instance or
+            dict with compatible properties
         hoverinfo
             Determines which trace information appear on hover. If
             `none` or `skip` are set, no information is displayed
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.table.Hoverlabel instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.table.Hoverlabel` instance
+            or dict with compatible properties
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -14880,13 +15753,14 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover.
         stream
-            plotly.graph_objects.table.Stream instance or dict with
-            compatible properties
+            :class:`plotly.graph_objects.table.Stream` instance or
+            dict with compatible properties
         uid
             Assign an id to this trace, Use this to provide object
             constancy between traces during animations and
@@ -14914,19 +15788,23 @@ class Figure(BaseFigure):
             "legendonly", the trace is not drawn, but can appear as
             a legend item (provided that the legend itself is
             visible).
-        row : int or None (default)
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
 
         Returns
         -------
         Figure
         """
+        from plotly.graph_objs import Table
+
         new_trace = Table(
             cells=cells,
             columnorder=columnorder,
@@ -14983,6 +15861,8 @@ class Figure(BaseFigure):
         parents=None,
         parentssrc=None,
         pathbar=None,
+        root=None,
+        sort=None,
         stream=None,
         text=None,
         textfont=None,
@@ -15028,20 +15908,22 @@ class Figure(BaseFigure):
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         domain
-            plotly.graph_objects.treemap.Domain instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.treemap.Domain` instance
+            or dict with compatible properties
         hoverinfo
             Determines which trace information appear on hover. If
             `none` or `skip` are set, no information is displayed
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.treemap.Hoverlabel instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.treemap.Hoverlabel`
+            instance or dict with compatible properties
         hovertemplate
             Template string used for rendering the information that
             appear on hover box. Note that this will override
@@ -15053,23 +15935,22 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. The variables
             available in `hovertemplate` are the ones emitted as
             event data described at this link
-            https://plot.ly/javascript/plotlyjs-events/#event-data.
-            Additionally, every attributes that can be specified
-            per-point (the ones that are `arrayOk: true`) are
-            available. variables `currentPath`, `root`, `entry`,
-            `percentRoot`, `percentEntry` and `percentParent`.
-            Anything contained in tag `<extra>` is displayed in the
-            secondary box, for example
+            https://plotly.com/javascript/plotlyjs-events/#event-
+            data. Additionally, every attributes that can be
+            specified per-point (the ones that are `arrayOk: true`)
+            are available. variables `currentPath`, `root`,
+            `entry`, `percentRoot`, `percentEntry` and
+            `percentParent`. Anything contained in tag `<extra>` is
+            displayed in the secondary box, for example
             "<extra>{fullData.name}</extra>". To hide the secondary
             box completely, use an empty tag `<extra></extra>`.
         hovertemplatesrc
-            Sets the source reference on plot.ly for  hovertemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            hovertemplate .
         hovertext
             Sets hover text elements associated with each sector.
             If a single string, the same string appears for all
@@ -15077,20 +15958,23 @@ class Figure(BaseFigure):
             mapped in order of this trace's sectors. To be seen,
             trace `hoverinfo` must contain a "text" flag.
         hovertextsrc
-            Sets the source reference on plot.ly for  hovertext .
+            Sets the source reference on Chart Studio Cloud for
+            hovertext .
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         insidetextfont
             Sets the font used for `textinfo` lying inside the
             sector.
         labels
             Sets the labels of each of the sectors.
         labelssrc
-            Sets the source reference on plot.ly for  labels .
+            Sets the source reference on Chart Studio Cloud for
+            labels .
         level
             Sets the level from which this trace hierarchy is
             rendered. Set `level` to `''` to start from the root
@@ -15098,8 +15982,8 @@ class Figure(BaseFigure):
             filled in, otherwise plotly attempts to find a matching
             item in `labels`.
         marker
-            plotly.graph_objects.treemap.Marker instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.treemap.Marker` instance
+            or dict with compatible properties
         maxdepth
             Sets the number of rendered sectors from any given
             `level`. Set `maxdepth` to "-1" to render all the
@@ -15118,7 +16002,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover.
@@ -15139,13 +16024,20 @@ class Figure(BaseFigure):
             is not set, plotly attempts to find matching items in
             `labels`, but beware they must be unique.
         parentssrc
-            Sets the source reference on plot.ly for  parents .
+            Sets the source reference on Chart Studio Cloud for
+            parents .
         pathbar
-            plotly.graph_objects.treemap.Pathbar instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.treemap.Pathbar` instance
+            or dict with compatible properties
+        root
+            :class:`plotly.graph_objects.treemap.Root` instance or
+            dict with compatible properties
+        sort
+            Determines whether or not the sectors are reordered
+            from largest to smallest.
         stream
-            plotly.graph_objects.treemap.Stream instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.treemap.Stream` instance
+            or dict with compatible properties
         text
             Sets text elements associated with each sector. If
             trace `textinfo` contains a "text" flag, these elements
@@ -15159,7 +16051,8 @@ class Figure(BaseFigure):
         textposition
             Sets the positions of the `text` elements.
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         texttemplate
             Template string used for rendering the information text
             that appear on points. Note that this will override
@@ -15171,19 +16064,18 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. Every attributes
             that can be specified per-point (the ones that are
             `arrayOk: true`) are available. variables
             `currentPath`, `root`, `entry`, `percentRoot`,
             `percentEntry`, `percentParent`, `label` and `value`.
         texttemplatesrc
-            Sets the source reference on plot.ly for  texttemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            texttemplate .
         tiling
-            plotly.graph_objects.treemap.Tiling instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.treemap.Tiling` instance
+            or dict with compatible properties
         uid
             Assign an id to this trace, Use this to provide object
             constancy between traces during animations and
@@ -15211,25 +16103,30 @@ class Figure(BaseFigure):
             Use with `branchvalues` to determine how the values are
             summed.
         valuessrc
-            Sets the source reference on plot.ly for  values .
+            Sets the source reference on Chart Studio Cloud for
+            values .
         visible
             Determines whether or not this trace is visible. If
             "legendonly", the trace is not drawn, but can appear as
             a legend item (provided that the legend itself is
             visible).
-        row : int or None (default)
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
 
         Returns
         -------
         Figure
         """
+        from plotly.graph_objs import Treemap
+
         new_trace = Treemap(
             branchvalues=branchvalues,
             count=count,
@@ -15259,6 +16156,8 @@ class Figure(BaseFigure):
             parents=parents,
             parentssrc=parentssrc,
             pathbar=pathbar,
+            root=root,
+            sort=sort,
             stream=stream,
             text=text,
             textfont=textfont,
@@ -15359,15 +16258,16 @@ class Figure(BaseFigure):
             estimate. By default, the bandwidth is determined by
             Silverman's rule of thumb.
         box
-            plotly.graph_objects.violin.Box instance or dict with
-            compatible properties
+            :class:`plotly.graph_objects.violin.Box` instance or
+            dict with compatible properties
         customdata
             Assigns extra data each datum. This may be useful when
             listening to hover, click and selection events. Note
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         fillcolor
             Sets the fill color. Defaults to a half-transparent
             variant of the line color, marker color, or marker line
@@ -15378,10 +16278,11 @@ class Figure(BaseFigure):
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.violin.Hoverlabel instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.violin.Hoverlabel`
+            instance or dict with compatible properties
         hoveron
             Do the hover effects highlight individual violins or
             sample points or the kernel density estimate or any
@@ -15397,31 +16298,32 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. The variables
             available in `hovertemplate` are the ones emitted as
             event data described at this link
-            https://plot.ly/javascript/plotlyjs-events/#event-data.
-            Additionally, every attributes that can be specified
-            per-point (the ones that are `arrayOk: true`) are
-            available.  Anything contained in tag `<extra>` is
+            https://plotly.com/javascript/plotlyjs-events/#event-
+            data. Additionally, every attributes that can be
+            specified per-point (the ones that are `arrayOk: true`)
+            are available.  Anything contained in tag `<extra>` is
             displayed in the secondary box, for example
             "<extra>{fullData.name}</extra>". To hide the secondary
             box completely, use an empty tag `<extra></extra>`.
         hovertemplatesrc
-            Sets the source reference on plot.ly for  hovertemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            hovertemplate .
         hovertext
             Same as `text`.
         hovertextsrc
-            Sets the source reference on plot.ly for  hovertext .
+            Sets the source reference on Chart Studio Cloud for
+            hovertext .
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         jitter
             Sets the amount of jitter in the sample points drawn.
             If 0, the sample points align along the distribution
@@ -15432,14 +16334,14 @@ class Figure(BaseFigure):
             the same legend group hide/show at the same time when
             toggling legend items.
         line
-            plotly.graph_objects.violin.Line instance or dict with
-            compatible properties
+            :class:`plotly.graph_objects.violin.Line` instance or
+            dict with compatible properties
         marker
-            plotly.graph_objects.violin.Marker instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.violin.Marker` instance or
+            dict with compatible properties
         meanline
-            plotly.graph_objects.violin.Meanline instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.violin.Meanline` instance
+            or dict with compatible properties
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -15454,7 +16356,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover. For violin traces, the name
@@ -15504,8 +16407,8 @@ class Figure(BaseFigure):
             width*count* means the violins are scaled by the number
             of sample points makingup each violin.
         selected
-            plotly.graph_objects.violin.Selected instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.violin.Selected` instance
+            or dict with compatible properties
         selectedpoints
             Array containing integer indices of selected points.
             Has an effect only for traces that support selections.
@@ -15536,8 +16439,8 @@ class Figure(BaseFigure):
             settings, use mode "manual" and fill in the `span`
             attribute.
         stream
-            plotly.graph_objects.violin.Stream instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.violin.Stream` instance or
+            dict with compatible properties
         text
             Sets the text elements associated with each sample
             value. If a single string, the same string appears over
@@ -15546,7 +16449,8 @@ class Figure(BaseFigure):
             coordinates. To be seen, trace `hoverinfo` must contain
             a "text" flag.
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         uid
             Assign an id to this trace, Use this to provide object
             constancy between traces during animations and
@@ -15570,8 +16474,8 @@ class Figure(BaseFigure):
             preserve user-driven changes if you give each trace a
             `uid` that stays with it as it moves.
         unselected
-            plotly.graph_objects.violin.Unselected instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.violin.Unselected`
+            instance or dict with compatible properties
         visible
             Determines whether or not this trace is visible. If
             "legendonly", the trace is not drawn, but can appear as
@@ -15595,7 +16499,8 @@ class Figure(BaseFigure):
             x coordinates refer to `layout.xaxis`. If "x2", the x
             coordinates refer to `layout.xaxis2`, and so on.
         xsrc
-            Sets the source reference on plot.ly for  x .
+            Sets the source reference on Chart Studio Cloud for  x
+            .
         y
             Sets the y sample data or coordinates. See overview for
             more info.
@@ -15609,15 +16514,18 @@ class Figure(BaseFigure):
             y coordinates refer to `layout.yaxis`. If "y2", the y
             coordinates refer to `layout.yaxis2`, and so on.
         ysrc
-            Sets the source reference on plot.ly for  y .
-        row : int or None (default)
+            Sets the source reference on Chart Studio Cloud for  y
+            .
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
         secondary_y: boolean or None (default None)
             If True, associate this trace with the secondary y-axis of the
             subplot at the specified row and col. Only valid if all of the
@@ -15633,6 +16541,8 @@ class Figure(BaseFigure):
         -------
         Figure
         """
+        from plotly.graph_objs import Violin
+
         new_trace = Violin(
             alignmentgroup=alignmentgroup,
             bandwidth=bandwidth,
@@ -15770,8 +16680,8 @@ class Figure(BaseFigure):
             chosen according to whether numbers in the `color`
             array are all positive, all negative or mixed.
         caps
-            plotly.graph_objects.volume.Caps instance or dict with
-            compatible properties
+            :class:`plotly.graph_objects.volume.Caps` instance or
+            dict with compatible properties
         cauto
             Determines whether or not the color domain is computed
             with respect to the input data (here `value`) or the
@@ -15798,8 +16708,8 @@ class Figure(BaseFigure):
             `layout.coloraxis2`, etc. Note that multiple color
             scales can be linked to the same color axis.
         colorbar
-            plotly.graph_objects.volume.ColorBar instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.volume.ColorBar` instance
+            or dict with compatible properties
         colorscale
             Sets the colorscale. The colorscale must be an array
             containing arrays mapping a normalized value to an rgb,
@@ -15813,15 +16723,16 @@ class Figure(BaseFigure):
             d,Bluered,RdBu,Reds,Blues,Picnic,Rainbow,Portland,Jet,H
             ot,Blackbody,Earth,Electric,Viridis,Cividis.
         contour
-            plotly.graph_objects.volume.Contour instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.volume.Contour` instance
+            or dict with compatible properties
         customdata
             Assigns extra data each datum. This may be useful when
             listening to hover, click and selection events. Note
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         flatshading
             Determines whether or not normal smoothing is applied
             to the meshes, creating meshes with an angular, low-
@@ -15832,10 +16743,11 @@ class Figure(BaseFigure):
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.volume.Hoverlabel instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.volume.Hoverlabel`
+            instance or dict with compatible properties
         hovertemplate
             Template string used for rendering the information that
             appear on hover box. Note that this will override
@@ -15847,31 +16759,32 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. The variables
             available in `hovertemplate` are the ones emitted as
             event data described at this link
-            https://plot.ly/javascript/plotlyjs-events/#event-data.
-            Additionally, every attributes that can be specified
-            per-point (the ones that are `arrayOk: true`) are
-            available.  Anything contained in tag `<extra>` is
+            https://plotly.com/javascript/plotlyjs-events/#event-
+            data. Additionally, every attributes that can be
+            specified per-point (the ones that are `arrayOk: true`)
+            are available.  Anything contained in tag `<extra>` is
             displayed in the secondary box, for example
             "<extra>{fullData.name}</extra>". To hide the secondary
             box completely, use an empty tag `<extra></extra>`.
         hovertemplatesrc
-            Sets the source reference on plot.ly for  hovertemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            hovertemplate .
         hovertext
             Same as `text`.
         hovertextsrc
-            Sets the source reference on plot.ly for  hovertext .
+            Sets the source reference on Chart Studio Cloud for
+            hovertext .
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         isomax
             Sets the maximum boundary for iso-surface plot.
         isomin
@@ -15881,11 +16794,11 @@ class Figure(BaseFigure):
             the same legend group hide/show at the same time when
             toggling legend items.
         lighting
-            plotly.graph_objects.volume.Lighting instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.volume.Lighting` instance
+            or dict with compatible properties
         lightposition
-            plotly.graph_objects.volume.Lightposition instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.volume.Lightposition`
+            instance or dict with compatible properties
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -15900,7 +16813,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover.
@@ -15940,24 +16854,25 @@ class Figure(BaseFigure):
             Determines whether or not a colorbar is displayed for
             this trace.
         slices
-            plotly.graph_objects.volume.Slices instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.volume.Slices` instance or
+            dict with compatible properties
         spaceframe
-            plotly.graph_objects.volume.Spaceframe instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.volume.Spaceframe`
+            instance or dict with compatible properties
         stream
-            plotly.graph_objects.volume.Stream instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.volume.Stream` instance or
+            dict with compatible properties
         surface
-            plotly.graph_objects.volume.Surface instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.volume.Surface` instance
+            or dict with compatible properties
         text
             Sets the text elements associated with the vertices. If
             trace `hoverinfo` contains a "text" flag and
             "hovertext" is not set, these elements will be seen in
             the hover labels.
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         uid
             Assign an id to this trace, Use this to provide object
             constancy between traces during animations and
@@ -15983,7 +16898,8 @@ class Figure(BaseFigure):
         value
             Sets the 4th dimension (value) of the vertices.
         valuesrc
-            Sets the source reference on plot.ly for  value .
+            Sets the source reference on Chart Studio Cloud for
+            value .
         visible
             Determines whether or not this trace is visible. If
             "legendonly", the trace is not drawn, but can appear as
@@ -15992,28 +16908,35 @@ class Figure(BaseFigure):
         x
             Sets the X coordinates of the vertices on X axis.
         xsrc
-            Sets the source reference on plot.ly for  x .
+            Sets the source reference on Chart Studio Cloud for  x
+            .
         y
             Sets the Y coordinates of the vertices on Y axis.
         ysrc
-            Sets the source reference on plot.ly for  y .
+            Sets the source reference on Chart Studio Cloud for  y
+            .
         z
             Sets the Z coordinates of the vertices on Z axis.
         zsrc
-            Sets the source reference on plot.ly for  z .
-        row : int or None (default)
+            Sets the source reference on Chart Studio Cloud for  z
+            .
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
 
         Returns
         -------
         Figure
         """
+        from plotly.graph_objs import Volume
+
         new_trace = Volume(
             autocolorscale=autocolorscale,
             caps=caps,
@@ -16129,10 +17052,16 @@ class Figure(BaseFigure):
         x=None,
         x0=None,
         xaxis=None,
+        xperiod=None,
+        xperiod0=None,
+        xperiodalignment=None,
         xsrc=None,
         y=None,
         y0=None,
         yaxis=None,
+        yperiod=None,
+        yperiod0=None,
+        yperiodalignment=None,
         ysrc=None,
         row=None,
         col=None,
@@ -16165,8 +17094,8 @@ class Figure(BaseFigure):
             and tick labels, make sure to set `xaxis.layer` and
             `yaxis.layer` to *below traces*.
         connector
-            plotly.graph_objects.waterfall.Connector instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.waterfall.Connector`
+            instance or dict with compatible properties
         constraintext
             Constrain the size of text inside or outside a bar to
             be no larger than the bar itself.
@@ -16176,10 +17105,11 @@ class Figure(BaseFigure):
             that, "scatter" traces also appends customdata items in
             the markers DOM elements
         customdatasrc
-            Sets the source reference on plot.ly for  customdata .
+            Sets the source reference on Chart Studio Cloud for
+            customdata .
         decreasing
-            plotly.graph_objects.waterfall.Decreasing instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.waterfall.Decreasing`
+            instance or dict with compatible properties
         dx
             Sets the x coordinate step. See `x0` for more info.
         dy
@@ -16190,10 +17120,11 @@ class Figure(BaseFigure):
             upon hovering. But, if `none` is set, click and hover
             events are still fired.
         hoverinfosrc
-            Sets the source reference on plot.ly for  hoverinfo .
+            Sets the source reference on Chart Studio Cloud for
+            hoverinfo .
         hoverlabel
-            plotly.graph_objects.waterfall.Hoverlabel instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.waterfall.Hoverlabel`
+            instance or dict with compatible properties
         hovertemplate
             Template string used for rendering the information that
             appear on hover box. Note that this will override
@@ -16205,22 +17136,21 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. The variables
             available in `hovertemplate` are the ones emitted as
             event data described at this link
-            https://plot.ly/javascript/plotlyjs-events/#event-data.
-            Additionally, every attributes that can be specified
-            per-point (the ones that are `arrayOk: true`) are
-            available. variables `initial`, `delta` and `final`.
-            Anything contained in tag `<extra>` is displayed in the
-            secondary box, for example
+            https://plotly.com/javascript/plotlyjs-events/#event-
+            data. Additionally, every attributes that can be
+            specified per-point (the ones that are `arrayOk: true`)
+            are available. variables `initial`, `delta` and
+            `final`. Anything contained in tag `<extra>` is
+            displayed in the secondary box, for example
             "<extra>{fullData.name}</extra>". To hide the secondary
             box completely, use an empty tag `<extra></extra>`.
         hovertemplatesrc
-            Sets the source reference on plot.ly for  hovertemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            hovertemplate .
         hovertext
             Sets hover text elements associated with each (x,y)
             pair. If a single string, the same string appears over
@@ -16229,16 +17159,18 @@ class Figure(BaseFigure):
             coordinates. To be seen, trace `hoverinfo` must contain
             a "text" flag.
         hovertextsrc
-            Sets the source reference on plot.ly for  hovertext .
+            Sets the source reference on Chart Studio Cloud for
+            hovertext .
         ids
             Assigns id labels to each datum. These ids for object
             constancy of data points during animation. Should be an
             array of strings, not numbers or any other type.
         idssrc
-            Sets the source reference on plot.ly for  ids .
+            Sets the source reference on Chart Studio Cloud for
+            ids .
         increasing
-            plotly.graph_objects.waterfall.Increasing instance or
-            dict with compatible properties
+            :class:`plotly.graph_objects.waterfall.Increasing`
+            instance or dict with compatible properties
         insidetextanchor
             Determines if texts are kept at center or start/end
             points in `textposition` "inside" mode.
@@ -16255,7 +17187,8 @@ class Figure(BaseFigure):
             'absolute' could be applied to reset the computed total
             or to declare an initial value where needed.
         measuresrc
-            Sets the source reference on plot.ly for  measure .
+            Sets the source reference on Chart Studio Cloud for
+            measure .
         meta
             Assigns extra meta information associated with this
             trace that can be used in various text attributes.
@@ -16270,7 +17203,8 @@ class Figure(BaseFigure):
             is the index or key of the `meta` and `n` is the trace
             index.
         metasrc
-            Sets the source reference on plot.ly for  meta .
+            Sets the source reference on Chart Studio Cloud for
+            meta .
         name
             Sets the trace name. The trace name appear as the
             legend item and on hover.
@@ -16284,7 +17218,8 @@ class Figure(BaseFigure):
             matching axes to the same offsetgroup where bars of the
             same position coordinate will line up.
         offsetsrc
-            Sets the source reference on plot.ly for  offset .
+            Sets the source reference on Chart Studio Cloud for
+            offset .
         opacity
             Sets the opacity of the trace.
         orientation
@@ -16304,8 +17239,8 @@ class Figure(BaseFigure):
             Determines whether or not an item corresponding to this
             trace is shown in the legend.
         stream
-            plotly.graph_objects.waterfall.Stream instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.waterfall.Stream` instance
+            or dict with compatible properties
         text
             Sets text elements associated with each (x,y) pair. If
             a single string, the same string appears over all the
@@ -16336,10 +17271,11 @@ class Figure(BaseFigure):
             inside the bar, but if the bar is too small and no bar
             is stacked on this one the text is moved outside.
         textpositionsrc
-            Sets the source reference on plot.ly for  textposition
-            .
+            Sets the source reference on Chart Studio Cloud for
+            textposition .
         textsrc
-            Sets the source reference on plot.ly for  text .
+            Sets the source reference on Chart Studio Cloud for
+            text .
         texttemplate
             Template string used for rendering the information text
             that appear on points. Note that this will override
@@ -16351,18 +17287,17 @@ class Figure(BaseFigure):
             details on the formatting syntax. Dates are formatted
             using d3-time-format's syntax %{variable|d3-time-
             format}, for example "Day: %{2019-01-01|%A}".
-            https://github.com/d3/d3-3.x-api-
-            reference/blob/master/Time-Formatting.md#format for
+            https://github.com/d3/d3-time-format#locale_format for
             details on the date formatting syntax. Every attributes
             that can be specified per-point (the ones that are
             `arrayOk: true`) are available. variables `initial`,
             `delta`, `final` and `label`.
         texttemplatesrc
-            Sets the source reference on plot.ly for  texttemplate
-            .
+            Sets the source reference on Chart Studio Cloud for
+            texttemplate .
         totals
-            plotly.graph_objects.waterfall.Totals instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.waterfall.Totals` instance
+            or dict with compatible properties
         uid
             Assign an id to this trace, Use this to provide object
             constancy between traces during animations and
@@ -16393,7 +17328,8 @@ class Figure(BaseFigure):
         width
             Sets the bar width (in position axis units).
         widthsrc
-            Sets the source reference on plot.ly for  width .
+            Sets the source reference on Chart Studio Cloud for
+            width .
         x
             Sets the x coordinates.
         x0
@@ -16405,8 +17341,25 @@ class Figure(BaseFigure):
             a 2D cartesian x axis. If "x" (the default value), the
             x coordinates refer to `layout.xaxis`. If "x2", the x
             coordinates refer to `layout.xaxis2`, and so on.
+        xperiod
+            Only relevant when the axis `type` is "date". Sets the
+            period positioning in milliseconds or "M<n>" on the x
+            axis. Special values in the form of "M<n>" could be
+            used to declare the number of months. In this case `n`
+            must be a positive integer.
+        xperiod0
+            Only relevant when the axis `type` is "date". Sets the
+            base for period positioning in milliseconds or date
+            string on the x0 axis. When `x0period` is round number
+            of weeks, the `x0period0` by default would be on a
+            Sunday i.e. 2000-01-02, otherwise it would be at
+            2000-01-01.
+        xperiodalignment
+            Only relevant when the axis `type` is "date". Sets the
+            alignment of data points on the x axis.
         xsrc
-            Sets the source reference on plot.ly for  x .
+            Sets the source reference on Chart Studio Cloud for  x
+            .
         y
             Sets the y coordinates.
         y0
@@ -16418,16 +17371,35 @@ class Figure(BaseFigure):
             a 2D cartesian y axis. If "y" (the default value), the
             y coordinates refer to `layout.yaxis`. If "y2", the y
             coordinates refer to `layout.yaxis2`, and so on.
+        yperiod
+            Only relevant when the axis `type` is "date". Sets the
+            period positioning in milliseconds or "M<n>" on the y
+            axis. Special values in the form of "M<n>" could be
+            used to declare the number of months. In this case `n`
+            must be a positive integer.
+        yperiod0
+            Only relevant when the axis `type` is "date". Sets the
+            base for period positioning in milliseconds or date
+            string on the y0 axis. When `y0period` is round number
+            of weeks, the `y0period0` by default would be on a
+            Sunday i.e. 2000-01-02, otherwise it would be at
+            2000-01-01.
+        yperiodalignment
+            Only relevant when the axis `type` is "date". Sets the
+            alignment of data points on the y axis.
         ysrc
-            Sets the source reference on plot.ly for  y .
-        row : int or None (default)
+            Sets the source reference on Chart Studio Cloud for  y
+            .
+        row : 'all', int or None (default)
             Subplot row index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
-        col : int or None (default)
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            rows in the specified column(s).
+        col : 'all', int or None (default)
             Subplot col index (starting from 1) for the trace to be
             added. Only valid if figure was created using
-            `plotly.tools.make_subplots`
+            `plotly.tools.make_subplots`.If 'all', addresses all
+            columns in the specified row(s).
         secondary_y: boolean or None (default None)
             If True, associate this trace with the secondary y-axis of the
             subplot at the specified row and col. Only valid if all of the
@@ -16443,6 +17415,8 @@ class Figure(BaseFigure):
         -------
         Figure
         """
+        from plotly.graph_objs import Waterfall
+
         new_trace = Waterfall(
             alignmentgroup=alignmentgroup,
             base=base,
@@ -16499,10 +17473,16 @@ class Figure(BaseFigure):
             x=x,
             x0=x0,
             xaxis=xaxis,
+            xperiod=xperiod,
+            xperiod0=xperiod0,
+            xperiodalignment=xperiodalignment,
             xsrc=xsrc,
             y=y,
             y0=y0,
             yaxis=yaxis,
+            yperiod=yperiod,
+            yperiod0=yperiod0,
+            yperiodalignment=yperiodalignment,
             ysrc=ysrc,
             **kwargs
         )
@@ -16516,12 +17496,16 @@ class Figure(BaseFigure):
 
         Parameters
         ----------
-        selector: dict or None (default None)
+        selector: dict, function, or None (default None)
             Dict to use as selection criteria.
             coloraxis objects will be selected if they contain
             properties corresponding to all of the dictionary's keys, with
             values that exactly match the supplied values. If None
-            (the default), all coloraxis objects are selected.
+            (the default), all coloraxis objects are selected. If a
+            function, it must be a function accepting a single argument and
+            returning a boolean. The function will be called on each
+            coloraxis and those for which the function returned True will
+            be in the selection.
         row, col: int or None (default None)
             Subplot row and column index of coloraxis objects to select.
             To select coloraxis objects by row and column, the Figure
@@ -16540,17 +17524,21 @@ class Figure(BaseFigure):
         """
         Apply a function to all coloraxis objects that satisfy the
         specified selection criteria
-        
+
         Parameters
         ----------
         fn:
             Function that inputs a single coloraxis object.
-        selector: dict or None (default None)
+        selector: dict, function, or None (default None)
             Dict to use as selection criteria.
             coloraxis objects will be selected if they contain
             properties corresponding to all of the dictionary's keys, with
             values that exactly match the supplied values. If None
-            (the default), all coloraxis objects are selected.
+            (the default), all coloraxis objects are selected. If a
+            function, it must be a function accepting a single argument and
+            returning a boolean. The function will be called on each
+            coloraxis and those for which the function returned True will
+            be in the selection.
         row, col: int or None (default None)
             Subplot row and column index of coloraxis objects to select.
             To select coloraxis objects by row and column, the Figure
@@ -16572,18 +17560,22 @@ class Figure(BaseFigure):
         """
         Perform a property update operation on all coloraxis objects
         that satisfy the specified selection criteria
-        
+
         Parameters
         ----------
         patch: dict
             Dictionary of property updates to be applied to all
             coloraxis objects that satisfy the selection criteria.
-        selector: dict or None (default None)
+        selector: dict, function, or None (default None)
             Dict to use as selection criteria.
             coloraxis objects will be selected if they contain
             properties corresponding to all of the dictionary's keys, with
             values that exactly match the supplied values. If None
-            (the default), all coloraxis objects are selected.
+            (the default), all coloraxis objects are selected. If a
+            function, it must be a function accepting a single argument and
+            returning a boolean. The function will be called on each
+            coloraxis and those for which the function returned True will
+            be in the selection.
         overwrite: bool
             If True, overwrite existing properties. If False, apply updates
             to existing properties recursively, preserving existing
@@ -16616,12 +17608,16 @@ class Figure(BaseFigure):
 
         Parameters
         ----------
-        selector: dict or None (default None)
+        selector: dict, function, or None (default None)
             Dict to use as selection criteria.
             geo objects will be selected if they contain
             properties corresponding to all of the dictionary's keys, with
             values that exactly match the supplied values. If None
-            (the default), all geo objects are selected.
+            (the default), all geo objects are selected. If a
+            function, it must be a function accepting a single argument and
+            returning a boolean. The function will be called on each
+            geo and those for which the function returned True will
+            be in the selection.
         row, col: int or None (default None)
             Subplot row and column index of geo objects to select.
             To select geo objects by row and column, the Figure
@@ -16640,17 +17636,21 @@ class Figure(BaseFigure):
         """
         Apply a function to all geo objects that satisfy the
         specified selection criteria
-        
+
         Parameters
         ----------
         fn:
             Function that inputs a single geo object.
-        selector: dict or None (default None)
+        selector: dict, function, or None (default None)
             Dict to use as selection criteria.
             geo objects will be selected if they contain
             properties corresponding to all of the dictionary's keys, with
             values that exactly match the supplied values. If None
-            (the default), all geo objects are selected.
+            (the default), all geo objects are selected. If a
+            function, it must be a function accepting a single argument and
+            returning a boolean. The function will be called on each
+            geo and those for which the function returned True will
+            be in the selection.
         row, col: int or None (default None)
             Subplot row and column index of geo objects to select.
             To select geo objects by row and column, the Figure
@@ -16672,18 +17672,22 @@ class Figure(BaseFigure):
         """
         Perform a property update operation on all geo objects
         that satisfy the specified selection criteria
-        
+
         Parameters
         ----------
         patch: dict
             Dictionary of property updates to be applied to all
             geo objects that satisfy the selection criteria.
-        selector: dict or None (default None)
+        selector: dict, function, or None (default None)
             Dict to use as selection criteria.
             geo objects will be selected if they contain
             properties corresponding to all of the dictionary's keys, with
             values that exactly match the supplied values. If None
-            (the default), all geo objects are selected.
+            (the default), all geo objects are selected. If a
+            function, it must be a function accepting a single argument and
+            returning a boolean. The function will be called on each
+            geo and those for which the function returned True will
+            be in the selection.
         overwrite: bool
             If True, overwrite existing properties. If False, apply updates
             to existing properties recursively, preserving existing
@@ -16716,12 +17720,16 @@ class Figure(BaseFigure):
 
         Parameters
         ----------
-        selector: dict or None (default None)
+        selector: dict, function, or None (default None)
             Dict to use as selection criteria.
             mapbox objects will be selected if they contain
             properties corresponding to all of the dictionary's keys, with
             values that exactly match the supplied values. If None
-            (the default), all mapbox objects are selected.
+            (the default), all mapbox objects are selected. If a
+            function, it must be a function accepting a single argument and
+            returning a boolean. The function will be called on each
+            mapbox and those for which the function returned True will
+            be in the selection.
         row, col: int or None (default None)
             Subplot row and column index of mapbox objects to select.
             To select mapbox objects by row and column, the Figure
@@ -16740,17 +17748,21 @@ class Figure(BaseFigure):
         """
         Apply a function to all mapbox objects that satisfy the
         specified selection criteria
-        
+
         Parameters
         ----------
         fn:
             Function that inputs a single mapbox object.
-        selector: dict or None (default None)
+        selector: dict, function, or None (default None)
             Dict to use as selection criteria.
             mapbox objects will be selected if they contain
             properties corresponding to all of the dictionary's keys, with
             values that exactly match the supplied values. If None
-            (the default), all mapbox objects are selected.
+            (the default), all mapbox objects are selected. If a
+            function, it must be a function accepting a single argument and
+            returning a boolean. The function will be called on each
+            mapbox and those for which the function returned True will
+            be in the selection.
         row, col: int or None (default None)
             Subplot row and column index of mapbox objects to select.
             To select mapbox objects by row and column, the Figure
@@ -16772,18 +17784,22 @@ class Figure(BaseFigure):
         """
         Perform a property update operation on all mapbox objects
         that satisfy the specified selection criteria
-        
+
         Parameters
         ----------
         patch: dict
             Dictionary of property updates to be applied to all
             mapbox objects that satisfy the selection criteria.
-        selector: dict or None (default None)
+        selector: dict, function, or None (default None)
             Dict to use as selection criteria.
             mapbox objects will be selected if they contain
             properties corresponding to all of the dictionary's keys, with
             values that exactly match the supplied values. If None
-            (the default), all mapbox objects are selected.
+            (the default), all mapbox objects are selected. If a
+            function, it must be a function accepting a single argument and
+            returning a boolean. The function will be called on each
+            mapbox and those for which the function returned True will
+            be in the selection.
         overwrite: bool
             If True, overwrite existing properties. If False, apply updates
             to existing properties recursively, preserving existing
@@ -16816,12 +17832,16 @@ class Figure(BaseFigure):
 
         Parameters
         ----------
-        selector: dict or None (default None)
+        selector: dict, function, or None (default None)
             Dict to use as selection criteria.
             polar objects will be selected if they contain
             properties corresponding to all of the dictionary's keys, with
             values that exactly match the supplied values. If None
-            (the default), all polar objects are selected.
+            (the default), all polar objects are selected. If a
+            function, it must be a function accepting a single argument and
+            returning a boolean. The function will be called on each
+            polar and those for which the function returned True will
+            be in the selection.
         row, col: int or None (default None)
             Subplot row and column index of polar objects to select.
             To select polar objects by row and column, the Figure
@@ -16840,17 +17860,21 @@ class Figure(BaseFigure):
         """
         Apply a function to all polar objects that satisfy the
         specified selection criteria
-        
+
         Parameters
         ----------
         fn:
             Function that inputs a single polar object.
-        selector: dict or None (default None)
+        selector: dict, function, or None (default None)
             Dict to use as selection criteria.
             polar objects will be selected if they contain
             properties corresponding to all of the dictionary's keys, with
             values that exactly match the supplied values. If None
-            (the default), all polar objects are selected.
+            (the default), all polar objects are selected. If a
+            function, it must be a function accepting a single argument and
+            returning a boolean. The function will be called on each
+            polar and those for which the function returned True will
+            be in the selection.
         row, col: int or None (default None)
             Subplot row and column index of polar objects to select.
             To select polar objects by row and column, the Figure
@@ -16872,18 +17896,22 @@ class Figure(BaseFigure):
         """
         Perform a property update operation on all polar objects
         that satisfy the specified selection criteria
-        
+
         Parameters
         ----------
         patch: dict
             Dictionary of property updates to be applied to all
             polar objects that satisfy the selection criteria.
-        selector: dict or None (default None)
+        selector: dict, function, or None (default None)
             Dict to use as selection criteria.
             polar objects will be selected if they contain
             properties corresponding to all of the dictionary's keys, with
             values that exactly match the supplied values. If None
-            (the default), all polar objects are selected.
+            (the default), all polar objects are selected. If a
+            function, it must be a function accepting a single argument and
+            returning a boolean. The function will be called on each
+            polar and those for which the function returned True will
+            be in the selection.
         overwrite: bool
             If True, overwrite existing properties. If False, apply updates
             to existing properties recursively, preserving existing
@@ -16916,12 +17944,16 @@ class Figure(BaseFigure):
 
         Parameters
         ----------
-        selector: dict or None (default None)
+        selector: dict, function, or None (default None)
             Dict to use as selection criteria.
             scene objects will be selected if they contain
             properties corresponding to all of the dictionary's keys, with
             values that exactly match the supplied values. If None
-            (the default), all scene objects are selected.
+            (the default), all scene objects are selected. If a
+            function, it must be a function accepting a single argument and
+            returning a boolean. The function will be called on each
+            scene and those for which the function returned True will
+            be in the selection.
         row, col: int or None (default None)
             Subplot row and column index of scene objects to select.
             To select scene objects by row and column, the Figure
@@ -16940,17 +17972,21 @@ class Figure(BaseFigure):
         """
         Apply a function to all scene objects that satisfy the
         specified selection criteria
-        
+
         Parameters
         ----------
         fn:
             Function that inputs a single scene object.
-        selector: dict or None (default None)
+        selector: dict, function, or None (default None)
             Dict to use as selection criteria.
             scene objects will be selected if they contain
             properties corresponding to all of the dictionary's keys, with
             values that exactly match the supplied values. If None
-            (the default), all scene objects are selected.
+            (the default), all scene objects are selected. If a
+            function, it must be a function accepting a single argument and
+            returning a boolean. The function will be called on each
+            scene and those for which the function returned True will
+            be in the selection.
         row, col: int or None (default None)
             Subplot row and column index of scene objects to select.
             To select scene objects by row and column, the Figure
@@ -16972,18 +18008,22 @@ class Figure(BaseFigure):
         """
         Perform a property update operation on all scene objects
         that satisfy the specified selection criteria
-        
+
         Parameters
         ----------
         patch: dict
             Dictionary of property updates to be applied to all
             scene objects that satisfy the selection criteria.
-        selector: dict or None (default None)
+        selector: dict, function, or None (default None)
             Dict to use as selection criteria.
             scene objects will be selected if they contain
             properties corresponding to all of the dictionary's keys, with
             values that exactly match the supplied values. If None
-            (the default), all scene objects are selected.
+            (the default), all scene objects are selected. If a
+            function, it must be a function accepting a single argument and
+            returning a boolean. The function will be called on each
+            scene and those for which the function returned True will
+            be in the selection.
         overwrite: bool
             If True, overwrite existing properties. If False, apply updates
             to existing properties recursively, preserving existing
@@ -17016,12 +18056,16 @@ class Figure(BaseFigure):
 
         Parameters
         ----------
-        selector: dict or None (default None)
+        selector: dict, function, or None (default None)
             Dict to use as selection criteria.
             ternary objects will be selected if they contain
             properties corresponding to all of the dictionary's keys, with
             values that exactly match the supplied values. If None
-            (the default), all ternary objects are selected.
+            (the default), all ternary objects are selected. If a
+            function, it must be a function accepting a single argument and
+            returning a boolean. The function will be called on each
+            ternary and those for which the function returned True will
+            be in the selection.
         row, col: int or None (default None)
             Subplot row and column index of ternary objects to select.
             To select ternary objects by row and column, the Figure
@@ -17040,17 +18084,21 @@ class Figure(BaseFigure):
         """
         Apply a function to all ternary objects that satisfy the
         specified selection criteria
-        
+
         Parameters
         ----------
         fn:
             Function that inputs a single ternary object.
-        selector: dict or None (default None)
+        selector: dict, function, or None (default None)
             Dict to use as selection criteria.
             ternary objects will be selected if they contain
             properties corresponding to all of the dictionary's keys, with
             values that exactly match the supplied values. If None
-            (the default), all ternary objects are selected.
+            (the default), all ternary objects are selected. If a
+            function, it must be a function accepting a single argument and
+            returning a boolean. The function will be called on each
+            ternary and those for which the function returned True will
+            be in the selection.
         row, col: int or None (default None)
             Subplot row and column index of ternary objects to select.
             To select ternary objects by row and column, the Figure
@@ -17072,18 +18120,22 @@ class Figure(BaseFigure):
         """
         Perform a property update operation on all ternary objects
         that satisfy the specified selection criteria
-        
+
         Parameters
         ----------
         patch: dict
             Dictionary of property updates to be applied to all
             ternary objects that satisfy the selection criteria.
-        selector: dict or None (default None)
+        selector: dict, function, or None (default None)
             Dict to use as selection criteria.
             ternary objects will be selected if they contain
             properties corresponding to all of the dictionary's keys, with
             values that exactly match the supplied values. If None
-            (the default), all ternary objects are selected.
+            (the default), all ternary objects are selected. If a
+            function, it must be a function accepting a single argument and
+            returning a boolean. The function will be called on each
+            ternary and those for which the function returned True will
+            be in the selection.
         overwrite: bool
             If True, overwrite existing properties. If False, apply updates
             to existing properties recursively, preserving existing
@@ -17116,12 +18168,16 @@ class Figure(BaseFigure):
 
         Parameters
         ----------
-        selector: dict or None (default None)
+        selector: dict, function, or None (default None)
             Dict to use as selection criteria.
             xaxis objects will be selected if they contain
             properties corresponding to all of the dictionary's keys, with
             values that exactly match the supplied values. If None
-            (the default), all xaxis objects are selected.
+            (the default), all xaxis objects are selected. If a
+            function, it must be a function accepting a single argument and
+            returning a boolean. The function will be called on each
+            xaxis and those for which the function returned True will
+            be in the selection.
         row, col: int or None (default None)
             Subplot row and column index of xaxis objects to select.
             To select xaxis objects by row and column, the Figure
@@ -17140,17 +18196,21 @@ class Figure(BaseFigure):
         """
         Apply a function to all xaxis objects that satisfy the
         specified selection criteria
-        
+
         Parameters
         ----------
         fn:
             Function that inputs a single xaxis object.
-        selector: dict or None (default None)
+        selector: dict, function, or None (default None)
             Dict to use as selection criteria.
             xaxis objects will be selected if they contain
             properties corresponding to all of the dictionary's keys, with
             values that exactly match the supplied values. If None
-            (the default), all xaxis objects are selected.
+            (the default), all xaxis objects are selected. If a
+            function, it must be a function accepting a single argument and
+            returning a boolean. The function will be called on each
+            xaxis and those for which the function returned True will
+            be in the selection.
         row, col: int or None (default None)
             Subplot row and column index of xaxis objects to select.
             To select xaxis objects by row and column, the Figure
@@ -17172,18 +18232,22 @@ class Figure(BaseFigure):
         """
         Perform a property update operation on all xaxis objects
         that satisfy the specified selection criteria
-        
+
         Parameters
         ----------
         patch: dict
             Dictionary of property updates to be applied to all
             xaxis objects that satisfy the selection criteria.
-        selector: dict or None (default None)
+        selector: dict, function, or None (default None)
             Dict to use as selection criteria.
             xaxis objects will be selected if they contain
             properties corresponding to all of the dictionary's keys, with
             values that exactly match the supplied values. If None
-            (the default), all xaxis objects are selected.
+            (the default), all xaxis objects are selected. If a
+            function, it must be a function accepting a single argument and
+            returning a boolean. The function will be called on each
+            xaxis and those for which the function returned True will
+            be in the selection.
         overwrite: bool
             If True, overwrite existing properties. If False, apply updates
             to existing properties recursively, preserving existing
@@ -17216,12 +18280,16 @@ class Figure(BaseFigure):
 
         Parameters
         ----------
-        selector: dict or None (default None)
+        selector: dict, function, or None (default None)
             Dict to use as selection criteria.
             yaxis objects will be selected if they contain
             properties corresponding to all of the dictionary's keys, with
             values that exactly match the supplied values. If None
-            (the default), all yaxis objects are selected.
+            (the default), all yaxis objects are selected. If a
+            function, it must be a function accepting a single argument and
+            returning a boolean. The function will be called on each
+            yaxis and those for which the function returned True will
+            be in the selection.
         row, col: int or None (default None)
             Subplot row and column index of yaxis objects to select.
             To select yaxis objects by row and column, the Figure
@@ -17233,8 +18301,8 @@ class Figure(BaseFigure):
             * If False, only select yaxis objects associated with the primary
               y-axis of the subplot.
             * If None (the default), do not filter yaxis objects based on
-              a secondary y-axis condition. 
-            
+              a secondary y-axis condition.
+
             To select yaxis objects by secondary y-axis, the Figure must
             have been created using plotly.subplots.make_subplots. See
             the docstring for the specs argument to make_subplots for more
@@ -17254,17 +18322,21 @@ class Figure(BaseFigure):
         """
         Apply a function to all yaxis objects that satisfy the
         specified selection criteria
-        
+
         Parameters
         ----------
         fn:
             Function that inputs a single yaxis object.
-        selector: dict or None (default None)
+        selector: dict, function, or None (default None)
             Dict to use as selection criteria.
             yaxis objects will be selected if they contain
             properties corresponding to all of the dictionary's keys, with
             values that exactly match the supplied values. If None
-            (the default), all yaxis objects are selected.
+            (the default), all yaxis objects are selected. If a
+            function, it must be a function accepting a single argument and
+            returning a boolean. The function will be called on each
+            yaxis and those for which the function returned True will
+            be in the selection.
         row, col: int or None (default None)
             Subplot row and column index of yaxis objects to select.
             To select yaxis objects by row and column, the Figure
@@ -17276,8 +18348,8 @@ class Figure(BaseFigure):
             * If False, only select yaxis objects associated with the primary
               y-axis of the subplot.
             * If None (the default), do not filter yaxis objects based on
-              a secondary y-axis condition. 
-            
+              a secondary y-axis condition.
+
             To select yaxis objects by secondary y-axis, the Figure must
             have been created using plotly.subplots.make_subplots. See
             the docstring for the specs argument to make_subplots for more
@@ -17307,18 +18379,22 @@ class Figure(BaseFigure):
         """
         Perform a property update operation on all yaxis objects
         that satisfy the specified selection criteria
-        
+
         Parameters
         ----------
         patch: dict
             Dictionary of property updates to be applied to all
             yaxis objects that satisfy the selection criteria.
-        selector: dict or None (default None)
+        selector: dict, function, or None (default None)
             Dict to use as selection criteria.
             yaxis objects will be selected if they contain
             properties corresponding to all of the dictionary's keys, with
             values that exactly match the supplied values. If None
-            (the default), all yaxis objects are selected.
+            (the default), all yaxis objects are selected. If a
+            function, it must be a function accepting a single argument and
+            returning a boolean. The function will be called on each
+            yaxis and those for which the function returned True will
+            be in the selection.
         overwrite: bool
             If True, overwrite existing properties. If False, apply updates
             to existing properties recursively, preserving existing
@@ -17334,8 +18410,8 @@ class Figure(BaseFigure):
             * If False, only select yaxis objects associated with the primary
               y-axis of the subplot.
             * If None (the default), do not filter yaxis objects based on
-              a secondary y-axis condition. 
-            
+              a secondary y-axis condition.
+
             To select yaxis objects by secondary y-axis, the Figure must
             have been created using plotly.subplots.make_subplots. See
             the docstring for the specs argument to make_subplots for more
@@ -17364,12 +18440,17 @@ class Figure(BaseFigure):
 
         Parameters
         ----------
-        selector: dict or None (default None)
+        selector: dict, function, int, str, or None (default None)
             Dict to use as selection criteria.
             Annotations will be selected if they contain properties corresponding
             to all of the dictionary's keys, with values that exactly match
             the supplied values. If None (the default), all annotations are
-            selected.
+            selected. If a function, it must be a function accepting a single
+            argument and returning a boolean. The function will be called on
+            each annotation and those for which the function returned True
+            will be in the selection. If an int N, the Nth annotation matching row
+            and col will be selected (N can be negative). If a string S, the selector
+            is equivalent to dict(type=S).
         row, col: int or None (default None)
             Subplot row and column index of annotations to select.
             To select annotations by row and column, the Figure must have been
@@ -17409,12 +18490,17 @@ class Figure(BaseFigure):
         ----------
         fn:
             Function that inputs a single annotation object.
-        selector: dict or None (default None)
+        selector: dict, function, int, str or None (default None)
             Dict to use as selection criteria.
             Traces will be selected if they contain properties corresponding
             to all of the dictionary's keys, with values that exactly match
             the supplied values. If None (the default), all annotations are
-            selected.
+            selected. If a function, it must be a function accepting a single
+            argument and returning a boolean. The function will be called on
+            each annotation and those for which the function returned True
+            will be in the selection. If an int N, the Nth annotation matching row
+            and col will be selected (N can be negative). If a string S, the selector
+            is equivalent to dict(type=S).
         row, col: int or None (default None)
             Subplot row and column index of annotations to select.
             To select annotations by row and column, the Figure must have been
@@ -17450,7 +18536,7 @@ class Figure(BaseFigure):
         return self
 
     def update_annotations(
-        self, patch, selector=None, row=None, col=None, secondary_y=None, **kwargs
+        self, patch=None, selector=None, row=None, col=None, secondary_y=None, **kwargs
     ):
         """
         Perform a property update operation on all annotations that satisfy the
@@ -17461,12 +18547,17 @@ class Figure(BaseFigure):
         patch: dict or None (default None)
             Dictionary of property updates to be applied to all annotations that
             satisfy the selection criteria.
-        selector: dict or None (default None)
+        selector: dict, function, int, str or None (default None)
             Dict to use as selection criteria.
             Traces will be selected if they contain properties corresponding
             to all of the dictionary's keys, with values that exactly match
             the supplied values. If None (the default), all annotations are
-            selected.
+            selected. If a function, it must be a function accepting a single
+            argument and returning a boolean. The function will be called on
+            each annotation and those for which the function returned True
+            will be in the selection. If an int N, the Nth annotation matching row
+            and col will be selected (N can be negative). If a string S, the selector
+            is equivalent to dict(type=S).
         row, col: int or None (default None)
             Subplot row and column index of annotations to select.
             To select annotations by row and column, the Figure must have been
@@ -17555,6 +18646,7 @@ class Figure(BaseFigure):
         row=None,
         col=None,
         secondary_y=None,
+        exclude_empty_subplots=None,
         **kwargs
     ):
         """
@@ -17567,10 +18659,10 @@ class Figure(BaseFigure):
             properties
         align
             Sets the horizontal alignment of the `text` within the
-            box. Has an effect only if `text` spans more two or
-            more lines (i.e. `text` contains one or more <br> HTML
-            tags) or if an explicit width is set to override the
-            text width.
+            box. Has an effect only if `text` spans two or more
+            lines (i.e. `text` contains one or more <br> HTML tags)
+            or if an explicit width is set to override the text
+            width.
         arrowcolor
             Sets the color of the annotation arrow.
         arrowhead
@@ -17587,32 +18679,68 @@ class Figure(BaseFigure):
             Sets the x component of the arrow tail about the arrow
             head. If `axref` is `pixel`, a positive (negative)
             component corresponds to an arrow pointing from right
-            to left (left to right). If `axref` is an axis, this is
-            an absolute value on that axis, like `x`, NOT a
-            relative value.
+            to left (left to right). If `axref` is not `pixel` and
+            is exactly the same as `xref`, this is an absolute
+            value on that axis, like `x`, specified in the same
+            coordinates as `xref`.
         axref
-            Indicates in what terms the tail of the annotation
-            (ax,ay)  is specified. If `pixel`, `ax` is a relative
-            offset in pixels  from `x`. If set to an x axis id
-            (e.g. "x" or "x2"), `ax` is  specified in the same
-            terms as that axis. This is useful  for trendline
-            annotations which should continue to indicate  the
-            correct trend when zoomed.
+            Indicates in what coordinates the tail of the
+            annotation (ax,ay) is specified. If set to a ax axis id
+            (e.g. "ax" or "ax2"), the `ax` position refers to a ax
+            coordinate. If set to "paper", the `ax` position refers
+            to the distance from the left of the plotting area in
+            normalized coordinates where 0 (1) corresponds to the
+            left (right). If set to a ax axis ID followed by
+            "domain" (separated by a space), the position behaves
+            like for "paper", but refers to the distance in
+            fractions of the domain length from the left of the
+            domain of that axis: e.g., *ax2 domain* refers to the
+            domain of the second ax  axis and a ax position of 0.5
+            refers to the point between the left and the right of
+            the domain of the second ax axis. In order for absolute
+            positioning of the arrow to work, "axref" must be
+            exactly the same as "xref", otherwise "axref" will
+            revert to "pixel" (explained next). For relative
+            positioning, "axref" can be set to "pixel", in which
+            case the "ax" value is specified in pixels relative to
+            "x". Absolute positioning is useful for trendline
+            annotations which should continue to indicate the
+            correct trend when zoomed. Relative positioning is
+            useful for specifying the text offset for an annotated
+            point.
         ay
             Sets the y component of the arrow tail about the arrow
             head. If `ayref` is `pixel`, a positive (negative)
             component corresponds to an arrow pointing from bottom
-            to top (top to bottom). If `ayref` is an axis, this is
-            an absolute value on that axis, like `y`, NOT a
-            relative value.
+            to top (top to bottom). If `ayref` is not `pixel` and
+            is exactly the same as `yref`, this is an absolute
+            value on that axis, like `y`, specified in the same
+            coordinates as `yref`.
         ayref
-            Indicates in what terms the tail of the annotation
-            (ax,ay)  is specified. If `pixel`, `ay` is a relative
-            offset in pixels  from `y`. If set to a y axis id (e.g.
-            "y" or "y2"), `ay` is  specified in the same terms as
-            that axis. This is useful  for trendline annotations
-            which should continue to indicate  the correct trend
-            when zoomed.
+            Indicates in what coordinates the tail of the
+            annotation (ax,ay) is specified. If set to a ay axis id
+            (e.g. "ay" or "ay2"), the `ay` position refers to a ay
+            coordinate. If set to "paper", the `ay` position refers
+            to the distance from the bottom of the plotting area in
+            normalized coordinates where 0 (1) corresponds to the
+            bottom (top). If set to a ay axis ID followed by
+            "domain" (separated by a space), the position behaves
+            like for "paper", but refers to the distance in
+            fractions of the domain length from the bottom of the
+            domain of that axis: e.g., *ay2 domain* refers to the
+            domain of the second ay  axis and a ay position of 0.5
+            refers to the point between the bottom and the top of
+            the domain of the second ay axis. In order for absolute
+            positioning of the arrow to work, "ayref" must be
+            exactly the same as "yref", otherwise "ayref" will
+            revert to "pixel" (explained next). For relative
+            positioning, "ayref" can be set to "pixel", in which
+            case the "ay" value is specified in pixels relative to
+            "y". Absolute positioning is useful for trendline
+            annotations which should continue to indicate the
+            correct trend when zoomed. Relative positioning is
+            useful for specifying the text offset for an annotated
+            point.
         bgcolor
             Sets the background color of the annotation.
         bordercolor
@@ -17653,8 +18781,8 @@ class Figure(BaseFigure):
             (default) lets the text set the box height. Taller text
             will be clipped.
         hoverlabel
-            plotly.graph_objects.layout.annotation.Hoverlabel
-            instance or dict with compatible properties
+            :class:`plotly.graph_objects.layout.annotation.Hoverlab
+            el` instance or dict with compatible properties
         hovertext
             Sets text to appear when hovering over this annotation.
             If omitted or blank, no hover label will appear.
@@ -17749,12 +18877,19 @@ class Figure(BaseFigure):
             `x` value is `xclick` rather than the annotation's `x`
             value.
         xref
-            Sets the annotation's x coordinate axis. If set to an x
+            Sets the annotation's x coordinate axis. If set to a x
             axis id (e.g. "x" or "x2"), the `x` position refers to
-            an x coordinate If set to "paper", the `x` position
-            refers to the distance from the left side of the
-            plotting area in normalized coordinates where 0 (1)
-            corresponds to the left (right) side.
+            a x coordinate. If set to "paper", the `x` position
+            refers to the distance from the left of the plotting
+            area in normalized coordinates where 0 (1) corresponds
+            to the left (right). If set to a x axis ID followed by
+            "domain" (separated by a space), the position behaves
+            like for "paper", but refers to the distance in
+            fractions of the domain length from the left of the
+            domain of that axis: e.g., *x2 domain* refers to the
+            domain of the second x  axis and a x position of 0.5
+            refers to the point between the left and the right of
+            the domain of the second x axis.
         xshift
             Shifts the position of the whole annotation and arrow
             to the right (positive) or left (negative) by this many
@@ -17784,26 +18919,40 @@ class Figure(BaseFigure):
             `y` value is `yclick` rather than the annotation's `y`
             value.
         yref
-            Sets the annotation's y coordinate axis. If set to an y
+            Sets the annotation's y coordinate axis. If set to a y
             axis id (e.g. "y" or "y2"), the `y` position refers to
-            an y coordinate If set to "paper", the `y` position
+            a y coordinate. If set to "paper", the `y` position
             refers to the distance from the bottom of the plotting
             area in normalized coordinates where 0 (1) corresponds
-            to the bottom (top).
+            to the bottom (top). If set to a y axis ID followed by
+            "domain" (separated by a space), the position behaves
+            like for "paper", but refers to the distance in
+            fractions of the domain length from the bottom of the
+            domain of that axis: e.g., *y2 domain* refers to the
+            domain of the second y  axis and a y position of 0.5
+            refers to the point between the bottom and the top of
+            the domain of the second y axis.
         yshift
             Shifts the position of the whole annotation and arrow
             up (positive) or down (negative) by this many pixels.
         row
-            Subplot row for annotation
+            Subplot row for annotation. If 'all', addresses all
+            rows in the specified column(s).
         col
-            Subplot column for annotation
+            Subplot column for annotation. If 'all', addresses all
+            columns in the specified row(s).
         secondary_y
             Whether to add annotation to secondary y-axis
+        exclude_empty_subplots
+            If True, annotation will not be added to subplots
+            without traces.
 
         Returns
         -------
         Figure
         """
+        from plotly.graph_objs import layout as _layout
+
         new_obj = _layout.Annotation(
             arg,
             align=align,
@@ -17858,6 +19007,7 @@ class Figure(BaseFigure):
             row=row,
             col=col,
             secondary_y=secondary_y,
+            exclude_empty_subplots=exclude_empty_subplots,
         )
 
     def select_layout_images(self, selector=None, row=None, col=None, secondary_y=None):
@@ -17867,12 +19017,17 @@ class Figure(BaseFigure):
 
         Parameters
         ----------
-        selector: dict or None (default None)
+        selector: dict, function, int, str, or None (default None)
             Dict to use as selection criteria.
             Annotations will be selected if they contain properties corresponding
             to all of the dictionary's keys, with values that exactly match
             the supplied values. If None (the default), all images are
-            selected.
+            selected. If a function, it must be a function accepting a single
+            argument and returning a boolean. The function will be called on
+            each image and those for which the function returned True
+            will be in the selection. If an int N, the Nth image matching row
+            and col will be selected (N can be negative). If a string S, the selector
+            is equivalent to dict(type=S).
         row, col: int or None (default None)
             Subplot row and column index of images to select.
             To select images by row and column, the Figure must have been
@@ -17912,12 +19067,17 @@ class Figure(BaseFigure):
         ----------
         fn:
             Function that inputs a single image object.
-        selector: dict or None (default None)
+        selector: dict, function, int, str or None (default None)
             Dict to use as selection criteria.
             Traces will be selected if they contain properties corresponding
             to all of the dictionary's keys, with values that exactly match
             the supplied values. If None (the default), all images are
-            selected.
+            selected. If a function, it must be a function accepting a single
+            argument and returning a boolean. The function will be called on
+            each image and those for which the function returned True
+            will be in the selection. If an int N, the Nth image matching row
+            and col will be selected (N can be negative). If a string S, the selector
+            is equivalent to dict(type=S).
         row, col: int or None (default None)
             Subplot row and column index of images to select.
             To select images by row and column, the Figure must have been
@@ -17949,7 +19109,7 @@ class Figure(BaseFigure):
         return self
 
     def update_layout_images(
-        self, patch, selector=None, row=None, col=None, secondary_y=None, **kwargs
+        self, patch=None, selector=None, row=None, col=None, secondary_y=None, **kwargs
     ):
         """
         Perform a property update operation on all images that satisfy the
@@ -17960,12 +19120,17 @@ class Figure(BaseFigure):
         patch: dict or None (default None)
             Dictionary of property updates to be applied to all images that
             satisfy the selection criteria.
-        selector: dict or None (default None)
+        selector: dict, function, int, str or None (default None)
             Dict to use as selection criteria.
             Traces will be selected if they contain properties corresponding
             to all of the dictionary's keys, with values that exactly match
             the supplied values. If None (the default), all images are
-            selected.
+            selected. If a function, it must be a function accepting a single
+            argument and returning a boolean. The function will be called on
+            each image and those for which the function returned True
+            will be in the selection. If an int N, the Nth image matching row
+            and col will be selected (N can be negative). If a string S, the selector
+            is equivalent to dict(type=S).
         row, col: int or None (default None)
             Subplot row and column index of images to select.
             To select images by row and column, the Figure must have been
@@ -18022,6 +19187,7 @@ class Figure(BaseFigure):
         row=None,
         col=None,
         secondary_y=None,
+        exclude_empty_subplots=None,
         **kwargs
     ):
         """
@@ -18050,12 +19216,14 @@ class Figure(BaseFigure):
             Sets the image container size horizontally. The image
             will be sized based on the `position` value. When
             `xref` is set to `paper`, units are sized relative to
-            the plot width.
+            the plot width. When `xref` ends with ` domain`, units
+            are sized relative to the axis width.
         sizey
             Sets the image container size vertically. The image
             will be sized based on the `position` value. When
             `yref` is set to `paper`, units are sized relative to
-            the plot height.
+            the plot height. When `yref` ends with ` domain`, units
+            are sized relative to the axis height.
         sizing
             Specifies which dimension of the image to constrain.
         source
@@ -18082,11 +19250,18 @@ class Figure(BaseFigure):
             Sets the anchor for the x position
         xref
             Sets the images's x coordinate axis. If set to a x axis
-            id (e.g. "x" or "x2"), the `x` position refers to an x
-            data coordinate If set to "paper", the `x` position
-            refers to the distance from the left of plot in
+            id (e.g. "x" or "x2"), the `x` position refers to a x
+            coordinate. If set to "paper", the `x` position refers
+            to the distance from the left of the plotting area in
             normalized coordinates where 0 (1) corresponds to the
-            left (right).
+            left (right). If set to a x axis ID followed by
+            "domain" (separated by a space), the position behaves
+            like for "paper", but refers to the distance in
+            fractions of the domain length from the left of the
+            domain of that axis: e.g., *x2 domain* refers to the
+            domain of the second x  axis and a x position of 0.5
+            refers to the point between the left and the right of
+            the domain of the second x axis.
         y
             Sets the image's y position. When `yref` is set to
             `paper`, units are sized relative to the plot height.
@@ -18096,21 +19271,35 @@ class Figure(BaseFigure):
         yref
             Sets the images's y coordinate axis. If set to a y axis
             id (e.g. "y" or "y2"), the `y` position refers to a y
-            data coordinate. If set to "paper", the `y` position
-            refers to the distance from the bottom of the plot in
+            coordinate. If set to "paper", the `y` position refers
+            to the distance from the bottom of the plotting area in
             normalized coordinates where 0 (1) corresponds to the
-            bottom (top).
+            bottom (top). If set to a y axis ID followed by
+            "domain" (separated by a space), the position behaves
+            like for "paper", but refers to the distance in
+            fractions of the domain length from the bottom of the
+            domain of that axis: e.g., *y2 domain* refers to the
+            domain of the second y  axis and a y position of 0.5
+            refers to the point between the bottom and the top of
+            the domain of the second y axis.
         row
-            Subplot row for image
+            Subplot row for image. If 'all', addresses all rows in
+            the specified column(s).
         col
-            Subplot column for image
+            Subplot column for image. If 'all', addresses all
+            columns in the specified row(s).
         secondary_y
             Whether to add image to secondary y-axis
+        exclude_empty_subplots
+            If True, image will not be added to subplots without
+            traces.
 
         Returns
         -------
         Figure
         """
+        from plotly.graph_objs import layout as _layout
+
         new_obj = _layout.Image(
             arg,
             layer=layer,
@@ -18131,7 +19320,13 @@ class Figure(BaseFigure):
             **kwargs
         )
         return self._add_annotation_like(
-            "image", "images", new_obj, row=row, col=col, secondary_y=secondary_y,
+            "image",
+            "images",
+            new_obj,
+            row=row,
+            col=col,
+            secondary_y=secondary_y,
+            exclude_empty_subplots=exclude_empty_subplots,
         )
 
     def select_shapes(self, selector=None, row=None, col=None, secondary_y=None):
@@ -18141,12 +19336,17 @@ class Figure(BaseFigure):
 
         Parameters
         ----------
-        selector: dict or None (default None)
+        selector: dict, function, int, str, or None (default None)
             Dict to use as selection criteria.
             Annotations will be selected if they contain properties corresponding
             to all of the dictionary's keys, with values that exactly match
             the supplied values. If None (the default), all shapes are
-            selected.
+            selected. If a function, it must be a function accepting a single
+            argument and returning a boolean. The function will be called on
+            each shape and those for which the function returned True
+            will be in the selection. If an int N, the Nth shape matching row
+            and col will be selected (N can be negative). If a string S, the selector
+            is equivalent to dict(type=S).
         row, col: int or None (default None)
             Subplot row and column index of shapes to select.
             To select shapes by row and column, the Figure must have been
@@ -18184,12 +19384,17 @@ class Figure(BaseFigure):
         ----------
         fn:
             Function that inputs a single shape object.
-        selector: dict or None (default None)
+        selector: dict, function, int, str or None (default None)
             Dict to use as selection criteria.
             Traces will be selected if they contain properties corresponding
             to all of the dictionary's keys, with values that exactly match
             the supplied values. If None (the default), all shapes are
-            selected.
+            selected. If a function, it must be a function accepting a single
+            argument and returning a boolean. The function will be called on
+            each shape and those for which the function returned True
+            will be in the selection. If an int N, the Nth shape matching row
+            and col will be selected (N can be negative). If a string S, the selector
+            is equivalent to dict(type=S).
         row, col: int or None (default None)
             Subplot row and column index of shapes to select.
             To select shapes by row and column, the Figure must have been
@@ -18221,7 +19426,7 @@ class Figure(BaseFigure):
         return self
 
     def update_shapes(
-        self, patch, selector=None, row=None, col=None, secondary_y=None, **kwargs
+        self, patch=None, selector=None, row=None, col=None, secondary_y=None, **kwargs
     ):
         """
         Perform a property update operation on all shapes that satisfy the
@@ -18232,12 +19437,17 @@ class Figure(BaseFigure):
         patch: dict or None (default None)
             Dictionary of property updates to be applied to all shapes that
             satisfy the selection criteria.
-        selector: dict or None (default None)
+        selector: dict, function, int, str or None (default None)
             Dict to use as selection criteria.
             Traces will be selected if they contain properties corresponding
             to all of the dictionary's keys, with values that exactly match
             the supplied values. If None (the default), all shapes are
-            selected.
+            selected. If a function, it must be a function accepting a single
+            argument and returning a boolean. The function will be called on
+            each shape and those for which the function returned True
+            will be in the selection. If an int N, the Nth shape matching row
+            and col will be selected (N can be negative). If a string S, the selector
+            is equivalent to dict(type=S).
         row, col: int or None (default None)
             Subplot row and column index of shapes to select.
             To select shapes by row and column, the Figure must have been
@@ -18276,7 +19486,9 @@ class Figure(BaseFigure):
     def add_shape(
         self,
         arg=None,
+        editable=None,
         fillcolor=None,
+        fillrule=None,
         layer=None,
         line=None,
         name=None,
@@ -18298,6 +19510,7 @@ class Figure(BaseFigure):
         row=None,
         col=None,
         secondary_y=None,
+        exclude_empty_subplots=None,
         **kwargs
     ):
         """
@@ -18307,14 +19520,25 @@ class Figure(BaseFigure):
         ----------
         arg
             instance of Shape or dict with compatible properties
+        editable
+            Determines whether the shape could be activated for
+            edit or not. Has no effect when the older editable
+            shapes mode is enabled via `config.editable` or
+            `config.edits.shapePosition`.
         fillcolor
-            Sets the color filling the shape's interior.
+            Sets the color filling the shape's interior. Only
+            applies to closed shapes.
+        fillrule
+            Determines which regions of complex paths constitute
+            the interior. For more info please visit
+            https://developer.mozilla.org/en-
+            US/docs/Web/SVG/Attribute/fill-rule
         layer
             Specifies whether shapes are drawn below or above
             traces.
         line
-            plotly.graph_objects.layout.shape.Line instance or dict
-            with compatible properties
+            :class:`plotly.graph_objects.layout.shape.Line`
+            instance or dict with compatible properties
         name
             When used in a template, named items are created in the
             output figure in addition to any items the figure
@@ -18387,15 +19611,22 @@ class Figure(BaseFigure):
             to a certain data value. No effect when `xsizemode` not
             set to "pixel".
         xref
-            Sets the shape's x coordinate axis. If set to an x axis
-            id (e.g. "x" or "x2"), the `x` position refers to an x
+            Sets the shape's x coordinate axis. If set to a x axis
+            id (e.g. "x" or "x2"), the `x` position refers to a x
             coordinate. If set to "paper", the `x` position refers
-            to the distance from the left side of the plotting area
-            in normalized coordinates where 0 (1) corresponds to
-            the left (right) side. If the axis `type` is "log",
-            then you must take the log of your desired range. If
-            the axis `type` is "date", then you must convert the
-            date to unix time in milliseconds.
+            to the distance from the left of the plotting area in
+            normalized coordinates where 0 (1) corresponds to the
+            left (right). If set to a x axis ID followed by
+            "domain" (separated by a space), the position behaves
+            like for "paper", but refers to the distance in
+            fractions of the domain length from the left of the
+            domain of that axis: e.g., *x2 domain* refers to the
+            domain of the second x  axis and a x position of 0.5
+            refers to the point between the left and the right of
+            the domain of the second x axis. If the axis `type` is
+            "log", then you must take the log of your desired
+            range. If the axis `type` is "date", then you must
+            convert the date to unix time in milliseconds.
         xsizemode
             Sets the shapes's sizing mode along the x axis. If set
             to "scaled", `x0`, `x1` and x coordinates within `path`
@@ -18420,12 +19651,19 @@ class Figure(BaseFigure):
             to a certain data value. No effect when `ysizemode` not
             set to "pixel".
         yref
-            Sets the annotation's y coordinate axis. If set to an y
+            Sets the annotation's y coordinate axis. If set to a y
             axis id (e.g. "y" or "y2"), the `y` position refers to
-            an y coordinate If set to "paper", the `y` position
+            a y coordinate. If set to "paper", the `y` position
             refers to the distance from the bottom of the plotting
             area in normalized coordinates where 0 (1) corresponds
-            to the bottom (top).
+            to the bottom (top). If set to a y axis ID followed by
+            "domain" (separated by a space), the position behaves
+            like for "paper", but refers to the distance in
+            fractions of the domain length from the bottom of the
+            domain of that axis: e.g., *y2 domain* refers to the
+            domain of the second y  axis and a y position of 0.5
+            refers to the point between the bottom and the top of
+            the domain of the second y axis.
         ysizemode
             Sets the shapes's sizing mode along the y axis. If set
             to "scaled", `y0`, `y1` and y coordinates within `path`
@@ -18438,19 +19676,28 @@ class Figure(BaseFigure):
             maintaining a position relative to data or plot
             fraction.
         row
-            Subplot row for shape
+            Subplot row for shape. If 'all', addresses all rows in
+            the specified column(s).
         col
-            Subplot column for shape
+            Subplot column for shape. If 'all', addresses all
+            columns in the specified row(s).
         secondary_y
             Whether to add shape to secondary y-axis
+        exclude_empty_subplots
+            If True, shape will not be added to subplots without
+            traces.
 
         Returns
         -------
         Figure
         """
+        from plotly.graph_objs import layout as _layout
+
         new_obj = _layout.Shape(
             arg,
+            editable=editable,
             fillcolor=fillcolor,
+            fillrule=fillrule,
             layer=layer,
             line=line,
             name=name,
@@ -18472,5 +19719,11 @@ class Figure(BaseFigure):
             **kwargs
         )
         return self._add_annotation_like(
-            "shape", "shapes", new_obj, row=row, col=col, secondary_y=secondary_y,
+            "shape",
+            "shapes",
+            new_obj,
+            row=row,
+            col=col,
+            secondary_y=secondary_y,
+            exclude_empty_subplots=exclude_empty_subplots,
         )

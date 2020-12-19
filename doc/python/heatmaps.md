@@ -6,7 +6,7 @@ jupyter:
       extension: .md
       format_name: markdown
       format_version: '1.2'
-      jupytext_version: 1.3.0
+      jupytext_version: 1.6.0
   kernelspec:
     display_name: Python 3
     language: python
@@ -20,7 +20,7 @@ jupyter:
     name: python
     nbconvert_exporter: python
     pygments_lexer: ipython3
-    version: 3.7.3
+    version: 3.7.6
   plotly:
     description: How to make Heatmaps in Python with Plotly.
     display_as: scientific
@@ -36,9 +36,7 @@ jupyter:
 
 ### Heatmap with `plotly.express` and `px.imshow`
 
-[Plotly Express](/python/plotly-express/) is the easy-to-use, high-level interface to Plotly. With `px.imshow`, each value of the input array is represented as a heatmap pixel.
-
-`px.imshow` makes opiniated choices for representing heatmaps, such as using square pixels. To override this behaviour, you can use `fig.update_layout` or use the `go.Heatmap` trace from `plotly.graph_objects` as described below. 
+[Plotly Express](/python/plotly-express/) is the easy-to-use, high-level interface to Plotly, which [operates on a variety of types of data](/python/px-arguments/) and produces [easy-to-style figures](/python/styling-plotly-express/). With `px.imshow`, each value of the input array or data frame is represented as a heatmap pixel.
 
 For more examples using `px.imshow`, see the [tutorial on displaying image data with plotly](/python/imshow).
 
@@ -51,9 +49,46 @@ fig = px.imshow([[1, 20, 30],
 fig.show()
 ```
 
+```python
+import plotly.express as px
+
+df = px.data.medals_wide(indexed=True)
+fig = px.imshow(df)
+fig.show()
+```
+
+#### Heatmaps in Dash
+
+[Dash](https://plotly.com/dash/) is the best way to build analytical apps in Python using Plotly figures. To run the app below, run `pip install dash`, click "Download" to get the code and run `python app.py`.
+
+Get started  with [the official Dash docs](https://dash.plotly.com/installation) and **learn how to effortlessly [style](https://plotly.com/dash/design-kit/) & [deploy](https://plotly.com/dash/app-manager/) apps like this with <a class="plotly-red" href="https://plotly.com/dash/">Dash Enterprise</a>.**
+
+
+```python hide_code=true
+from IPython.display import IFrame
+snippet_url = 'https://dash-gallery.plotly.host/python-docs-dash-snippets/'
+IFrame(snippet_url + 'heatmaps', width='100%', height=630)
+```
+
+### Customizing the axes and labels on a heatmap
+
+You can use the `x`, `y` and `labels` arguments to customize the display of a heatmap, and use `.update_xaxes()` to move the x axis tick labels to the top:
+
+```python
+import plotly.express as px
+data=[[1, 25, 30, 50, 1], [20, 1, 60, 80, 30], [30, 60, 1, 5, 20]]
+fig = px.imshow(data,
+                labels=dict(x="Day of Week", y="Time of Day", color="Productivity"),
+                x=['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+                y=['Morning', 'Afternoon', 'Evening']
+               )
+fig.update_xaxes(side="top")
+fig.show()
+```
+
 ### Basic Heatmap with `plotly.graph_objects`
 
-If Plotly Express does not provide a good starting point, it is also possible to use the more generic `go.Heatmap` function from `plotly.graph_objects`.
+If Plotly Express does not provide a good starting point, it is also possible to use [the more generic `go.Heatmap` class from `plotly.graph_objects`](/python/graph-objects/).
 
 ```python
 import plotly.graph_objects as go
@@ -67,7 +102,7 @@ fig.show()
 
 ### Heatmap with Categorical Axis Labels
 
-In this example we also show how to ignore [hovertext](https://plot.ly/python/hover-text-and-formatting/) when we have [missing values](https://plot.ly/python/missing_values) in the data by setting the [hoverongaps](https://plot.ly/python/reference/#heatmap-hoverongaps) to False. 
+In this example we also show how to ignore [hovertext](https://plotly.com/python/hover-text-and-formatting/) when we have [missing values](https://plotly.com/python/missing_values) in the data by setting the [hoverongaps](https://plotly.com/python/reference/heatmap/#heatmap-hoverongaps) to False.
 
 ```python
 import plotly.graph_objects as go
@@ -168,4 +203,4 @@ Arrays of rasterized values build by datashader can be visualized using
 plotly's heatmaps, as shown in the [plotly and datashader tutorial](/python/datashader/).
 
 #### Reference
-See https://plot.ly/python/reference/#heatmap for more information and chart attribute options!
+See [function reference for `px.(imshow)`](https://plotly.com/python-api-reference/generated/plotly.express.imshow) or https://plotly.com/python/reference/heatmap/ for more information and chart attribute options!

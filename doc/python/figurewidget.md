@@ -27,10 +27,11 @@ jupyter:
     language: python
     layout: base
     name: Plotly FigureWidget Overview
-    order: 0
+    order: 1
     page_type: example_index
     permalink: python/figurewidget/
     thumbnail: thumbnail/figurewidget-overview.gif
+    redirect_from: /python/ipython-widgets/
 ---
 
 #### Create a Simple FigureWidget

@@ -1,12 +1,12 @@
 jupytext
-plotly==4.5.0
+plotly==4.14.1
 jupyter
 notebook
-pandas==0.23.0
-statsmodels==0.10.1
-scipy==1.3.1
+pandas==1.0.3
+statsmodels==0.11.1
+scipy
 patsy==0.5.1
-numpy==1.16.0
+numpy
 plotly-geo
 psutil
 requests
@@ -14,3 +14,8 @@ networkx
 scikit-image
 datashader
 pyarrow
+cufflinks==0.17.3
+kaleido
+scikit-learn
+umap-learn
+wget

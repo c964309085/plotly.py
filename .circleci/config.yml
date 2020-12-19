@@ -9,7 +9,7 @@ jobs:
       - checkout
       - run:
           name: Install black
-          command: "sudo pip install black"
+          command: "sudo pip install black==19.10b0"
       - run:
           name: Check formatting with black
           command: "black --check ."
@@ -314,7 +314,7 @@ jobs:
             pytest packages/python/plotly/plotly/tests/test_orca
 
       - store_artifacts:
-          path: plotly/tests/test_orca/images/linux/failed
+          path: packages/python/plotly/plotly/tests/test_orca/images/linux/failed
 
   plotlyjs_dev_build:
     docker:
@@ -339,7 +339,7 @@ jobs:
           command: |
             cd packages/python/plotly
             locale
-            tox -e py37-core -- -a '!nodev'
+            tox -e py37-core -- -k 'not nodev'
           no_output_timeout: 20m
       - run:
           name: Commit
@@ -374,7 +374,7 @@ jobs:
     docker:
       # specify the version you desire here
       # use `-browsers` prefix for selenium tests, e.g. `3.6.1-browsers`
-      - image: circleci/python:3.6.8-node
+      - image: circleci/python:3.7-stretch-node-browsers
 
         working_directory: ~/project
 
@@ -400,16 +400,17 @@ jobs:
             . venv/bin/activate
             npm install electron@1.8.4
             npm install orca
+            pip install -U pip
             pip uninstall -y plotly
             pip install -r requirements.txt
             if [ "${CIRCLE_BRANCH}" != "doc-prod" ]; then
               pip uninstall -y plotly
               cd ../packages/python/plotly
-              python3 setup.py install
+              pip install -e .
               cd ../../../doc
             fi
             echo 'export PATH="/home/circleci/project/doc/node_modules/.bin:$PATH"' >> $BASH_ENV
-            sudo apt-get install -y poppler-utils libxtst6 xvfb libgtk2.0-0 libgconf-2-4 libnss3 libasound2
+            sudo apt-get install -y poppler-utils libxtst6 xvfb libgtk2.0-0 libgconf-2-4 libnss3 libasound2 rename
             cd ..
 
       - save_cache:
@@ -439,6 +440,15 @@ jobs:
               git push --force git@github.com:plotly/plotly.py-docs.git master:built
               rm -rf .git
               cd ../..
+              cd build/ipynb
+              git init
+              git config user.name plotlydocbot
+              git config user.email accounts@plot.ly
+              git add *
+              git commit -m "build of https://github.com/plotly/plotly.py/commit/${CIRCLE_SHA1}"
+              git push --force git@github.com:plotly/plotly.py-docs.git master:built_ipynb
+              rm -rf .git
+              cd ../..
             fi
             tar -zcf build/html.tgz build/html
             rm -rf build/html build/ipynb
@@ -463,6 +473,15 @@ jobs:
           command: |
             cd doc
             . venv/bin/activate
+            # For the API doc, we need to use the local version of plotly
+            # since we are tweaking the source because of
+            # graph_objs/graph_objects
+            if [ "${CIRCLE_BRANCH}" == "doc-prod" ]; then
+              pip uninstall -y plotly
+              cd ../packages/python/plotly
+              pip install -e .
+              cd ../../../doc
+            fi
             cd apidoc
             make html
             if [ "${CIRCLE_BRANCH}" == "doc-prod" ]; then
@@ -478,12 +497,14 @@ jobs:
               rm -rf .git
               cd ../..
             fi
-
             cd ../..
 
       - store_artifacts:
           path: doc/build
           destination: doc/build
+      - store_artifacts:
+          path: doc/apidoc/_build/
+          destination: doc/apidoc/_build/
 
 workflows:
   version: 2
@@ -504,13 +525,8 @@ workflows:
       - python-2.7-optional
       - python-3.5-optional
       - python-3.6-optional
-      # 3.7 optional disabled due to current shapely incompatibility
-      # - python-3.7-optional
-      - python-2.7-plot_ly
-      - python-3.7-plot_ly:
-          requires:
-            - python-2.7-plot_ly
+      - python-3.7-optional
+      - python-3.7-plot_ly
       - python-2-7-orca
-      - python-3-5-orca
       - python-3-7-orca
       - build-doc

@@ -14,7 +14,6 @@ numpy
 ## testing dependencies ##
 coverage==4.3.1
 mock==2.0.0
-nose==1.3.3
 pytest==3.5.1
 backports.tempfile==1.0
 xarray
@@ -26,6 +25,7 @@ psutil
 
 ## code formatting
 pre-commit
+black
 
 ## codegen dependencies ##
 inflect
@@ -51,5 +51,5 @@ pyshp
 geopandas
 shapely
 
-# image uri conversion
+## image uri conversion
 pillow

@@ -5,8 +5,8 @@ jupyter:
     text_representation:
       extension: .md
       format_name: markdown
-      format_version: "1.1"
-      jupytext_version: 1.1.1
+      format_version: '1.2'
+      jupytext_version: 1.6.0
   kernelspec:
     display_name: Python 3
     language: python
@@ -20,14 +20,14 @@ jupyter:
     name: python
     nbconvert_exporter: python
     pygments_lexer: ipython3
-    version: 3.6.7
+    version: 3.7.6
   plotly:
     description: How to make filled area plots in Python with Plotly.
     display_as: basic
     language: python
     layout: base
     name: Filled Area Plots
-    order: 8
+    order: 7
     page_type: u-guide
     permalink: python/filled-area-plots/
     thumbnail: thumbnail/area.jpg
@@ -37,7 +37,7 @@ This example shows how to fill the area enclosed by traces.
 
 ## Filled area plot with plotly.express
 
-[Plotly Express](/python/plotly-express/) is the easy-to-use, high-level interface to Plotly, which [operates on "tidy" data](/python/px-arguments/) and produces [easy-to-style figures](/python/styling-plotly-express/).
+[Plotly Express](/python/plotly-express/) is the easy-to-use, high-level interface to Plotly, which [operates on a variety of types of data](/python/px-arguments/) and produces [easy-to-style figures](/python/styling-plotly-express/).
 
 `px.area` creates a stacked area plot. Each filled area corresponds to one value of the column given by the `line_group` parameter.
 
@@ -47,6 +47,19 @@ df = px.data.gapminder()
 fig = px.area(df, x="year", y="pop", color="continent",
 	      line_group="country")
 fig.show()
+```
+
+## Filled area plot in Dash
+
+[Dash](https://plotly.com/dash/) is the best way to build analytical apps in Python using Plotly figures. To run the app below, run `pip install dash`, click "Download" to get the code and run `python app.py`.
+
+Get started  with [the official Dash docs](https://dash.plotly.com/installation) and **learn how to effortlessly [style](https://plotly.com/dash/design-kit/) & [deploy](https://plotly.com/dash/app-manager/) apps like this with <a class="plotly-red" href="https://plotly.com/dash/">Dash Enterprise</a>.**
+
+
+```python hide_code=true
+from IPython.display import IFrame
+snippet_url = 'https://dash-gallery.plotly.host/python-docs-dash-snippets/'
+IFrame(snippet_url + 'filled-area-plots', width='100%', height=630)
 ```
 
 ### Filled area chart with plotly.graph_objects
@@ -70,7 +83,7 @@ import plotly.graph_objects as go
 
 fig = go.Figure()
 fig.add_trace(go.Scatter(x=[1, 2, 3, 4], y=[0, 2, 3, 5], fill='tozeroy',
-                    mode='none' # override default markers+lines
+                    mode='none' # override default markers+lines
                     ))
 fig.add_trace(go.Scatter(x=[1, 2, 3, 4], y=[3, 5, 1, 7], fill='tonexty',
                     mode= 'none'))
@@ -92,7 +105,7 @@ fig.add_trace(go.Scatter(x=[1, 2, 3, 4], y=[3, 4, 8, 3],
 fig.add_trace(go.Scatter(
     x=[1, 2, 3, 4],
     y=[1, 6, 2, 6],
-    fill='tonexty', # fill area between trace0 and trace1
+    fill='tonexty', # fill area between trace0 and trace1
     mode='lines', line_color='indigo'))
 
 fig.show()
@@ -210,6 +223,6 @@ fig.show()
 
 #### Reference
 
-See https://plot.ly/python/reference/#scatter-line
-and https://plot.ly/python/reference/#scatter-fill
+See https://plotly.com/python/reference/scatter/#scatter-line
+and https://plotly.com/python/reference/scatter/#scatter-fill
 for more information and attribute options!

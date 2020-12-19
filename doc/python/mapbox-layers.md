@@ -5,7 +5,7 @@ jupyter:
     text_representation:
       extension: .md
       format_name: markdown
-      format_version: "1.2"
+      format_version: '1.2'
       jupytext_version: 1.3.1
   kernelspec:
     display_name: Python 3
@@ -22,14 +22,13 @@ jupyter:
     pygments_lexer: ipython3
     version: 3.6.8
   plotly:
-    description:
-      How to make Mapbox maps in Python with various base layers, with
+    description: How to make Mapbox maps in Python with various base layers, with
       or without needing a Mapbox Access token.
     display_as: maps
     language: python
     layout: base
     name: Mapbox Map Layers
-    order: 9
+    order: 8
     page_type: u-guide
     permalink: python/mapbox-layers/
     thumbnail: thumbnail/mapbox-layers.png
@@ -56,7 +55,7 @@ Mapbox tile maps are composed of various layers, of three different types:
 
 #### Mapbox Access Tokens and When You Need Them
 
-The word "mapbox" in the trace names and `layout.mapbox` refers to the Mapbox.js open-source library, which is integrated into Plotly.py. If your basemap in `layout.mapbox.style` uses data from the Mapbox _service_, then you will need to register for a free account at https://mapbox.com/ and obtain a Mapbox Access token. This token should be provided in `layout.mapbox.access_token` (or, if using Plotly Express, via the `px.set_mapbox_access_token()` configuration function).
+The word "mapbox" in the trace names and `layout.mapbox` refers to the Mapbox GL JS open-source library, which is integrated into Plotly.py. If your basemap in `layout.mapbox.style` uses data from the Mapbox _service_, then you will need to register for a free account at https://mapbox.com/ and obtain a Mapbox Access token. This token should be provided in `layout.mapbox.access_token` (or, if using Plotly Express, via the `px.set_mapbox_access_token()` configuration function).
 
 > If your `layout.mapbox.style` does not use data from the Mapbox service, you do _not_ need to register for a Mapbox account.
 
@@ -117,6 +116,7 @@ fig.update_layout(
         {
             "below": 'traces',
             "sourcetype": "raster",
+            "sourceattribution": "United States Geological Survey",
             "source": [
                 "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}"
             ]
@@ -148,12 +148,14 @@ fig.update_layout(
         {
             "below": 'traces',
             "sourcetype": "raster",
+            "sourceattribution": "United States Geological Survey",
             "source": [
                 "https://basemap.nationalmap.gov/arcgis/rest/services/USGSImageryOnly/MapServer/tile/{z}/{y}/{x}"
             ]
         },
         {
             "sourcetype": "raster",
+            "sourceattribution": "Government of Canada",
             "source": ["https://geo.weather.gc.ca/geomet/?"
                        "SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&BBOX={bbox-epsg-3857}&CRS=EPSG:3857"
                        "&WIDTH=1000&HEIGHT=1000&LAYERS=RADAR_1KM_RDBR&TILED=true&FORMAT=image/png"],
@@ -192,4 +194,4 @@ See the example in the [plotly and datashader tutorial](/python/datashader).
 
 #### Reference
 
-See https://plot.ly/python/reference/#layout-mapbox for more information and options!
+See https://plotly.com/python/reference/layout/mapbox/ for more information and options!

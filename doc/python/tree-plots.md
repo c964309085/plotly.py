@@ -28,7 +28,7 @@ jupyter:
     language: python
     layout: base
     name: Tree-plots
-    order: 10
+    order: 9
     permalink: python/tree-plots/
     thumbnail: thumbnail/treeplot.jpg
 ---
@@ -137,4 +137,4 @@ fig.show()
 ```
 
 #### Reference
-See https://plot.ly/python/reference/ for more information and chart attribute options and http://igraph.org/python/ for more information about the igraph package!
+See https://plotly.com/python/reference/ for more information and chart attribute options and http://igraph.org/python/ for more information about the igraph package!

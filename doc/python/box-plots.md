@@ -5,8 +5,8 @@ jupyter:
     text_representation:
       extension: .md
       format_name: markdown
-      format_version: "1.2"
-      jupytext_version: 1.3.1
+      format_version: '1.2'
+      jupytext_version: 1.6.0
   kernelspec:
     display_name: Python 3
     language: python
@@ -20,7 +20,7 @@ jupyter:
     name: python
     nbconvert_exporter: python
     pygments_lexer: ipython3
-    version: 3.6.8
+    version: 3.7.6
   plotly:
     description: How to make Box Plots in Python with Plotly.
     display_as: statistical
@@ -31,16 +31,16 @@ jupyter:
     page_type: example_index
     permalink: python/box-plots/
     redirect_from:
-      - /python/box/
-      - /python/basic_statistics/
+    - /python/box/
+    - /python/basic_statistics/
     thumbnail: thumbnail/box.jpg
 ---
 
-A [box plot](https://en.wikipedia.org/wiki/Box_plot) is a statistical representation of numerical data through their quartiles. The ends of the box represent the lower and upper quartiles, while the median (second quartile) is marked by a line inside the box. For other statistical representations of numerical data, see [other statistical charts](https://plot.ly/python/statistical-charts/).
+A [box plot](https://en.wikipedia.org/wiki/Box_plot) is a statistical representation of numerical data through their quartiles. The ends of the box represent the lower and upper quartiles, while the median (second quartile) is marked by a line inside the box. For other statistical representations of numerical data, see [other statistical charts](https://plotly.com/python/statistical-charts/).
 
 ## Box Plot with `plotly.express`
 
-[Plotly Express](/python/plotly-express/) is the easy-to-use, high-level interface to Plotly, which [operates on "tidy" data](/python/px-arguments/) and produces [easy-to-style figures](/python/styling-plotly-express/).
+[Plotly Express](/python/plotly-express/) is the easy-to-use, high-level interface to Plotly, which [operates on a variety of types of data](/python/px-arguments/) and produces [easy-to-style figures](/python/styling-plotly-express/).
 
 In a box plot created by `px.box`, the distribution of the column given as `y` argument is represented.
 
@@ -58,6 +58,18 @@ import plotly.express as px
 df = px.data.tips()
 fig = px.box(df, x="time", y="total_bill")
 fig.show()
+```
+
+### Box Plots in Dash
+
+[Dash](https://plotly.com/dash/) is the best way to build analytical apps in Python using Plotly figures. To run the app below, run `pip install dash`, click "Download" to get the code and run `python app.py`.
+
+Get started  with [the official Dash docs](https://dash.plotly.com/installation) and **learn how to effortlessly [style](https://plotly.com/dash/design-kit/) & [deploy](https://plotly.com/dash/app-manager/) apps like this with <a class="plotly-red" href="https://plotly.com/dash/">Dash Enterprise</a>.**
+
+```python hide_code=true
+from IPython.display import IFrame
+snippet_url = 'https://dash-gallery.plotly.host/python-docs-dash-snippets/'
+IFrame(snippet_url + 'box-plots', width='100%', height=630)
 ```
 
 ### Display the underlying data
@@ -134,7 +146,7 @@ fig.show()
 
 ## Box plot with go.Box
 
-If Plotly Express does not provide a good starting point, it is also possible to use the more generic `go.Box` function from `plotly.graph_objects`. All available options for `go.Box` are described in the reference page https://plot.ly/python/reference/#box.
+If Plotly Express does not provide a good starting point, it is also possible to use [the more generic `go.Box` class from `plotly.graph_objects`](/python/graph-objects/). All available options for `go.Box` are described in the reference page https://plotly.com/python/reference/box/.
 
 ### Basic Box Plot
 
@@ -280,7 +292,7 @@ fig.add_trace(go.Box(
     name="All Points",
     jitter=0.3,
     pointpos=-1.8,
-    boxpoints='all', # represent all points
+    boxpoints='all', # represent all points
     marker_color='rgb(7,40,89)',
     line_color='rgb(7,40,89)'
 ))
@@ -353,7 +365,7 @@ fig.add_trace(go.Box(
 
 fig.update_layout(
     yaxis_title='normalized moisture',
-    boxmode='group' # group together boxes of the different traces for each value of x
+    boxmode='group' # group together boxes of the different traces for each value of x
 )
 fig.show()
 ```
@@ -489,6 +501,17 @@ fig.update_layout(
 fig.show()
 ```
 
+### Box Plot With Only Points
+
+A [strip chart](/python/strip-charts/) is like a box plot with points showing, and no box:
+
+```python
+import plotly.express as px
+df = px.data.tips()
+fig = px.strip(df, x='day', y='tip')
+fig.show()
+```
+
 #### Reference
 
-See https://plot.ly/python/reference/#box for more information and chart attribute options!
+See [function reference for `px.box()`](https://plotly.com/python-api-reference/generated/plotly.express.box) or https://plotly.com/python/reference/box/ for more information and chart attribute options!

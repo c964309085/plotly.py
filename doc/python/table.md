@@ -5,19 +5,29 @@ jupyter:
     text_representation:
       extension: .md
       format_name: markdown
-      format_version: '1.1'
-      jupytext_version: 1.1.1
+      format_version: '1.2'
+      jupytext_version: 1.6.0
   kernelspec:
     display_name: Python 3
     language: python
     name: python3
+  language_info:
+    codemirror_mode:
+      name: ipython
+      version: 3
+    file_extension: .py
+    mimetype: text/x-python
+    name: python
+    nbconvert_exporter: python
+    pygments_lexer: ipython3
+    version: 3.7.6
   plotly:
     description: How to make tables in Python with Plotly.
     display_as: basic
     language: python
     layout: base
     name: Tables
-    order: 12
+    order: 11
     page_type: u-guide
     permalink: python/table/
     thumbnail: thumbnail/table.gif
@@ -26,7 +36,7 @@ jupyter:
 `go.Table` provides a Table object for detailed data viewing. The data are arranged in
 a grid of rows and columns. Most styling can be specified for header, columns, rows or individual cells. Table is using a column-major order, ie. the grid is represented as a vector of column vectors.
 
-Note that [Dash](https://dash.plot.ly/) provides a different type of [DataTable](https://dash.plot.ly/datatable).
+Note that [Dash](https://dash.plotly.com/) provides a different type of [DataTable](https://dash.plotly.com/datatable).
 
 #### Basic Table
 
@@ -78,6 +88,18 @@ fig = go.Figure(data=[go.Table(
 ])
 
 fig.show()
+```
+
+#### Tables in Dash
+
+[Dash](https://plotly.com/dash/) is the best way to build analytical apps in Python using Plotly figures. To run the app below, run `pip install dash`, click "Download" to get the code and run `python app.py`.
+
+Get started  with [the official Dash docs](https://dash.plotly.com/installation) and **learn how to effortlessly [style](https://plotly.com/dash/design-kit/) & [deploy](https://plotly.com/dash/app-manager/) apps like this with <a class="plotly-red" href="https://plotly.com/dash/">Dash Enterprise</a>.**
+
+```python hide_code=true
+from IPython.display import IFrame
+snippet_url = 'https://dash-gallery.plotly.host/python-docs-dash-snippets/'
+IFrame(snippet_url + 'table', width='100%', height=630)
 ```
 
 #### Changing Row and Column Size
@@ -211,4 +233,4 @@ fig.show()
 ```
 
 #### Reference
-For more information on tables and table attributes see: https://plot.ly/python/reference/#table.
+For more information on tables and table attributes see: https://plotly.com/python/reference/table/.

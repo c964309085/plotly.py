@@ -5,8 +5,8 @@ jupyter:
     text_representation:
       extension: .md
       format_name: markdown
-      format_version: "1.1"
-      jupytext_version: 1.1.1
+      format_version: '1.2'
+      jupytext_version: 1.4.2
   kernelspec:
     display_name: Python 3
     language: python
@@ -20,16 +20,15 @@ jupyter:
     name: python
     nbconvert_exporter: python
     pygments_lexer: ipython3
-    version: 3.6.7
+    version: 3.7.7
   plotly:
-    description:
-      How to make scatter plots on maps in Python. Scatter plots on maps
+    description: How to make scatter plots on maps in Python. Scatter plots on maps
       highlight geographic areas and can be colored by value.
     display_as: maps
     language: python
     layout: base
     name: Scatter Plots on Maps
-    order: 12
+    order: 11
     page_type: u-guide
     permalink: python/scatter-plots-on-maps/
     thumbnail: thumbnail/scatter-plot-on-maps.jpg
@@ -37,13 +36,13 @@ jupyter:
 
 #### Base Map Configuration
 
-Plotly figures made with `px.scatter_geo`, `px.line_geo` or `px.choropleth` functions or containing `go.Choropleth` or `go.Scattergeo` graph objects have a `go.layout.Geo` object which can be used to [control the appearance of the base map](/python/map-configuration/) onto which data is plotted.
+Plotly figures made with [Plotly Express](/python/plotly-express/) `px.scatter_geo`, `px.line_geo` or `px.choropleth` functions or containing `go.Choropleth` or `go.Scattergeo` [graph objects](/python/graph-objects/) have a `go.layout.Geo` object which can be used to [control the appearance of the base map](/python/map-configuration/) onto which data is plotted.
 
 ### Geographical Scatter Plot with px.scatter_geo
 
 Here we show the [Plotly Express](/python/plotly-express/) function `px.scatter_geo` for a geographical scatter plot. The `size` argument is used to set the size of markers from a given column of the DataFrame.
 
-[Plotly Express](/python/plotly-express/) is the easy-to-use, high-level interface to Plotly, which [operates on "tidy" data](/python/px-arguments/) and produces [easy-to-style figures](/python/styling-plotly-express/).
+[Plotly Express](/python/plotly-express/) is the easy-to-use, high-level interface to Plotly, which [operates on a variety of types of data](/python/px-arguments/) and produces [easy-to-style figures](/python/styling-plotly-express/).
 
 ```python
 import plotly.express as px
@@ -64,6 +63,24 @@ fig = px.scatter_geo(df, locations="iso_alpha",
                      hover_name="country", # column added to hover information
                      size="pop", # size of markers
                      projection="natural earth")
+fig.show()
+```
+
+### Basic Example with GeoPandas
+
+`px.scatter_geo` can work well with [GeoPandas](https://geopandas.org/) dataframes whose `geometry` is of type `Point`.
+
+```python
+import plotly.express as px
+import geopandas as gpd
+
+geo_df = gpd.read_file(gpd.datasets.get_path('naturalearth_cities'))
+
+px.set_mapbox_access_token(open(".mapbox_token").read())
+fig = px.scatter_geo(geo_df,
+                    lat=geo_df.geometry.y,
+                    lon=geo_df.geometry.x,
+                    hover_name="name")
 fig.show()
 ```
 
@@ -215,4 +232,4 @@ fig.show()
 
 #### Reference
 
-See https://plot.ly/python/reference/#scattergeo and https://plot.ly/python/reference/#layout-geo for more information and chart attribute options!
+See [function reference for `px.(scatter_geo)`](https://plotly.com/python-api-reference/generated/plotly.express.scatter_geo) or https://plotly.com/python/reference/scattergeo/ and https://plotly.com/python/reference/layout/geo/ for more information and chart attribute options!

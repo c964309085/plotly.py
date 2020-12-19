@@ -5,8 +5,8 @@ jupyter:
     text_representation:
       extension: .md
       format_name: markdown
-      format_version: "1.2"
-      jupytext_version: 1.3.0
+      format_version: '1.2'
+      jupytext_version: 1.6.0
   kernelspec:
     display_name: Python 3
     language: python
@@ -20,7 +20,7 @@ jupyter:
     name: python
     nbconvert_exporter: python
     pygments_lexer: ipython3
-    version: 3.7.3
+    version: 3.7.7
   plotly:
     description: How to make Bar Charts in Python with Plotly.
     display_as: basic
@@ -35,7 +35,7 @@ jupyter:
 
 ### Bar chart with Plotly Express
 
-[Plotly Express](/python/plotly-express/) is the easy-to-use, high-level interface to Plotly, which [operates on "tidy" data](/python/px-arguments/) and produces [easy-to-style figures](/python/styling-plotly-express/).
+[Plotly Express](/python/plotly-express/) is the easy-to-use, high-level interface to Plotly, which [operates on a variety of types of data](/python/px-arguments/) and produces [easy-to-style figures](/python/styling-plotly-express/).
 
 With `px.bar`, each row of the DataFrame is represented as a rectangular mark.
 
@@ -46,11 +46,59 @@ fig = px.bar(data_canada, x='year', y='pop')
 fig.show()
 ```
 
+
+#### Bar chart with Long Format Data
+
+Long-form data has one row per observation, and one column per variable. This is suitable for storing and displaying multivariate data i.e. with dimension greater than 2. This format is sometimes called "tidy".
+
+To learn more about how to provide a specific form of column-oriented data to 2D-Cartesian Plotly Express functions such as `px.bar`, see the [Plotly Express Wide-Form Support in Python
+documentation](https://plotly.com/python/wide-form/).
+
+For  detailed column-input-format documentation, see the [Plotly Express Arguments documentation](https://plotly.com/python/px-arguments/).
+
 ```python
-data_canada
+import plotly.express as px
+
+long_df = px.data.medals_long()
+
+fig = px.bar(long_df, x="nation", y="count", color="medal", title="Long-Form Input")
+fig.show()
 ```
 
-### Customize bar chart with Plotly Express
+```python
+long_df
+```
+
+#### Bar chart with Wide Format Data
+Wide-form data has one row per value of one of the first variable, and one column per value of the second variable. This is suitable for storing and displaying 2-dimensional data.
+
+```python
+import plotly.express as px
+
+wide_df = px.data.medals_wide()
+
+fig = px.bar(wide_df, x="nation", y=["gold", "silver", "bronze"], title="Wide-Form Input")
+fig.show()
+```
+
+```python
+wide_df
+```
+
+### Bar chart in Dash
+
+[Dash](https://plotly.com/dash/) is the best way to build analytical apps in Python using Plotly figures. To run the app below, run `pip install dash`, click "Download" to get the code and run `python app.py`.
+
+Get started  with [the official Dash docs](https://dash.plotly.com/installation) and **learn how to effortlessly [style](https://plotly.com/dash/design-kit/) & [deploy](https://plotly.com/dash/app-manager/) apps like this with <a class="plotly-red" href="https://plotly.com/dash/">Dash Enterprise</a>.**
+
+
+```python hide_code=true
+from IPython.display import IFrame
+snippet_url = 'https://dash-gallery.plotly.host/python-docs-dash-snippets/'
+IFrame(snippet_url + 'bar-charts', width='100%', height=630)
+```
+
+### Customize bar chart with Plotly Express
 
 The bar plot can be customized using keyword arguments.
 
@@ -77,7 +125,9 @@ fig.show()
 ```python
 # Change the default stacking
 import plotly.express as px
-fig = px.bar(df, x="sex", y="total_bill", color='smoker', barmode='group',
+df = px.data.tips()
+fig = px.bar(df, x="sex", y="total_bill",
+             color='smoker', barmode='group',
              height=400)
 fig.show()
 ```
@@ -88,6 +138,7 @@ Use the keyword arguments `facet_row` (resp. `facet_col`) to create facetted sub
 
 ```python
 import plotly.express as px
+df = px.data.tips()
 fig = px.bar(df, x="sex", y="total_bill", color="smoker", barmode="group",
              facet_row="time", facet_col="day",
              category_orders={"day": ["Thur", "Fri", "Sat", "Sun"],
@@ -99,7 +150,7 @@ To learn more, see the _link to px.bar reference page_.
 
 #### Basic Bar Chart with plotly.graph_objects
 
-If Plotly Express does not provide a good starting point, it is also possible to use the more generic `go.Bar` function from `plotly.graph_objects`.
+If Plotly Express does not provide a good starting point, it is also possible to use [the more generic `go.Bar` class from `plotly.graph_objects`](/python/graph-objects/).
 
 ```python
 import plotly.graph_objects as go
@@ -121,7 +172,7 @@ fig = go.Figure(data=[
     go.Bar(name='SF Zoo', x=animals, y=[20, 14, 23]),
     go.Bar(name='LA Zoo', x=animals, y=[12, 18, 29])
 ])
-# Change the bar mode
+# Change the bar mode
 fig.update_layout(barmode='group')
 fig.show()
 ```
@@ -213,7 +264,7 @@ fig.add_trace(go.Bar(
     marker_color='lightsalmon'
 ))
 
-# Here we modify the tickangle of the xaxis, resulting in rotated labels.
+# Here we modify the tickangle of the xaxis, resulting in rotated labels.
 fig.update_layout(barmode='group', xaxis_tickangle=-45)
 fig.show()
 ```
@@ -247,6 +298,56 @@ fig = go.Figure(data=[go.Bar(
 )])
 
 fig.show()
+```
+
+Bar charts with custom widths can be used to make mekko charts (also known as marimekko charts, mosaic plots, or variwide charts).
+
+```python
+import plotly.graph_objects as go
+import numpy as np
+
+labels = ["apples","oranges","pears","bananas"]
+widths = np.array([10,20,20,50])
+
+data = {
+    "South": [50,80,60,70],
+    "North": [50,20,40,30]
+}
+
+fig = go.Figure()
+for key in data:
+    fig.add_trace(go.Bar(
+        name=key,
+        y=data[key],
+        x=np.cumsum(widths)-widths,
+        width=widths,
+        offset=0,
+        customdata=np.transpose([labels, widths*data[key]]),
+        texttemplate="%{y} x %{width} =<br>%{customdata[1]}",
+        textposition="inside",
+        textangle=0,
+        textfont_color="white",
+        hovertemplate="<br>".join([
+            "label: %{customdata[0]}",
+            "width: %{width}",
+            "height: %{y}",
+            "area: %{customdata[1]}",
+        ])
+    ))
+
+fig.update_xaxes( 
+    tickvals=np.cumsum(widths)-widths/2, 
+    ticktext= ["%s<br>%d" % (l, w) for l, w in zip(labels, widths)]
+)
+
+fig.update_xaxes(range=[0,100])
+fig.update_yaxes(range=[0,100])
+
+fig.update_layout(
+    title_text="Marimekko Chart",
+    barmode="stack",
+    uniformtext=dict(mode="hide", minsize=10),
+)
 ```
 
 ### Customizing Individual Bar Base
@@ -336,7 +437,7 @@ fig.show()
 
 ### Bar Chart with Sorted or Ordered Categories
 
-Set `categoryorder` to `"category ascending"` or `"category descending"` for the alphanumerical order of the category names or `"total ascending"` or `"total descending"` for numerical order of values. [categoryorder](https://plot.ly/python/reference/#layout-xaxis-categoryorder) for more information. Note that sorting the bars by a particular trace isn't possible right now - it's only possible to sort by the total values. Of course, you can always sort your data _before_ plotting it if you need more customization.
+Set `categoryorder` to `"category ascending"` or `"category descending"` for the alphanumerical order of the category names or `"total ascending"` or `"total descending"` for numerical order of values. [categoryorder](https://plotly.com/python/reference/layout/xaxis/#layout-xaxis-categoryorder) for more information. Note that sorting the bars by a particular trace isn't possible right now - it's only possible to sort by the total values. Of course, you can always sort your data _before_ plotting it if you need more customization.
 
 This example orders the bar chart alphabetically with `categoryorder: 'category ascending'`
 
@@ -382,8 +483,28 @@ fig.show()
 
 ### Horizontal Bar Charts
 
-See examples of horizontal bar charts [here](https://plot.ly/python/horizontal-bar-charts/).
+See examples of horizontal bar charts [here](https://plotly.com/python/horizontal-bar-charts/).
+
+### Bar Charts With Multicategory Axis Type
+
+If your traces have arrays for `x` or `y`, then the axis type is automatically inferred to be `multicategory`.
+
+```python
+import plotly.graph_objects as go
+x = [
+    ["BB+", "BB+", "BB+", "BB", "BB", "BB"],
+    [16, 17, 18, 16, 17, 18,]
+]
+fig = go.Figure()
+fig.add_bar(x=x,y=[1,2,3,4,5,6])
+fig.add_bar(x=x,y=[6,5,4,3,2,1])
+fig.update_layout(barmode="relative")
+fig.show()
+```
+
+
+
 
 ### Reference
 
-See https://plot.ly/python/reference/#bar for more information and chart attribute options!
+See [function reference for `px.bar()`](https://plotly.com/python-api-reference/generated/plotly.express.bar) or https://plotly.com/python/reference/bar/ for more information and chart attribute options!
